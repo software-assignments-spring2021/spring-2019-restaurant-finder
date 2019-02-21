@@ -1,13 +1,13 @@
 # Restaurant Finder
 
 ## A new Restaurant app for the Ages
- - we are concerned with implementing the overall functionality of Finding Restaurant based on different constraints including but not limited to Location, Price and Cuisine Type. ]
- - Additional features could include Randomly generating compatible restaurants and a Social Network for sharing cuisines, ratings, coupons, deals and recommendations with friends.
- - This app is for People and a Time crunch for a bite to eat. People can get a restaurant they know they'll like before they even read the reviews.
+ - We want to implement the overall functionality of finding restaurants based on different constraints including but not limited to location, price and cuisine type.
+ - Additional features could include randomly generating compatible restaurants and a personalized social network for sharing cuisines, ratings, coupons, deals and recommendations with friends.
+ - This app is for people with a time crunch looking for a bite to eat. People can get a restaurant they know they'll like before they even read the reviews based on the filtering services, friend's recommendations, or convenience by location.
 
 ## Info
   -  Team Members
-        - Carlos Michael Rodriguez
+        - Carlos Michael Rodriguez [Github](https://github.com/cmr624/) [Website] (https://www.carlos-michael.com)
         - Will Powers
         - Roy Lee
         - Nathalia Lin
