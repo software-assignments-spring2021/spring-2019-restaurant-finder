@@ -7,38 +7,38 @@ Although, the overarching end-user is just any individual needing aid in finding
 ### Regular User
 #### Persona-1 
 
-Name: Kevin Johnson
-Age: 30
-Address: 352 Amsterdam Ave, New York, NY, 10023
-Phone: 212-544-2052
+Name: Kevin Johnson<br/>
+Age: 30<br/>
+Address: 352 Amsterdam Ave, New York, NY, 10023<br/>
+Phone: 212-544-2052<br/>
 
 I am a single 30 year old man working as an Investment Banker at Goldman Sachs. I begin work at around 8am and usually stay at the office until 8pm. I have a 45 minute lunch break at around 2pm, where I am able to freely leave the office to either dine-in or take-out food at wherever I wish. However, I am often unable to search extensively for restaurants that fit my daily cravings. If I spend way too much time looking, I do not have the luxury to walk there, pick up my order, and come back in time to eat. If I do a quick luck of the draw pick, I am usually left unsatisfied from the plethora of recommendations that I am given. Therefore, I usually end up at the nearby Chipotle, ordering the dreaded buritto bowl once again. I need an application that can give me a limited number of restaurants that reside at most 10 minutes away from my working location. What would be even better is if I could get a quick, different one-restaurant recommendation every day for whatever style of cuisine I'm craving. 
 
 #### Persona-2 
 
-Name: Callie Numbers
-Age: 20
-Address: 542 East 16th Street, New York, NY 10009
-Phone: 404-213-9989
+Name: Callie Numbers<br/>
+Age: 20<br/>
+Address: 542 East 16th Street, New York, NY 10009<br/>
+Phone: 404-213-9989<br/>
 
 I am a freshman attending New York University majoring in Economics. Originally from the suburbs of Florida, I have had difficulty with exploring the city of New York and what it has to offer. As a foodie, I am always extensively searching for new restaurants. However, from all the choices available, I usually find myself unable to decide which restaurant to go to based on ratings alone. Specifically, when 5 restaurants are listed with similar ratings and price points, I find myself greatly conflicted on where to go. 
 
 ### Social User
 #### Persona-3
 
-Name: Kathy Wang
-Age: 28
-Address: 420 West 29th street, New York, 10010
-Phone: 212-119-2433
+Name: Kathy Wang<br/>
+Age: 28<br/>
+Address: 420 West 29th street, New York, 10010<br/>
+Phone: 212-119-2433<br/>
 
 I am an avid food explorer based in the city of New York. I keep track of all restaurants I have been to and write reviews for every one in my food journal. I have noticed that on different food platforms there seems to be an inflation of "fake" reviews that overshadow genuine ones. Therefore, I have become reluctant these days to upload my personal takes on restaurants. I just wish there was some application that could allow true lovers of food like myself to be immersed into a real "foodie" community where our evaluations could be more appreciated.
 
 #### Persona-4
 
-Name: Jeremih Sanders
-Age: 22
-Address; 700 E 77th Street, New York, 10162
-Phone: 212-988-2020
+Name: Jeremih Sanders<br/>
+Age: 22<br/>
+Address; 700 E 77th Street, New York, 10162<br/>
+Phone: 212-988-2020<br/>
 
 Although I have been living in New York for around 4 years now, I have never had the luxury to truly explore the many cuisines it has to offer. As I was limited financially and even time-wise as a student, my friends and I usually ate at our school's dining hall to save our money for partying during the weekends. Now that we are all graduated and working, we do not have any knowledge of where to eat outside a couple of restaurants. However, I do know of other friends in school who spent their whole allowances on food alone. I just wish there was a way of knowing what restaurants they have been to and what they thought of each.
 
