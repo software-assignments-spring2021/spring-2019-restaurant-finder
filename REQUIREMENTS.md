@@ -1,3 +1,39 @@
+# Persona
+
+//TODO
+
+# Use Cases
+For all use cases, we will refer to a "user." This "user" is our target end user, a college student / adult in a city trying to find information about restaurants in the area. A "social" user is a user who wants to use the social features of our apps, not just the regular information gathering of a regular user. A social user is required to have an account and be authenticated, while a user does not need an account and can simply use the app to find information.
+
+## Search for all restaurants in a location
+### Actor: User
+### Scenario 
+Our user places a **Location object** search query in the search bar for the particular location they are looking for, and the app displays all restaurants compatible with the location details.
+
+## Search for all restaurants of a cuisine
+### Actor: User
+### Scenario 
+Our user places a **cuisine object** search query in the search bar for the particular cuisine they are looking for, and the app displays all restaurants compatible with the cuisine results.
+
+## Search for all restaurants within a price range
+### Actor: User
+### Scenario 
+Our user places a **price object** search query in the search bar for the particular price they are looking for, and the app displays all restaurants compatible with the price results.
+
+## Rate a restaurant
+### Actor: Social User
+### Scenario 
+Our social user wants to rate a particular restaurant they have searched for and eaten at. Social user provides their score, and the system saves this information into their user object in the database as a rated restaurant. Social user can then go back and look through their ratings.
+
+## Share restaurant rating to a friend
+### Actor: Social User
+### Scenario 
+After a social user has rated a restaurant, they can send this information to another user on their friends list tied to their user object. Social user chooses a friend, chooses a restaurant with their rating, and our system takes this information and delivers it to another social user's recommendations inbox.
+
+
+# Domain Modeling
+//TODO
+
 # Professor Stakeholder Interview
 
 Since our group was not based on a specific Restaurant Finder app we will be concerned with implementing the overall functionality of Finding Restaurant based on different constraints including but not limited to Location, Price and Cuisine Type. Additional features could include Randomly generating compatible restaurants and a Social Network for sharing cuisines, ratings, coupons, deals and recommendations with friends.  
