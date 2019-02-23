@@ -1,3 +1,20 @@
+# Requirements Document
+
+## System Description
+### Restaurant Finder Features
+- View a list of restaurants
+  - Yelp API
+- Filter those restaurants
+  - Price
+  - Rating
+  - Cuisine
+ 
+### Original Meeting Notes
+![notes](https://files.slack.com/files-pri/TFRB27QLV-FGCEQGHGA/image_from_ios.jpg)
+
+## System Diagram
+![alt text](https://nyu-agile-software.slack.com/files/UFRT3G7JP/FGDKXC126/untitled_diagram.png)
+
 # Persona
 
 ## End-User observation
@@ -59,34 +76,42 @@ For all use cases, we will refer to a "user." This "user" is our target end user
 ### Actor: User
 ### Scenario 
 Our user places a **Location object** search query in the search bar for the particular location they are looking for, and the app displays all restaurants compatible with the location details.
+### Model
+![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGERV937F/search_for_all_restaurants_in_a_location.png)
 
 ## Search for all restaurants of a cuisine
 ### Actor: User
 ### Scenario 
 Our user places a **cuisine object** search query in the search bar for the particular cuisine they are looking for, and the app displays all restaurants compatible with the cuisine results.
+### Model
+![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGFV15154/search_for_all_restaurants_of_a_cuisine.png)
 
 ## Search for all restaurants within a price range
 ### Actor: User
 ### Scenario 
 Our user places a **price object** search query in the search bar for the particular price they are looking for, and the app displays all restaurants compatible with the price results.
+### Model
+![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGEF18FRA/search_for_all_restaurants_within_a_price_range.png)
 
 ## Rate a restaurant
 ### Actor: Social User
 ### Scenario 
 Our social user wants to rate a particular restaurant they have searched for and eaten at. Social user provides their score, and the system saves this information into their user object in the database as a rated restaurant. Social user can then go back and look through their ratings.
+### Model
+![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGDUUSGTT/rate_a_restaurant.png)
+
 
 ## Share restaurant rating to a friend
 ### Actor: Social User
 ### Scenario 
 After a social user has rated a restaurant, they can send this information to another user on their friends list tied to their user object. Social user chooses a friend, chooses a restaurant with their rating, and our system takes this information and delivers it to another social user's recommendations inbox.
+### Model
+![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGDPQT3L0/share_restaurant_rating_to_a_friend.png)
 
 
-# Domain Modeling
-//TODO
+# Professor Stakeholder Interview Notes
 
-# Professor Stakeholder Interview
-
-Since our group was not based on a specific Restaurant Finder app we will be concerned with implementing the overall functionality of Finding Restaurant based on different constraints including but not limited to Location, Price and Cuisine Type. Additional features could include Randomly generating compatible restaurants and a Social Network for sharing cuisines, ratings, coupons, deals and recommendations with friends.  
+Will - Since our group was not based on a specific Restaurant Finder app we will be concerned with implementing the overall functionality of Finding Restaurant based on different constraints including but not limited to Location, Price and Cuisine Type. Additional features could include Randomly generating compatible restaurants and a Social Network for sharing cuisines, ratings, coupons, deals and recommendations with friends.  
 
 ## Would you like first to provide a general overview of your desired outcomes from our project or would you like me to first start off with questions?
 
