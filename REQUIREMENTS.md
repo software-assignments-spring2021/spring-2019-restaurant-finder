@@ -13,7 +13,7 @@
 ![notes](https://files.slack.com/files-pri/TFRB27QLV-FGCEQGHGA/image_from_ios.jpg)
 
 ## System Diagram
-![alt text](https://nyu-agile-software.slack.com/files/UFRT3G7JP/FGDKXC126/untitled_diagram.png)
+![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGDKXC126/untitled_diagram.png)
 
 # Persona
 
