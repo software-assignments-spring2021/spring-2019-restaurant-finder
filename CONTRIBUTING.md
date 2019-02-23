@@ -1,3 +1,6 @@
+# Details
+This is largely adapted from https://gist.github.com/PurpleBooth/b24679402957c63ec426, with our additions specific to our project. Note the attribution on that post: "This Code of Conduct is adapted from the Contributor Covenant, version 1.4, available at http://contributor-covenant.org/version/1/4"
+
 # Contributing 
 
 We will utilize the Centralized Git Workflow during the entirety of this project.
@@ -20,20 +23,20 @@ In the interest of fostering an open and welcoming environment, we as contributo
 
 ### Our standards 
 
-Examples of appropriate behavior include but are not limited to:
+#### Examples of appropriate behavior include but are not limited to:
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints and experiences
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
+- Showing empathy towards other community members
 
-Using welcoming and inclusive language
-Being respectful of differing viewpoints and experiences
-Gracefully accepting constructive criticism
-Focusing on what is best for the community
-Showing empathy towards other community members
-Examples of unacceptable behavior by participants include:
+#### Examples of unacceptable behavior by participants include:
 
-The use of sexualized language or imagery and unwelcome sexual attention or advances
-Trolling, insulting/derogatory comments, and personal or political attacks
-Public or private harassment
-Publishing others' private information, such as a physical or electronic address, without explicit permission
-Other conduct which could reasonably be considered inappropriate in a professional setting
+- The use of sexualized language or imagery and unwelcome sexual attention or advances
+- Trolling, insulting/derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others' private information, such as a physical or electronic address, without explicit permission
+- Other conduct which could reasonably be considered inappropriate in a professional setting
 
 ### Team Norms
 
@@ -46,6 +49,20 @@ Sprints should take around 2 weeks for completion, although some may require up 
 If a team member is failing to deliver on his or her obligations to the team, he or she will be contacted by the other members and expected to respond within 48 hours. Failure to do so will result in a report to the professor and a required meeting with all team members. 
 
 The Product Backlog will be managed by the Product Owner with aid from the developers. The more valuable stories will be placed higher in the backlog and will be the main focuses of each sprint.
+
+### Code standards
+
+- All code must be well documented, with detailed comments defining functions and their outputs
+- All code must follow standard Javascript standards. 
+  - [Standard JS](https://standardjs.com/rules.html)
+- To enforce standard JS, code must pass through eslint.
+  - [eslint](https://github.com/standard/eslint-config-standard-react)
+ 
+### Git standards
+
+- Do not work on a branch for more than 3 days
+- Every feature needs its own branch
+- Detail pull requests with everything added, and any changes made to non-feature related code and why
 
 ### Scope
 
