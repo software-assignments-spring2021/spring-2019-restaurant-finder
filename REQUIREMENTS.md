@@ -10,10 +10,10 @@
   - Cuisine
  
 ### Original Meeting Notes
-![notes](https://files.slack.com/files-pri/TFRB27QLV-FGCEQGHGA/image_from_ios.jpg)
+![image from ios](https://user-images.githubusercontent.com/25305809/53281077-e693af00-36f0-11e9-9967-a2978299c216.jpg)
 
 ## System Diagram
-![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGDKXC126/untitled_diagram.png)
+![System Diagram](https://user-images.githubusercontent.com/25305809/53281068-aaf8e500-36f0-11e9-9de5-3c4fc56b46bc.png)
 
 # Persona
 
@@ -77,28 +77,26 @@ For all use cases, we will refer to a "user." This "user" is our target end user
 ### Scenario 
 Our user places a **Location object** search query in the search bar for the particular location they are looking for, and the app displays all restaurants compatible with the location details.
 ### Model
-![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGERV937F/search_for_all_restaurants_in_a_location.png)
-
+![search for all restaurants in a location](https://user-images.githubusercontent.com/25305809/53281061-9e748c80-36f0-11e9-92a1-708426e6cc8a.png)
 ## Search for all restaurants of a cuisine
 ### Actor: User
 ### Scenario 
 Our user places a **cuisine object** search query in the search bar for the particular cuisine they are looking for, and the app displays all restaurants compatible with the cuisine results.
 ### Model
-![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGFV15154/search_for_all_restaurants_of_a_cuisine.png)
+![search for all restaurants of a cuisine](https://user-images.githubusercontent.com/25305809/53281064-a3394080-36f0-11e9-8ec6-6739c92e8aac.png)
 
 ## Search for all restaurants within a price range
 ### Actor: User
 ### Scenario 
 Our user places a **price object** search query in the search bar for the particular price they are looking for, and the app displays all restaurants compatible with the price results.
 ### Model
-![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGEF18FRA/search_for_all_restaurants_within_a_price_range.png)
-
+![search for all restaurants within a price range](https://user-images.githubusercontent.com/25305809/53281060-9a486f00-36f0-11e9-86a3-bd7cc64af03d.png)
 ## Rate a restaurant
 ### Actor: Social User
 ### Scenario 
 Our social user wants to rate a particular restaurant they have searched for and eaten at. Social user provides their score, and the system saves this information into their user object in the database as a rated restaurant. Social user can then go back and look through their ratings.
 ### Model
-![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGDUUSGTT/rate_a_restaurant.png)
+![rate a restaurant](https://user-images.githubusercontent.com/25305809/53281065-a59b9a80-36f0-11e9-9534-39c7c95fc718.png)
 
 
 ## Share restaurant rating to a friend
@@ -106,8 +104,7 @@ Our social user wants to rate a particular restaurant they have searched for and
 ### Scenario 
 After a social user has rated a restaurant, they can send this information to another user on their friends list tied to their user object. Social user chooses a friend, chooses a restaurant with their rating, and our system takes this information and delivers it to another social user's recommendations inbox.
 ### Model
-![alt text](https://files.slack.com/files-pri/TFRB27QLV-FGDPQT3L0/share_restaurant_rating_to_a_friend.png)
-
+![share restaurant rating to a friend](https://user-images.githubusercontent.com/25305809/53281062-a0d6e680-36f0-11e9-8374-900eb8bb08ea.png)
 
 # Professor Stakeholder Interview Notes
 
