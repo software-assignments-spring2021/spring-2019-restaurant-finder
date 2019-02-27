@@ -5,6 +5,13 @@
  - Additional features could include randomly generating compatible restaurants and a personalized social network for sharing cuisines, ratings, coupons, deals and recommendations with friends.
  - This app is for people with a time crunch looking for a bite to eat. People can get a restaurant they know they'll like before they even read the reviews based on the filtering services, friend's recommendations, or convenience by location.
 
+## Installation
+1. Clone repository
+2. `cd src`
+3. `npm install`
+4. `nodemon ./bin/www`
+5. Open browser at `localhost:3000`
+  
 ## Info
   -  Team Members
         - Carlos Michael Rodriguez 
