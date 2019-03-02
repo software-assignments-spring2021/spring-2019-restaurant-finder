@@ -1,0 +1,42 @@
+<div class="jumbotron" style="margin-bottom:0px" >
+	<div class="display-3 ">
+		Restaurant Finder
+	</div>
+</div>
+<nav class="nav nav-tabs nav-justified">
+		<a class="nav-item nav-link active" href="#">Search</a>
+		<a class="nav-item nav-link" href="#">About Us</a>
+		<a class="nav-item nav-link" href="#">Other Tab</a>
+</nav>
+<div class="container">
+	<form class="input-group mr-5 mt-3 mb-3">
+			<input class="form-control" type="text" name="text"id="searchbar" placeholder="Search...">
+			<div class="input-group-append">
+				<input type="submit" class="btn btn-warning">
+			</div>
+	</form>
+	<div>
+		{{#each res}}
+			<div class="card">
+
+				<div class="card-header">
+					<div class= "h3 class-title">{{this.name}}</div>
+				</div>
+				<div class="row">
+					<div class="col-6 col-md-4 col-lg-3">
+							<img style="height: 150px;" class="rounded" src="{{this.imgURL}}">
+					</div>
+					<div class="col">
+							<a class="card-link" href="{{this.webURL}}">Website</a>
+							<div class="card-text">Hours of Operation: {{this.hours}}</div>
+							<div class="card-text">Address: {{this.address}}</div>
+							<div class="card-text">Phone: {{this.phone}}</div>
+							<div class="card-text">Price: {{this.price}}</div>
+							<div class="card-text">Rating: {{this.rating}}</div>
+					</div>
+				</div>
+				
+			</div>
+		{{/each}}
+	</div>
+</div>
