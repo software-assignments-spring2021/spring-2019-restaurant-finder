@@ -7,10 +7,8 @@
 
 ## Installation
 1. Clone repository
-2. `cd src`
-3. `npm install`
-4. `nodemon ./bin/www`
-5. Open browser at `localhost:3000`
+2. In `/`, type `npm start`
+3. Open browser at `localhost:3000`
   
 ## Info
   -  Team Members
