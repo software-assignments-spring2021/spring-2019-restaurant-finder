@@ -10,6 +10,9 @@
 2. In `/`, type `npm start`
 3. Open browser at `localhost:3000`
 
+## Mocha Tests
+1. `nyc mocha`
+
 ## Info
   -  Team Members
         - Carlos Michael Rodriguez
