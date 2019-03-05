@@ -21,6 +21,7 @@
   "homepage": "https://github.com/nyu-software-engineering/restaurant-finder#readme",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "mongoose": "^5.4.17",
     "nyc": "^13.3.0"
   },
   "devDependencies": {
