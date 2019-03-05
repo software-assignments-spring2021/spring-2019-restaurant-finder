@@ -7,11 +7,14 @@
 
 ## Installation
 1. Clone repository
-2. In `/`, type `npm start`
-3. Open browser at `localhost:3000`
+2. in '/' '/backend' and '/frontend' type 'npm install'
 
-## Mocha Tests
-1. `nyc mocha`
+## Testing
+1. in '/' run `npm run test`
+
+# Running
+1. In `backend`, type `npm start`
+3. Open browser at `localhost:5000`
 
 ## Info
   -  Team Members
