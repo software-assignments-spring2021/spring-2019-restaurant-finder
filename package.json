@@ -4,9 +4,9 @@
   "description": "## A new Restaurant app for the Ages  - We want to implement the overall functionality of finding restaurants based on different constraints including but not limited to location, price and cuisine type.  - Additional features could include randomly generating compatible restaurants and a personalized social network for sharing cuisines, ratings, coupons, deals and recommendations with friends.  - This app is for people with a time crunch looking for a bite to eat. People can get a restaurant they know they'll like before they even read the reviews based on the filtering services, friend's recommendations, or convenience by location.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc mocha",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
-    "devstart":"concurrently \"cd backend && nodemon ./bin/www\" \"cd frontend && npm start\""
+    "devstart": "concurrently \"cd backend && nodemon ./bin/www\" \"cd frontend && npm start\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/nyu-software-engineering/restaurant-finder#readme",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "nyc": "^13.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
   }
 }
