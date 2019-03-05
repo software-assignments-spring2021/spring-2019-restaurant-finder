@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc mocha",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
-    "devstart": "concurrently \"cd backend && nodemon ./bin/www\" \"cd frontend && npm start\""
+    "devstart": "concurrently \"cd backend && nodemon ./bin/www\" \"cd frontend && npm start\"",
+    "installit": "npm install && cd backend && npm install && cd ../ && cd frontend && npm install && cd ../"
   },
   "repository": {
     "type": "git",
