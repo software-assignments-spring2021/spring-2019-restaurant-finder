@@ -7,17 +7,17 @@
 
 ## Installation
 1. Clone repository
-2. `cd src`
-3. `npm install`
-4. `nodemon ./bin/www`
-5. Open browser at `localhost:3000`
-  
+2. In `/`, type `npm start`
+3. Open browser at `localhost:3000`
+
 ## Info
   -  Team Members
-        - Carlos Michael Rodriguez 
-          - [Github Profile](https://github.com/cmr624/) 
+        - Carlos Michael Rodriguez
+          - [Github Profile](https://github.com/cmr624/)
           - [Personal Website](https://www.carlos-michael.com)
         - Will Powers
+          - [Github Profile](https://github.com/willcpo)
+          - [LinkedIn Profile](https://github.com/linkedin.com/in/wcp227/)
         - Roy Lee
         - Nathalia Lin
 
