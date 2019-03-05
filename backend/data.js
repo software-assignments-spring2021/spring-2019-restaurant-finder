@@ -3,10 +3,9 @@ const Schema = mongoose.Schema;
 
 const DataSchema = new Schema (
   {
-    name: String,
-    id: Number,
-  },
-  {timestamps: true}
+    name: {type: String, required: true},
+    id: {type: Number},
+  }
 );
 
 //export new Schema so we could modify it using Node.js
