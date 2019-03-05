@@ -10,6 +10,11 @@
 2. In `/`, type `npm start`
 3. Open browser at `localhost:3000`
 
+## Unit Testing Specific Files
+
+Carlos-Michael
+run `nyc mocha` in `/backend/routes/cmtests`
+
 ## Info
   -  Team Members
         - Carlos Michael Rodriguez
