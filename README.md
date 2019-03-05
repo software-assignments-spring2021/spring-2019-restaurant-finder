@@ -13,8 +13,8 @@
 1. in `/` run `npm run test`
 
 # Running
-1. In `/`, type `npm start`
-2. Open browser at localhost:3000
+1. In `backend`, type `npm start`
+2. Open browser at `localhost:5000`
 
 ## Info
   -  Team Members
