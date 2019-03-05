@@ -7,7 +7,7 @@
 
 ## Installation
 1. Clone repository
-2. in `/`, `/backend`, and `/frontend` type `npm install`
+2. 'npm run installit'
 
 ## Testing
 1. in `/` run `npm run test`
