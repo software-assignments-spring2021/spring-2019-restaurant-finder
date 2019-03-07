@@ -9,7 +9,7 @@ module.exports ={
 		//The following is a test of functionality
 		if(searchQuery==='test'){
 			for (let i=0; i<5; i++){
-				restaurants.push(this.addRestaurant("name "+i, "http://www.jocay.com/web/images/yootheme/widgetkit/gallery/image"+(i+1)+".jpg", "webURL "+i, "hours "+i, "address "+i, "phone "+i, "price "+i, "rating "+i));
+				restaurants.push(this.restaurantObj("name "+i, "http://www.jocay.com/web/images/yootheme/widgetkit/gallery/image"+(i+1)+".jpg", "webURL "+i, "hours "+i, "address "+i, "phone "+i, "price "+i, "rating "+i));
 			}
 		}
 	},
