@@ -10,11 +10,10 @@
 2. 'npm run installit'
 
 ## Testing
-1. in `/` run `npm run test`
+1. run `npm run test`
 
 # Running
-1. In `backend`, type `npm start`
-2. Open browser at `localhost:5000`
+1. type `npm start`
 
 ## Info
   -  Team Members
