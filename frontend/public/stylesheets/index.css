@@ -1,9 +1,56 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: white;
 }
+.jumbotron {
+	margin-bottom: 0px !important;
+	background-color:#A5C1B8 !important;
+	color: white;
+	padding: 3em !important;
+}
+.searchBar{
+	padding: 1em;
+	background-color: #F9EFBC;
+	margin-bottom: 1em;
+}
 
+.searchButton{
+	background-color: white !important;
+}
+
+@media screen and (max-width: 991px) {
+	.jumbotron {
+		visibility: hidden;
+	}
+}
+@media screen and (min-width: 992px) {
+	.navbar-brand{
+		visibility: hidden;
+	}
+	.navbar-nav{
+		position: absolute;
+		left: 0;
+		top: .8em;
+	}
+}
+
+.btn-outline-success {
+	border-color: #C0D5AD  !important;
+}
+
+.navbar.bg-light.navbar-light  {
+	background-color:#D33F49 !important;
+}
+
+.navbar-light .navbar-nav .nav-link{
+	color: white !important;
+}
+
+.h1, h1 {
+    font-size: 4rem !important;
+    color: #0E7C7B !important;
+}
