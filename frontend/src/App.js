@@ -74,8 +74,8 @@ class App extends Component {
 		</h1>
 	</Jumbotron>
 	<Form className="searchBar">
-		<Row className="justify-content-md-center">
-			<Col sm={{ span: 4, offset: 0}}>
+		<Row className="justify-content-xs-center">
+			<Col xs={{ span: 7, offset: 0}} lg={{ span: 4, offset: 0}}>
 				<FormControl type="text" placeholder="Search" />
 			</Col>
 			<Col>

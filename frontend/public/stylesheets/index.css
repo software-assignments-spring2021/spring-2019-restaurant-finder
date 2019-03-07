@@ -25,6 +25,10 @@ a {
 @media screen and (max-width: 991px) {
 	.jumbotron {
 		visibility: hidden;
+		position: absolute
+	}
+	.navbar-brand{
+		color: white !important;
 	}
 }
 @media screen and (min-width: 992px) {
