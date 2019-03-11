@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Jumbotron, Row, Col,Container } from 'react-bootstrap';
 import RestaurantBox from './RestaurantBox';
-
+import RestaurantPage from './RestaurantPage';
 
 class App extends Component {
   
@@ -24,27 +24,69 @@ class App extends Component {
 				{"name":"Felipe","imgURL":"http://dummyimage.com/122x103.bmp/dddddd/000000","webURL":"https://msn.com/volutpat/quam/pede/lobortis/ligula/sit/amet.jsp?a=orci&pede=luctus&posuere=et&nonummy=ultrices&integer=posuere&non=cubilia&velit=curae&donec=nulla&diam=dapibus&neque=dolor&vestibulum=vel&eget=est&vulputate=donec&ut=odio&ultrices=justo&vel=sollicitudin&augue=ut&vestibulum=suscipit&ante=a&ipsum=feugiat&primis=et&in=eros&faucibus=vestibulum&orci=ac&luctus=est&et=lacinia&ultrices=nisi&posuere=venenatis&cubilia=tristique&curae=fusce&donec=congue&pharetra=diam&magna=id&vestibulum=ornare&aliquet=imperdiet&ultrices=sapien&erat=urna&tortor=pretium&sollicitudin=nisl&mi=ut&sit=volutpat&amet=sapien&lobortis=arcu&sapien=sed&sapien=augue&non=aliquam&mi=erat&integer=volutpat&ac=in&neque=congue&duis=etiam&bibendum=justo&morbi=etiam&non=pretium&quam=iaculis&nec=justo&dui=in&luctus=hac&rutrum=habitasse&nulla=platea&tellus=dictumst&in=etiam&sagittis=faucibus&dui=cursus&vel=urna&nisl=ut&duis=tellus&ac=nulla&nibh=ut&fusce=erat&lacus=id&purus=mauris&aliquet=vulputate&at=elementum&feugiat=nullam&non=varius&pretium=nulla&quis=facilisi&lectus=cras&suspendisse=non","hours":"3:26 PM","address":"09 Dayton Terrace","phone":"135-837-6797","price":3,"rating":2},
 				{"name":"Clerc","imgURL":"http://dummyimage.com/129x165.jpg/dddddd/000000","webURL":"http://amazon.de/eget/rutrum/at/lorem/integer/tincidunt.json?leo=gravida&rhoncus=nisi&sed=at&vestibulum=nibh&sit=in&amet=hac&cursus=habitasse&id=platea&turpis=dictumst&integer=aliquam&aliquet=augue&massa=quam&id=sollicitudin&lobortis=vitae&convallis=consectetuer&tortor=eget&risus=rutrum&dapibus=at&augue=lorem&vel=integer&accumsan=tincidunt&tellus=ante&nisi=vel&eu=ipsum&orci=praesent&mauris=blandit&lacinia=lacinia&sapien=erat&quis=vestibulum&libero=sed&nullam=magna&sit=at&amet=nunc&turpis=commodo&elementum=placerat&ligula=praesent&vehicula=blandit&consequat=nam&morbi=nulla&a=integer&ipsum=pede&integer=justo&a=lacinia&nibh=eget&in=tincidunt&quis=eget&justo=tempus&maecenas=vel&rhoncus=pede&aliquam=morbi&lacus=porttitor&morbi=lorem&quis=id&tortor=ligula&id=suspendisse&nulla=ornare&ultrices=consequat&aliquet=lectus&maecenas=in&leo=est&odio=risus&condimentum=auctor&id=sed&luctus=tristique&nec=in&molestie=tempus&sed=sit&justo=amet&pellentesque=sem&viverra=fusce&pede=consequat&ac=nulla&diam=nisl&cras=nunc&pellentesque=nisl&volutpat=duis&dui=bibendum&maecenas=felis&tristique=sed&est=interdum&et=venenatis&tempus=turpis&semper=enim&est=blandit&quam=mi&pharetra=in&magna=porttitor&ac=pede&consequat=justo&metus=eu&sapien=massa&ut=donec&nunc=dapibus&vestibulum=duis&ante=at&ipsum=velit&primis=eu&in=est","hours":"5:40 AM","address":"88 Ridge Oak Street","phone":"674-323-4744","price":1,"rating":1},
 				{"name":"Johna","imgURL":"http://dummyimage.com/154x243.jpg/dddddd/000000","webURL":"https://macromedia.com/morbi/odio/odio/elementum/eu/interdum.aspx?lacinia=suspendisse&aenean=accumsan&sit=tortor&amet=quis&justo=turpis&morbi=sed&ut=ante&odio=vivamus&cras=tortor&mi=duis&pede=mattis&malesuada=egestas&in=metus&imperdiet=aenean&et=fermentum&commodo=donec&vulputate=ut&justo=mauris&in=eget&blandit=massa&ultrices=tempor&enim=convallis&lorem=nulla&ipsum=neque&dolor=libero&sit=convallis&amet=eget&consectetuer=eleifend&adipiscing=luctus&elit=ultricies&proin=eu&interdum=nibh&mauris=quisque&non=id&ligula=justo&pellentesque=sit&ultrices=amet&phasellus=sapien&id=dignissim&sapien=vestibulum&in=vestibulum&sapien=ante&iaculis=ipsum&congue=primis&vivamus=in&metus=faucibus&arcu=orci&adipiscing=luctus&molestie=et&hendrerit=ultrices&at=posuere&vulputate=cubilia&vitae=curae&nisl=nulla&aenean=dapibus&lectus=dolor&pellentesque=vel&eget=est&nunc=donec&donec=odio&quis=justo&orci=sollicitudin&eget=ut&orci=suscipit&vehicula=a&condimentum=feugiat&curabitur=et&in=eros","hours":"5:01 PM","address":"227 Redwing Street","phone":"190-652-7944","price":3,"rating":3}
-			]
+			],
+			isSearchDisplayed: true,
+			selectedRestaurant: 0
 
 		}
 		this.eachRestaurant=this.eachRestaurant.bind(this);
+		this.displayRestaurant=this.displayRestaurant.bind(this);
+		this.changeView= this.changeView.bind(this);
+		this.back=this.back.bind(this);
+	}
+	changeView(i){
+		this.setState({
+			...this.state,
+			isSearchDisplayed: false,
+			selectedRestaurant: i
+		});
+	}
+
+	back(){
+		this.setState({
+			...this.state,
+			isSearchDisplayed: true,
+		});
 	}
 
 	eachRestaurant(restaurant,i){
 		return (
-			<RestaurantBox
+			<div onClick={this.changeView.bind(this, i)}>
+				<RestaurantBox
+					key={i}
+					index={i}
+					name = {restaurant.name}
+					imgURL = {restaurant.imgURL}
+					webURL = {restaurant.webURL}
+					hours = {restaurant.hours}
+					address = {restaurant.address}
+					phone = {restaurant.phone}
+					price = {restaurant.price}
+					rating = {restaurant.rating}
+					changeView = {this.changeView}>
+				</RestaurantBox>
+			</div>
+		)
+	}
+
+	displayRestaurant(i){
+		console.log(this.state.restaurants)
+		console.log(i)
+		console.log(this.state.restaurants[i])
+		return (
+			<RestaurantPage
 			key={i}
-			name = {restaurant.name}
-			imgURL = {restaurant.imgURL}
-			webURL = {restaurant.webURL}
-			hours = {restaurant.hours}
-			address = {restaurant.address}
-			phone = {restaurant.phone}
-			price = {restaurant.price}
-			rating = {restaurant.rating}
-							>
-				
-			</RestaurantBox>
+			index={i}
+			name = {this.state.restaurants[i].name}
+			imgURL = {this.state.restaurants[i].imgURL}
+			webURL = {this.state.restaurants[i].webURL}
+			hours = {this.state.restaurants[i].hours}
+			address = {this.state.restaurants[i].address}
+			phone = {this.state.restaurants[i].phone}
+			price = {this.state.restaurants[i].price}
+			rating = {this.state.restaurants[i].rating}
+			>
+			</RestaurantPage>
 		)
 	}
 	
@@ -69,12 +111,15 @@ class App extends Component {
 	  </Navbar.Collapse>
 	</Navbar>
 	<Jumbotron>
-		<h1>
+		<h1 className="h1">
 			Restaurant Finder
 		</h1>
 	</Jumbotron>
 	<Form className="searchBar">
 		<Row className="justify-content-xs-center">
+			<Col className={this.state.isSearchDisplayed?"d-none":""}>
+				<Button variant="warning" onClick={this.back}>Back</Button>
+			</Col>
 			<Col xs={{ span: 7, offset: 0}} lg={{ span: 4, offset: 0}}>
 				<FormControl type="text" placeholder="Search" />
 			</Col>
@@ -84,7 +129,7 @@ class App extends Component {
 		</Row>
 	</Form>
 	<Container>
-		{this.state.restaurants.map(this.eachRestaurant)}
+		{this.state.isSearchDisplayed? this.state.restaurants.map(this.eachRestaurant):this.displayRestaurant(this.state.selectedRestaurant)}
 	</Container>
 	</>
     );
