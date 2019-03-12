@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Jumbotron, Row, Col,Container } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Jumbotron, Row, Col,Container, FormCheck } from 'react-bootstrap';
 import RestaurantBox from './RestaurantBox';
 import RestaurantPage from './RestaurantPage';
 
@@ -125,6 +125,18 @@ class App extends Component {
 			</Col>
 			<Col>
 				<Button variant="outline-success" className="searchButton">Search</Button>
+			</Col>
+			<Col>
+				<NavDropdown title="Filters" id="basic-nav-dropdown">
+					<Form>
+						<FormCheck label="Filter 1" id="Filter1" className="ml-2"/>
+						<FormCheck label="Filter 2" id="Filter2" className="ml-2"/>
+						<FormCheck label="Filter 3" id="Filter3" className="ml-2"/>
+						<FormCheck label="Filter 4" id="Filter4" className="ml-2"/>
+						<FormCheck label="Filter 5" id="Filter5" className="ml-2"/>
+						<FormCheck label="Filter 6" id="Filter6" className="ml-2"/>
+					</Form>
+	      		</NavDropdown>
 			</Col>
 		</Row>
 	</Form>
