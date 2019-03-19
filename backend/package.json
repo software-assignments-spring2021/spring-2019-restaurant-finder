@@ -12,7 +12,8 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "yelp-fusion": "^2.2.1"
   },
   "devDependencies": {
     "nyc": "^13.3.0"

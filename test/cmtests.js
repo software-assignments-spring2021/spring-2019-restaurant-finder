@@ -22,10 +22,7 @@ describe("arrUtilities.sortByName()", function () {
             let tacoBell = new Restaurant("Taco Bell", "Mexican", 1);
             let chipotle = new Restaurant("Chipotle", "Mexican", 2);
 
-            arr.push(redLobster);
-            arr.push(zundoYa);
-            arr.push(tacoBell);
-            arr.push(chipotle);
+            arr.push(redLobster, zundoYa, tacoBell, chipotle);
 
             arr = arrUtils.sortByName(arr);
 
@@ -44,10 +41,8 @@ describe("arrUtilities.sortByCuisine()", function () {
             let tacoBell = new Restaurant("Taco Bell", "Mexican", 1);
             let chipotle = new Restaurant("Chipotle", "Mexican", 2);
 
-            arr.push(zundoYa);
-            arr.push(redLobster);
-            arr.push(tacoBell);
-            arr.push(chipotle);
+            arr.push(redLobster, zundoYa, tacoBell, chipotle);
+
 
             arr = arrUtils.sortByCuisine(arr);
 
@@ -66,11 +61,7 @@ describe("arrUtilities.sortByPrice()", function () {
             let tacoBell = new Restaurant("Taco Bell", "Mexican", 1);
             let chipotle = new Restaurant("Chipotle", "Mexican", 2);
 
-            arr.push(zundoYa);
-            arr.push(redLobster);
-            arr.push(tacoBell);
-            arr.push(chipotle);
-
+            arr.push(redLobster, zundoYa, tacoBell, chipotle);
             arr = arrUtils.sortByPrice(arr);
 
             expect(arr[0].getName()).to.equal("Taco Bell");
