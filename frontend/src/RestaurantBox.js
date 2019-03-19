@@ -4,7 +4,6 @@ import { Row, Col, Card} from 'react-bootstrap';
 class RestaurantBox extends Component {
   render() {
     return (
-
 			<Card>
 
 				<div className="card-header">
@@ -25,7 +24,6 @@ class RestaurantBox extends Component {
 				</Row>
 				
 			</Card>
-
 	);
   }
 }

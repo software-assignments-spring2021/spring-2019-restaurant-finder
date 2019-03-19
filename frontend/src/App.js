@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Jumbotron, Row, Col,Container } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Jumbotron, Row, Col,Container, FormCheck } from 'react-bootstrap';
 import RestaurantBox from './RestaurantBox';
-
+import RestaurantPage from './RestaurantPage';
 
 class App extends Component {
   
@@ -53,19 +53,42 @@ selectedRestaurant: 0
 	}
 	eachRestaurant = (restaurant,i) => {
 		return (
-			<RestaurantBox
+			<div onClick={this.changeView.bind(this, i)}>
+				<RestaurantBox
+					key={i}
+					index={i}
+					name = {restaurant.name}
+					imgURL = {restaurant.imgURL}
+					webURL = {restaurant.webURL}
+					hours = {restaurant.hours}
+					address = {restaurant.address}
+					phone = {restaurant.phone}
+					price = {restaurant.price}
+					rating = {restaurant.rating}
+					changeView = {this.changeView}>
+				</RestaurantBox>
+			</div>
+		)
+	}
+
+	displayRestaurant(i){
+		console.log(this.state.restaurants)
+		console.log(i)
+		console.log(this.state.restaurants[i])
+		return (
+			<RestaurantPage
 			key={i}
-			name = {restaurant.name}
-			imgURL = {restaurant.imgURL}
-			webURL = {restaurant.webURL}
-			hours = {restaurant.hours}
-			address = {restaurant.address}
-			phone = {restaurant.phone}
-			price = {restaurant.price}
-			rating = {restaurant.rating}
-							>
-				
-			</RestaurantBox>
+			index={i}
+			name = {this.state.restaurants[i].name}
+			imgURL = {this.state.restaurants[i].imgURL}
+			webURL = {this.state.restaurants[i].webURL}
+			hours = {this.state.restaurants[i].hours}
+			address = {this.state.restaurants[i].address}
+			phone = {this.state.restaurants[i].phone}
+			price = {this.state.restaurants[i].price}
+			rating = {this.state.restaurants[i].rating}
+			>
+			</RestaurantPage>
 		)
 	}
 	
@@ -90,12 +113,15 @@ selectedRestaurant: 0
 	  </Navbar.Collapse>
 	</Navbar>
 	<Jumbotron>
-		<h1>
+		<h1 className="h1">
 			Restaurant Finder
 		</h1>
 	</Jumbotron>
 	<Form className="searchBar">
 		<Row className="justify-content-xs-center">
+			<Col className={this.state.isSearchDisplayed?"d-none":""}>
+				<Button variant="warning" onClick={this.back}>Back</Button>
+			</Col>
 			<Col xs={{ span: 7, offset: 0}} lg={{ span: 4, offset: 0}}>
 				{/**
 				 * <FormControl type="text" placeholder="Search" />
@@ -114,10 +140,22 @@ selectedRestaurant: 0
 			<Col>
 				<Button variant="outline-success" className="searchButton">Search</Button>
 			</Col>
+			<Col>
+				<NavDropdown title="Filters" id="basic-nav-dropdown">
+					<Form>
+						<FormCheck label="Filter 1" id="Filter1" className="ml-2"/>
+						<FormCheck label="Filter 2" id="Filter2" className="ml-2"/>
+						<FormCheck label="Filter 3" id="Filter3" className="ml-2"/>
+						<FormCheck label="Filter 4" id="Filter4" className="ml-2"/>
+						<FormCheck label="Filter 5" id="Filter5" className="ml-2"/>
+						<FormCheck label="Filter 6" id="Filter6" className="ml-2"/>
+					</Form>
+	      		</NavDropdown>
+			</Col>
 		</Row>
 	</Form>
 	<Container>
-		{this.state.restaurants.map(this.eachRestaurant)}
+		{this.state.isSearchDisplayed? this.state.restaurants.map(this.eachRestaurant):this.displayRestaurant(this.state.selectedRestaurant)}
 	</Container>
 	</>
     );
