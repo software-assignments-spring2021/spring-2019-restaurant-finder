@@ -34,6 +34,8 @@ selectedRestaurant: 0
 
 	}
 	convertResponseToRestaurants = (response) => {
+		this.state.restaurants=[];
+		this.setState(this.state);
 		for (let i = 0; i < 20; i++)
 		{
 			const rest = response.jsonBody.businesses[i];
@@ -53,7 +55,6 @@ selectedRestaurant: 0
 	}
 	eachRestaurant = (restaurant,i) => {
 		return (
-			<div onClick={this.changeView.bind(this, i)}>
 				<RestaurantBox
 					key={i}
 					index={i}
@@ -67,7 +68,6 @@ selectedRestaurant: 0
 					rating = {restaurant.rating}
 					changeView = {this.changeView}>
 				</RestaurantBox>
-			</div>
 		)
 	}
 
@@ -155,7 +155,7 @@ selectedRestaurant: 0
 		</Row>
 	</Form>
 	<Container>
-		{this.state.isSearchDisplayed? this.state.restaurants.map(this.eachRestaurant):this.displayRestaurant(this.state.selectedRestaurant)}
+		{this.state.restaurants.map(this.eachRestaurant)}
 	</Container>
 	</>
     );
