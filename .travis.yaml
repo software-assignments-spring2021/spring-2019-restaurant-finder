@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "node"
+  - "8"
+install:
+  - npm run installIt
+script:
+  - npm start
+notifications:
+  slack: nyu-agile-software:4tlDnPkWGzoTHwp9oNewy0wo
