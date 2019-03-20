@@ -1,4 +1,4 @@
-const yelpClient = require("./Yelp/YelpGet");
+const yelpClient = require("./YelpGet");
 
 module.exports ={
 
