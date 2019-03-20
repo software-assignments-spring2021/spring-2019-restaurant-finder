@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect; 
 
-const User = require("../backend/User");
+const User = require("../backend/db/User");
 
 describe('user information', function() {
     it('should contain proper user REGISTER information', function(/*done*/) {
