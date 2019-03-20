@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Jumbotron, Row, Col,Container, FormCheck } from 'react-bootstrap';
+import { Button, Form, Jumbotron, Row, Col,Container} from 'react-bootstrap';
 import RestaurantBox from '../components/RestaurantBox';
 
 //this class is the basic search restaurants page that handles our basic test functionalit
@@ -25,17 +25,16 @@ class SearchRestaurantsPage extends Component{
 
   handleSubmit = (event) =>{
     event.preventDefault();
-    fetch(`callYelp?searchTerm=${encodeURIComponent(this.state.searchTerm)}`)
+    fetch(`api/callYelp?searchTerm=${encodeURIComponent(this.state.searchTerm)}`)
 			.then(response => { return response.json()})
 			.then(response => {
 				this.convertResponseToRestaurants(response);
 			})
 			.then(state => this.setState(state));
 
-	}
+}
 	convertResponseToRestaurants = (response) => {
-		this.state.restaurants=[];
-		this.setState(this.state);
+		this.setState({restaurants: []});
 		for (let i = 0; i < 20; i++)
 		{
 			const rest = response.jsonBody.businesses[i];
@@ -49,8 +48,8 @@ class SearchRestaurantsPage extends Component{
 				price: rest.price,
 				rating: rest.rating
 			} 
-			this.state.restaurants.push(restaurant);
-			this.setState(this.state);
+            this.state.restaurants.push(restaurant);
+            this.setState(this.state);
 		}
 	}
 	eachRestaurant = (restaurant,i) => {

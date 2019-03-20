@@ -5,12 +5,6 @@ import SearchRestaurantsPage from './pages/SearchRestaurantsPage';
 // our main "app" 
 //this should have all routes accessible
 class App extends Component {
-  
-	constructor(props){
-		super(props);
-	}
-
-
 	/* 
 		As of now, render just returns our "test" page which is SearchRestaurantsPage. 
 		We can also put global items that will be on every page such as a NavBar.

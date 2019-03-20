@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require("mongoose");
 const app = express();
-const Data = require("./data");
+const Data = require("./db/data");
 const router = express.Router();
 //Create our database and add it here
 const dbRoute = "mongodb://dbUser:<rfinder>@rfindertrial-shard-00-00-r1y8f.mongodb.net:27017,rfindertrial-shard-00-01-r1y8f.mongodb.net:27017,rfindertrial-shard-00-02-r1y8f.mongodb.net:27017/test?ssl=true&replicaSet=rFinderTrial-shard-0&authSource=admin&retryWrites=true"
@@ -18,13 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', yelpRouter);
-
-/*mongoose.connect(
-  dbRoute,
-  { useNewUrlParser: true}
-);*/
-
+//use our yelp router
+app.use('/api', yelpRouter);
 
 
 // catch 404 and forward to error handler
