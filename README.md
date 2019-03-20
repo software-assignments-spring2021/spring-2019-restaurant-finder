@@ -1,4 +1,4 @@
-# Restaurant Finder
+# Restaurant Finder [![Build Status](https://travis-ci.com/nyu-software-engineering/restaurant-finder.svg?branch=master)](https://travis-ci.com/nyu-software-engineering/restaurant-finder)
 
 ## A new Restaurant app for the Ages
  - We want to implement the overall functionality of finding restaurants based on different constraints including but not limited to location, price and cuisine type.
