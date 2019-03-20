@@ -3,7 +3,7 @@ node_js:
   - "node"
   - "8"
 install:
-  - npm run installIt
+  - npm run installit
 script:
   - npm start
 notifications:
