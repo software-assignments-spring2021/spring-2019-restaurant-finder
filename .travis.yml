@@ -5,6 +5,6 @@ node_js:
 install:
   - npm run installit
 script:
-  - npm start
+  - npm run test
 notifications:
   slack: nyu-agile-software:4tlDnPkWGzoTHwp9oNewy0wo
