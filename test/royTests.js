@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Data = require('../backend/data');
+var Data = require('../backend/db/data');
 
 
 describe('data schema test', function(){
