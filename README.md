@@ -7,7 +7,7 @@
 
 ## Installation
 1. Clone repository
-2. 'npm run installit'
+2. `npm run installit` - this script runs all dependencies in `/backend`, `/frontend`, and `/` which contains the `concurrently` dependency to run both frontend and backend at the same time.
 
 ## Testing
 1. run `npm run test`
