@@ -6,31 +6,58 @@ body {
 a {
   color: white;
 }
-.jumbotron {
-	margin-bottom: 0px !important;
-	background-color:#A5C1B8 !important;
-	color: white;
-	padding: 3em !important;
-}
-.searchBar{
-	padding: 1em;
-	background-color: #F9EFBC;
-	margin-bottom: 1em;
-}
 
+.btn-outline-success {
+	border-color: #C0D5AD !important;
+}
 .searchButton{
 	background-color: white !important;
 }
-
-@media screen and (max-width: 991px) {
-	.jumbotron {
-		visibility: hidden;
-		position: absolute
-	}
-	.navbar-brand{
-		color: white !important;
-	}
+.navbar.bg-light.navbar-light  {
+	background-color:#44a6c6 !important;
+	top: 0;
+	position: sticky;
+	z-index: 5;
 }
+.navbar-light .navbar-nav .nav-link{
+	color: white !important;
+}
+
+/*Restaurant Finder header*/
+.jumbotron {
+	margin-bottom: 0px !important;
+	background-color:#add8e6 !important;
+	color: #4169e1 !important;
+	padding: 3em !important;
+}
+.h1 {
+    font-size: 4rem !important;
+    color: white !important;
+}
+
+.searchBar{
+	padding: 1em;
+	background-color: #e8f4f8 !important;
+	margin-bottom: 1em;
+}
+#searchTerm {
+	margin: 10px;
+}
+
+/*make all images same size*/
+img.rounded {
+    position: relative;
+    float: left;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+	margin-right: 10px;
+
+}
+
+
+/*If screen size is 992px wide, or more, make the following changes*/
+/*>992 = desktop size*/
 @media screen and (min-width: 992px) {
 	.navbar-brand{
 		visibility: hidden;
@@ -40,21 +67,50 @@ a {
 		left: 0;
 		top: .8em;
 	}
+	div.container {
+		display: block;
+	}
+	img.rounded { 
+   		width: 30%;
+	}
 }
 
-.btn-outline-success {
-	border-color: #C0D5AD  !important;
+/*If screen size is 992px wide, or less, make the following changes*/
+/*992px = tablet size*/
+@media screen and (max-width: 991px) {
+	.jumbotron {
+		visibility: hidden;
+		position: absolute
+	}
+	.navbar-brand{
+		color: white !important;
+	}
+	div.container {
+		display: block;
+	}
+	img.rounded {
+   		width: 50%;
+	}
 }
 
-.navbar.bg-light.navbar-light  {
-	background-color:#D33F49 !important;
+/*If screen size is 768px wide, or less, make the following changes*/
+/*768px = mobile size*/
+@media screen and (max-width: 768px) {
+	.jumbotron {
+		visibility: hidden;
+		position: absolute
+	}
+	.navbar-brand{
+		color: white !important;
+	}
+	img.rounded {
+		width: 100%;
+	}
+	.description {
+	   display: block;
+	   font-size: 20px;
+	}
 }
 
-.navbar-light .navbar-nav .nav-link{
-	color: white !important;
-}
 
-.h1 {
-    font-size: 4rem !important;
-    color: #0E7C7B !important;
-}
+

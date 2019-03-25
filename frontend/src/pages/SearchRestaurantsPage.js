@@ -83,19 +83,16 @@ class SearchRestaurantsPage extends Component{
 				<Col className={this.state.isSearchDisplayed?"d-none":""}>
 					<Button variant="warning" onClick={this.back}>Back</Button>
 				</Col>
-				<Col xs={{ span: 7, offset: 0}} lg={{ span: 4, offset: 0}}>
-					{/**
-					* <FormControl type="text" placeholder="Search" />
-					*/}
+				<Col className='searchBarText'>
 					<form onSubmit={this.handleSubmit}>
-							<label htmlFor="searchTerm">Enter Yelp Search Term: </label>
-							<input
-								id="searchTerm"
-								type="text"
-								value={this.state.searchTerm}
-								onChange={this.handleChange}
-							/>
-							<button type="submit">Submit</button>
+						<label htmlFor="searchTerm">Search Bar:   </label>
+						<input
+							id="searchTerm"
+							type="text"
+							value={this.state.searchTerm}
+							onChange={this.handleChange}
+						/>
+						<button type="submit">Submit</button>
 					</form>
 				</Col>
 			</Row>
