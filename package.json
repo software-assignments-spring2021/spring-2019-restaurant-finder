@@ -7,12 +7,18 @@
     "test": "nyc mocha",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
     "devstart": "concurrently \"cd backend && nodemon ./bin/www\" \"cd frontend && npm start\"",
-    "installit": "npm install && cd backend && npm install && cd ../ && cd frontend && npm install && cd ../"
+    "installit": "npm install && cd backend && npm install && cd ../ && cd frontend && npm install && cd ../",
+    "heroku-postbuild": "npm run installit && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nyu-software-engineering/restaurant-finder.git"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "frontend/node_modules",
+    "backend/node_modules"
+],
   "keywords": [],
   "author": "",
   "license": "ISC",
