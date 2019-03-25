@@ -9,7 +9,7 @@
     "devstart": "concurrently \"cd backend && nodemon ./bin/www\" \"cd frontend && npm start\"",
     "installit": "npm install && cd backend && npm install && cd ../ && cd frontend && npm install && cd ../",
     "build": "cd backend",
-    "heroku-postbuild": "npm run installit && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "npm run installit && cd frontend && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
