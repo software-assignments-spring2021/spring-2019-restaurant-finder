@@ -2,7 +2,7 @@
   "name": "restaurant-finder",
   "version": "1.0.0",
   "description": "## A new Restaurant app for the Ages  - We want to implement the overall functionality of finding restaurants based on different constraints including but not limited to location, price and cuisine type.  - Additional features could include randomly generating compatible restaurants and a personalized social network for sharing cuisines, ratings, coupons, deals and recommendations with friends.  - This app is for people with a time crunch looking for a bite to eat. People can get a restaurant they know they'll like before they even read the reviews based on the filtering services, friend's recommendations, or convenience by location.",
-  "main": "index.js",
+  "main": "./backend/app.js",
   "scripts": {
     "test": "nyc mocha",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
