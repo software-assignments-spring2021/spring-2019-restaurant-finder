@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, Jumbotron, Row, Col,Container} from 'react-bootstrap';
 import RestaurantBox from '../components/RestaurantBox';
+import RestaurantPage from '../components/RestaurantPage';
+import categories from '../Categories';
 
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
@@ -11,12 +13,31 @@ class SearchRestaurantsPage extends Component{
 			searchTerm : "",
 			restaurants:[	],
 			isSearchDisplayed: true,
-			selectedRestaurant: 0
+			selectedRestaurant: 0,
+			firstPage: true
 		}
 		this.eachRestaurant=this.eachRestaurant.bind(this);
 		this.convertResponseToRestaurants=this.convertResponseToRestaurants.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.displayRestaurant=this.displayRestaurant.bind(this);
+		this.changeView= this.changeView.bind(this);
+		this.back=this.back.bind(this);
+	}
+
+	changeView(i){
+		this.setState({
+			...this.state,
+			isSearchDisplayed: false,
+			selectedRestaurant: i
+		});
+	}
+
+	back(){
+		this.setState({
+			...this.state,
+			isSearchDisplayed: true,
+		});
 	}
 
   handleChange = (event) => {
@@ -24,7 +45,7 @@ class SearchRestaurantsPage extends Component{
   }
 
   handleSubmit = (event) =>{
-    event.preventDefault();
+	event.preventDefault();
     fetch(`api/callYelp?searchTerm=${encodeURIComponent(this.state.searchTerm)}`)
 			.then(response => { return response.json()})
 			.then(response => {
@@ -34,9 +55,10 @@ class SearchRestaurantsPage extends Component{
 
 }
 	convertResponseToRestaurants = (response) => {
-		this.setState({restaurants: []});
-		for (let i = 0; i < 20; i++)
-		{
+		let restaurants = [];
+		let maxResult = 20;
+		for (let i = 0; (i < maxResult && i < response.jsonBody.businesses.length ); i++)
+		{	
 			const rest = response.jsonBody.businesses[i];
 			let restaurant = {
 				name: rest.name,
@@ -48,12 +70,13 @@ class SearchRestaurantsPage extends Component{
 				price: rest.price,
 				rating: rest.rating
 			} 
-            this.state.restaurants.push(restaurant);
-            this.setState(this.state);
+            restaurants.push(restaurant);
 		}
+		this.setState({...this.state, restaurants, firstPage: false});
 	}
-	eachRestaurant = (restaurant,i) => {
+	eachRestaurant(restaurant,i){
 		return (
+			<div onClick={this.changeView.bind(this, i)}>
 				<RestaurantBox
 					key={i}
 					index={i}
@@ -67,6 +90,28 @@ class SearchRestaurantsPage extends Component{
 					rating = {restaurant.rating}
 					changeView = {this.changeView}>
 				</RestaurantBox>
+			</div>
+		)
+	}
+
+	displayRestaurant(i){
+		console.log(this.state.restaurants)
+		console.log(i)
+		console.log(this.state.restaurants[i])
+		return (
+			<RestaurantPage
+			key={i}
+			index={i}
+			name = {this.state.restaurants[i].name}
+			imgURL = {this.state.restaurants[i].imgURL}
+			webURL = {this.state.restaurants[i].webURL}
+			hours = {this.state.restaurants[i].hours}
+			address = {this.state.restaurants[i].address}
+			phone = {this.state.restaurants[i].phone}
+			price = {this.state.restaurants[i].price}
+			rating = {this.state.restaurants[i].rating}
+			>
+			</RestaurantPage>
 		)
 	}
 	
@@ -92,13 +137,15 @@ class SearchRestaurantsPage extends Component{
 							value={this.state.searchTerm}
 							onChange={this.handleChange}
 						/>
-						<button type="submit">Submit</button>
+						<button type="submit" onClick={this.back} >Submit</button>
 					</form>
 				</Col>
 			</Row>
 		</Form>
 		<Container>
-			{this.state.restaurants.map(this.eachRestaurant)}
+		{this.state.isSearchDisplayed? this.state.restaurants.map(this.eachRestaurant):this.displayRestaurant(this.state.selectedRestaurant)}
+		{(this.state.restaurants.length == 0 && !this.state.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
+		{this.state.firstPage? <p style={{fontSize: "5em"}}>Start your Search!</p>:""}
 		</Container>
 		</>
 		);
