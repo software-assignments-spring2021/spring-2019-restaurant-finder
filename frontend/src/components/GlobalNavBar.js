@@ -11,18 +11,18 @@ class GlobalNavBar extends Component {
     render(){
         return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">Restaurant Finder</Navbar.Brand>
+            <Navbar.Brand onClick={this.props.app.loadSearch} href="">Restaurant Finder</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
+                <a onClick={this.props.app.loadSearch}><Nav.Link href="">Search</Nav.Link></a>
+                <Nav.Link href="">Link</Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Item href="">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="">Something</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                    <NavDropdown.Item href="">Separated link</NavDropdown.Item>
                 </NavDropdown>
                 </Nav>
             </Navbar.Collapse>
