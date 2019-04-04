@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Card} from 'react-bootstrap';
+import { Col, Card} from 'react-bootstrap';
 
 class RestaurantBox extends Component {
   render() {
@@ -10,13 +10,12 @@ class RestaurantBox extends Component {
 				</div>
 				<div className='container'>
 					<div>
-						<img className="rounded" src={this.props.imgURL}/>
+						<img className="rounded" src={this.props.image_url}/>
 					</div>
 					<br />
 					<Col className='description'>
-						<a className="card-link" href={this.props.webURL}>Website</a>
-						<div className="card-text">Hours of Operation: {this.props.hours}</div>
-						<div className="card-text">Address: {this.props.address}</div>
+						<a className="card-link" href={this.props.url}>Website</a>
+						<div className="card-text">location: {this.props.location.zip_code}</div>
 						<div className="card-text">Phone: {this.props.phone}</div>
 						<div className="card-text">Price: {this.props.price}</div>
 						<div className="card-text">Rating: {this.props.rating}</div>

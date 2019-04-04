@@ -10,6 +10,7 @@ const router = express.Router();
 //Create our database and add it here
 const dbRoute = "mongodb://dbUser:<rfinder>@rfindertrial-shard-00-00-r1y8f.mongodb.net:27017,rfindertrial-shard-00-01-r1y8f.mongodb.net:27017,rfindertrial-shard-00-02-r1y8f.mongodb.net:27017/test?ssl=true&replicaSet=rFinderTrial-shard-0&authSource=admin&retryWrites=true"
 var yelpRouter = require("./routes/callYelp");
+const schedule = require("node-schedule");
 
 app.use(logger('dev'));
 app.set("view engine", "hbs");
@@ -30,6 +31,8 @@ app.use(function(req, res, next) {
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
