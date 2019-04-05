@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, Jumbotron, Row, Col,Container} from 'react-bootstrap';
+import { Button, Form, Jumbotron, Row, Col, Container, NavDropdown} from 'react-bootstrap';
 import RestaurantBox from '../components/RestaurantBox';
-import RestaurantPage from './RestaurantPage';
 
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
@@ -29,16 +28,69 @@ class SearchRestaurantsPage extends Component{
 
   handleSubmit = (event) =>{
 	event.preventDefault();
-    fetch(`api/callYelp?searchTerm=${encodeURIComponent(this.state.searchTerm)}`)
+	console.log(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}`)
+    fetch(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}`)
 			.then(response => { return response.json()})
 			.then(response => {
+				console.log(response);
 				this.setState({ restaurants: response.jsonBody.businesses, firstPage: false});
 				this.props.app.state.restaurants = response.jsonBody.businesses
-				console.log(this.props.app.state);
-				console.log(this.state);
 			})
 			
 
+	}
+
+	sort(field){
+		console.log(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}&sort_by=${field}`)
+		fetch(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}&sort_by=${field}`)
+			.then(response => { return response.json()})
+			.then(response => {
+				console.log(response);
+				let restaurants = response.jsonBody.businesses;
+				if( field != "best_match"){
+
+					let compare;
+
+					if (field == "distance"){
+						compare = function(a,b){
+							if (a[field] && b[field])
+								return a[field]-b[field];
+							else
+								return 1;
+						}
+					} else {
+						compare = function(a,b){
+							if (a[field] && b[field])
+								return b[field]-a[field];
+							else
+								return 1;
+						}
+					}
+
+					restaurants.sort(compare);
+				}
+
+				this.setState({ restaurants, firstPage: false});
+				this.props.app.state.restaurants = restaurants;
+			})
+		
+
+	}
+
+	sortPrice(){
+		
+		let restaurants = this.state.restaurants;
+		console.log(restaurants);
+		function compare (a,b) {
+			if (a.price && b.price)
+				return a.price.length-b.price.length;
+			else
+				return 1;
+		}
+		restaurants.sort(compare);
+
+		this.setState({ restaurants, firstPage: false});
+		this.props.app.state.restaurants = restaurants;		
 	}
 
 	eachRestaurant(restaurant,i){
@@ -54,7 +106,7 @@ class SearchRestaurantsPage extends Component{
 					phone = {restaurant.phone}
 					price = {restaurant.price}
 					rating = {restaurant.rating}
-					changeView = {this.changeView}>
+					distance = {restaurant.distance}>
 				</RestaurantBox>
 			</div>
 		)
@@ -81,6 +133,15 @@ class SearchRestaurantsPage extends Component{
 						/>
 						<button type="submit" >Submit</button>
 					</form>
+				</Col>
+				<Col>
+					<NavDropdown title="Sort By" id="basic-nav-dropdown">
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match")}>Best Match</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating")}>Rating</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count")}>Review Count</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance")}>Distance</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)}>Price</NavDropdown.Item>
+					</NavDropdown>
 				</Col>
 			</Row>
 		</Form>

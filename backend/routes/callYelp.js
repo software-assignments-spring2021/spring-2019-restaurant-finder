@@ -16,7 +16,11 @@ router.get('/callYelp', function(req, res, next) {
 
 	} else {
 		
-		yelp.search({ term: req.query.searchTerm, location: 'New York', categories:"restaurants"})
+		req.query.location = 'New York';
+		req.query.categories = "restaurants"
+		req.query.limit = "50";
+
+		yelp.search(req.query)
         .then(function (data) {
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(data));
