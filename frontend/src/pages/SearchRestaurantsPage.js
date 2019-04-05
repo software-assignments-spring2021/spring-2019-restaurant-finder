@@ -11,12 +11,15 @@ class SearchRestaurantsPage extends Component{
 			restaurants: this.props.restaurants,
 			firstPage: true,
 			searchOptions: this.props.searchOptions,
-			searchTerm: this.props.searchTerm
+			searchTerm: this.props.searchTerm,
+			sortSelected: this.props.sortSelected
 		}
 
 		this.eachRestaurant=this.eachRestaurant.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.sort = this.sort.bind(this);
+		this.sortPrice = this.sortPrice.bind(this);
 
 		
 	}
@@ -34,6 +37,8 @@ class SearchRestaurantsPage extends Component{
 			.then(response => { return response.json()})
 			.then(response => {
 				console.log(response);
+				this.state.sortSelected = 0;
+				this.props.app.state.sortSelected = 0;
 				this.setState({ restaurants: response.jsonBody.businesses, firstPage: false});
 				this.props.app.state.restaurants = response.jsonBody.businesses
 			})
@@ -41,7 +46,9 @@ class SearchRestaurantsPage extends Component{
 
 	}
 
-	sort(field){
+	sort(field, i){
+		this.state.sortSelected = i;
+		this.props.app.state.sortSelected = i;
 		console.log(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}&sort_by=${field}`)
 		fetch(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}&sort_by=${field}`)
 			.then(response => { return response.json()})
@@ -79,7 +86,8 @@ class SearchRestaurantsPage extends Component{
 	}
 
 	sortPrice(){
-		
+		this.state.sortSelected = 4;
+		this.props.app.state.sortSelected = 4;
 		let restaurants = this.state.restaurants;
 		console.log(restaurants);
 		function compare (a,b) {
@@ -137,11 +145,11 @@ class SearchRestaurantsPage extends Component{
 				</Col>
 				<Col>
 					<NavDropdown title="Sort By" id="basic-nav-dropdown">
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match")}>Best Match</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating")}>Rating</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count")}>Review Count</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance")}>Distance</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)}>Price</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={this.state.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating", 1)} style={this.state.sortSelected == 1 ? {color: "red"} : {}}>Rating</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count", 2)} style={this.state.sortSelected == 2 ? {color: "red"} : {}}>Review Count</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={this.state.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={this.state.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
 					</NavDropdown>
 				</Col>
 			</Row>
