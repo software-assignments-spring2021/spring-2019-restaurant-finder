@@ -11,7 +11,7 @@ class SearchRestaurantsPage extends Component{
 			restaurants: this.props.restaurants,
 			firstPage: true,
 			searchOptions: this.props.searchOptions,
-			searchTerm: ""
+			searchTerm: this.props.searchTerm
 		}
 
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -24,6 +24,7 @@ class SearchRestaurantsPage extends Component{
 
   handleChange = (event) => {
 	this.setState({searchTerm: event.target.value });
+	this.props.app.state.searchTerm = event.target.value;
   }
 
   handleSubmit = (event) =>{

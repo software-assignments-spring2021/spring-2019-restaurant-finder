@@ -13,7 +13,7 @@ class App extends Component {
 
 	constructor(props){
 		super(props);
-		this.state = { page: 'search', searchOptions: {}, restaurants: []};
+		this.state = { page: 'search', searchOptions: {}, restaurants: [], searchTerm: ""};
 
 		this.loadRestaurant = this.loadRestaurant.bind(this);
 		this.loadSearch = this.loadSearch.bind(this);
@@ -24,6 +24,7 @@ class App extends Component {
 			.then(response => { 
 				return response.json()})
 			.then(response => {
+				console.log(response.jsonBody);
 				this.setState({page: "restaurant", restaurant: response.jsonBody});
 			})
 	}
@@ -41,7 +42,7 @@ class App extends Component {
 			return (
 				<>
 				<GlobalNavBar app ={this}/>
-				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants}/>
+				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm}/>
 				</>)
 			} else if (this.state.page === "restaurant"){
 				return (
