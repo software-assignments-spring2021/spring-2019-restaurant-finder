@@ -19,6 +19,7 @@ class RestaurantBox extends Component {
 						<div className="card-text">Phone: {this.props.phone}</div>
 						<div className="card-text">Price: {this.props.price}</div>
 						<div className="card-text">Rating: {this.props.rating}</div>
+						<div className="card-text">Distance: {Math.round(this.props.distance)} meters</div>
 						<br />
 					</Col>		
 				</div>			

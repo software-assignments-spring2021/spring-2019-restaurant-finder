@@ -49,17 +49,48 @@ class SearchRestaurantsPage extends Component{
 				let restaurants = response.jsonBody.businesses;
 				if( field != "best_match"){
 
-					function compare (a,b) {
-						return b[field]-a[field];
+					let compare;
+
+					if (field == "distance"){
+						compare = function(a,b){
+							if (a[field] && b[field])
+								return a[field]-b[field];
+							else
+								return 1;
+						}
+					} else {
+						compare = function(a,b){
+							if (a[field] && b[field])
+								return b[field]-a[field];
+							else
+								return 1;
+						}
 					}
+
 					restaurants.sort(compare);
 				}
 
 				this.setState({ restaurants, firstPage: false});
-				this.props.app.state.restaurants = response.jsonBody.businesses
+				this.props.app.state.restaurants = restaurants;
 			})
 		
 
+	}
+
+	sortPrice(){
+		
+		let restaurants = this.state.restaurants;
+		console.log(restaurants);
+		function compare (a,b) {
+			if (a.price && b.price)
+				return a.price.length-b.price.length;
+			else
+				return 1;
+		}
+		restaurants.sort(compare);
+
+		this.setState({ restaurants, firstPage: false});
+		this.props.app.state.restaurants = restaurants;		
 	}
 
 	eachRestaurant(restaurant,i){
@@ -75,7 +106,7 @@ class SearchRestaurantsPage extends Component{
 					phone = {restaurant.phone}
 					price = {restaurant.price}
 					rating = {restaurant.rating}
-					changeView = {this.changeView}>
+					distance = {restaurant.distance}>
 				</RestaurantBox>
 			</div>
 		)
@@ -109,6 +140,7 @@ class SearchRestaurantsPage extends Component{
 						<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating")}>Rating</NavDropdown.Item>
 						<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count")}>Review Count</NavDropdown.Item>
 						<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance")}>Distance</NavDropdown.Item>
+						<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)}>Price</NavDropdown.Item>
 					</NavDropdown>
 				</Col>
 			</Row>
