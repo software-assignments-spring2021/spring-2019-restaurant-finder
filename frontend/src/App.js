@@ -13,7 +13,11 @@ class App extends Component {
 
 	constructor(props){
 		super(props);
-		this.state = { page: 'search', searchOptions: {}, restaurants: [], searchTerm: ""};
+		this.state = { page: 'search',
+		 searchOptions: {}, 
+		 restaurants: [], 
+		 searchTerm: "",
+		 sortSelected: 0};
 
 		this.loadRestaurant = this.loadRestaurant.bind(this);
 		this.loadSearch = this.loadSearch.bind(this);
@@ -42,7 +46,7 @@ class App extends Component {
 			return (
 				<>
 				<GlobalNavBar app ={this}/>
-				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm}/>
+				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
 				</>)
 			} else if (this.state.page === "restaurant"){
 				return (
