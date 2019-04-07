@@ -1,32 +1,44 @@
-const createError = require('http-errors');
+const session= require("express-session");
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const mongoose = require("mongoose");
-const app = express();
-const Data = require("./db/data");
-const router = express.Router();
+const morgan = require('morgan');
+const passport = require('./passport');
+const dbConnection = require('./database');
+const MongoStore = require('connect-mongo')(session);
+const user = require('./routes/user');
+const PORT = (process.env.PORT || 5000);
 //Create our database and add it here
-const dbRoute = "mongodb://dbUser:<rfinder>@rfindertrial-shard-00-00-r1y8f.mongodb.net:27017,rfindertrial-shard-00-01-r1y8f.mongodb.net:27017,rfindertrial-shard-00-02-r1y8f.mongodb.net:27017/test?ssl=true&replicaSet=rFinderTrial-shard-0&authSource=admin&retryWrites=true"
 var yelpRouter = require("./routes/callYelp");
-const schedule = require("node-schedule");
 
-app.use(logger('dev'));
-app.set("view engine", "hbs");
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const app = express();
+
+//MIDDLEWARE
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//FOR THE FUTURE - generate a random string every new session
+const randomString="campus98lin";
+
+//sessions
+app.use(
+  session({
+    secret: randomString, //pick a random string to make the hash that is generated secure
+    store: new MongoStore({ mongooseConnection: dbConnection}),
+    resave: false, //required
+    saveUninitialized: false //required
+  })
+);
+// Passport
+app.use(passport.initialize())
+app.use(passport.session()) // calls serializeUser and deserializeUser
 
 //use our yelp router
 app.use('/api', yelpRouter);
 
+app.use('/user', user);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
@@ -41,6 +53,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+});
+
+app.listen(PORT, function () {
+  console.error(`Node is listening on port ${PORT}`);
 });
 
 module.exports = app;

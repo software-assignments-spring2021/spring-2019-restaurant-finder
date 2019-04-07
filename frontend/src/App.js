@@ -51,8 +51,8 @@ class App extends Component {
 			} else if (this.state.page === "restaurant"){
 				return (
 					<>
-					<GlobalNavBar app ={this}/>
-					<RestaurantPage app ={this} restaurant={this.state.restaurant}/>
+					<GlobalNavBar app = {this}/>
+					<RestaurantPage app = {this} restaurant={this.state.restaurant}/>
 					</>)
 			}
 	}

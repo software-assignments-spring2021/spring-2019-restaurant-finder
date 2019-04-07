@@ -157,7 +157,7 @@ class SearchRestaurantsPage extends Component{
 		<Container>
 		{this.state.restaurants.map(this.eachRestaurant)}
 		{(this.state.restaurants.length == 0 && !this.state.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
-		{(this.state.restaurants.length == 0 && this.state.firstPage) ? <p style={{fontSize: "5em"}}>Start your Search!</p>:""}
+		{(this.state.restaurants.length == 0 && this.state.firstPage) ? <p style={{fontSize: "5em"}}>Start your search!</p>:""}
 		</Container>
 		</>
 		);
