@@ -14,10 +14,11 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = { page: 'search',
-		 searchOptions: {}, 
+		 searchOptions: { term:"", categories: {alias: "restaurants"}},
 		 restaurants: [], 
 		 searchTerm: "",
-		 sortSelected: 0};
+		 sortSelected: 0,
+		};
 
 		this.loadRestaurant = this.loadRestaurant.bind(this);
 		this.loadSearch = this.loadSearch.bind(this);
