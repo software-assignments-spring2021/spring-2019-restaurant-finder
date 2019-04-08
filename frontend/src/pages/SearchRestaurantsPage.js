@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Jumbotron, Row, Col, Container, NavDropdown} from 'react-bootstrap';
 import RestaurantBox from '../components/RestaurantBox';
+import Filters from '../components/filters'
 
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
@@ -11,8 +12,7 @@ class SearchRestaurantsPage extends Component{
 			restaurants: this.props.restaurants,
 			firstPage: true,
 			searchOptions: this.props.searchOptions,
-			searchTerm: this.props.searchTerm,
-			sortSelected: this.props.sortSelected
+			sortSelected: this.props.sortSelected,
 		}
 
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -20,69 +20,82 @@ class SearchRestaurantsPage extends Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.sort = this.sort.bind(this);
 		this.sortPrice = this.sortPrice.bind(this);
-
+		this.getSearchString = this.getSearchString.bind(this);
+		this.fetchRestaurants = this.fetchRestaurants.bind(this);
+		this.categoryFilter = this.categoryFilter.bind(this);
 		
+	}
+
+	getSearchString(){
+		console.log(this.state.searchOptions)
+		let options = [];
+		for ( let key in this.state.searchOptions){
+			if (key == 'categories')options.push(key + "=" + encodeURIComponent(this.state.searchOptions[key].alias));
+			else options.push(key + "=" + encodeURIComponent(this.state.searchOptions[key]));
+		}
+		console.log(`api/callYelp?${options.join("&")}`)
+		return `api/callYelp?${options.join("&")}`;
 	}
 
 
   handleChange = (event) => {
-	this.setState({searchTerm: event.target.value });
-	this.props.app.state.searchTerm = event.target.value;
+	this.state.searchOptions.term = event.target.value;
+	this.setState({});
+	console.log(this.state.searchOptions.term)
+	this.props.app.state.searchOptions.term = event.target.value;
   }
 
   handleSubmit = (event) =>{
 	event.preventDefault();
-	console.log(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}`)
-    fetch(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}`)
+	console.log(this.getSearchString())
+	this.fetchRestaurants(response => {
+		this.state.sortSelected = 0;
+		this.props.app.state.sortSelected = 0;
+		this.setState({ restaurants: response.jsonBody.businesses, firstPage: false});
+		this.props.app.state.restaurants = response.jsonBody.businesses
+	});
+
+	}
+
+	fetchRestaurants(callback){
+		fetch(this.getSearchString())
 			.then(response => { return response.json()})
-			.then(response => {
-				console.log(response);
-				this.state.sortSelected = 0;
-				this.props.app.state.sortSelected = 0;
-				this.setState({ restaurants: response.jsonBody.businesses, firstPage: false});
-				this.props.app.state.restaurants = response.jsonBody.businesses
-			})
-			
+			.then(callback)
 
 	}
 
 	sort(field, i){
 		this.state.sortSelected = i;
 		this.props.app.state.sortSelected = i;
-		console.log(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}&sort_by=${field}`)
-		fetch(`api/callYelp?term=${encodeURIComponent(this.state.searchTerm)}&sort_by=${field}`)
-			.then(response => { return response.json()})
-			.then(response => {
-				console.log(response);
-				let restaurants = response.jsonBody.businesses;
-				if( field != "best_match"){
+		this.state.searchOptions["sort_by"] = field;
+		this.fetchRestaurants(response => {
+			let restaurants = response.jsonBody.businesses;
+			if( field != "best_match"){
 
-					let compare;
+				let compare;
 
-					if (field == "distance"){
-						compare = function(a,b){
-							if (a[field] && b[field])
-								return a[field]-b[field];
-							else
-								return 1;
-						}
-					} else {
-						compare = function(a,b){
-							if (a[field] && b[field])
-								return b[field]-a[field];
-							else
-								return 1;
-						}
+				if (field == "distance"){
+					compare = function(a,b){
+						if (a[field] && b[field])
+							return a[field]-b[field];
+						else
+							return 1;
 					}
-
-					restaurants.sort(compare);
+				} else {
+					compare = function(a,b){
+						if (a[field] && b[field])
+							return b[field]-a[field];
+						else
+							return 1;
+					}
 				}
 
-				this.setState({ restaurants, firstPage: false});
-				this.props.app.state.restaurants = restaurants;
-			})
-		
-
+				restaurants.sort(compare);
+			}
+			console.log(restaurants);
+			this.setState({ restaurants, firstPage: false});
+			this.props.app.state.restaurants = restaurants;
+		});
 	}
 
 	sortPrice(){
@@ -100,6 +113,40 @@ class SearchRestaurantsPage extends Component{
 
 		this.setState({ restaurants, firstPage: false});
 		this.props.app.state.restaurants = restaurants;		
+	}
+
+	categoryFilter(){
+		console.log(this.state.searchOptions)
+		this.fetchRestaurants(response => {
+			let restaurants = response.jsonBody.businesses;
+			console.log(restaurants)
+			let field = this.state.searchOptions["sort_by"]
+			if( field != "best_match"){
+
+				let compare;
+
+				if (field == "distance"){
+					compare = function(a,b){
+						if (a[field] && b[field])
+							return a[field]-b[field];
+						else
+							return 1;
+					}
+				} else {
+					compare = function(a,b){
+						if (a[field] && b[field])
+							return b[field]-a[field];
+						else
+							return 1;
+					}
+				}
+
+				restaurants.sort(compare);
+			}
+
+			this.setState({ restaurants, firstPage: false});
+			this.props.app.state.restaurants = restaurants;
+		});
 	}
 
 	eachRestaurant(restaurant,i){
@@ -133,11 +180,11 @@ class SearchRestaurantsPage extends Component{
 			<Row className="justify-content-xs-center">
 				<Col className='searchBarText'>
 					<form onSubmit={this.handleSubmit}>
-						<label htmlFor="searchTerm">Search Bar:   </label>
+						<label htmlFor="term">Search Bar:   </label>
 						<input
-							id="searchTerm"
+							id="term"
 							type="text"
-							value={this.state.searchTerm}
+							value={this.state.searchOptions.term}
 							onChange={this.handleChange}
 						/>
 						<button type="submit" >Submit</button>
@@ -151,6 +198,9 @@ class SearchRestaurantsPage extends Component{
 						<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={this.state.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
 						<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={this.state.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
 					</NavDropdown>
+				</Col>
+				<Col>
+					<Filters searchOptions={this.state.searchOptions} app={this}></Filters>
 				</Col>
 			</Row>
 		</Form>
