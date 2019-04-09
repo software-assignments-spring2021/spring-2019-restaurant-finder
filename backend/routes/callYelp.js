@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const yelp = require("../Yelp/YelpGet").client;
-const request = require('request');
-
 
 
 //api call.
