@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import {Container, Form, Button} from "react-bootstrap";
+import {Container, Form, Button, Navbar} from "react-bootstrap";
 import axios from 'axios';
 
 class Login extends Component {
@@ -57,10 +57,11 @@ class Login extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
+				<div style={{backgroundColor:"#44a6c6"}}>
                 <Container style={{maxWidth: "400px", color: "white", padding: "25px"}}>
                     <Form onSubmit={this.handleSubmit}>
                         <h1>Log in</h1>
-                        <h2 style={{fontSize:"15px"}}>Mollit fugiat aliquip enia nostrud consectetur culpa irure cupidatat voluptate. Reprehenderit eu commodo cupidatat duis fugiat esse ea laborum veniam aliqua et.</h2>
+                        <h2 style={{fontSize:"15px"}}></h2>
                         <Form.Group>
                         <label style={{color: "white" , padding: "5px 0px 5px 0px"}} htmlFor="username">Username</label>
                             <Form.Control id="username" 
@@ -77,7 +78,12 @@ class Login extends Component {
                             value={this.state.password} 
                             type="password"/>
                             </Form.Group>
-                        <Button
+                        <a href="/"><Button>
+                            Back
+                        </Button>
+						</a>
+						<Navbar.Brand></Navbar.Brand>
+						<Button
                             
                             type="submit"
                         >
@@ -85,6 +91,7 @@ class Login extends Component {
                         </Button>
                     </Form>
                 </Container>
+				</div>
             )
         }
     }
