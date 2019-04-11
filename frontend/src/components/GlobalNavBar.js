@@ -15,22 +15,22 @@ class GlobalNavBar extends Component {
     }
 
     logout(event)
-  {
-    event.preventDefault();
-    console.log('logging out!!! SEE YA');
-    axios.post('/user/logout').then(response => {
-      //console.log(response.data);
-      if(response.status === 200)
       {
-        this.props.app.updateUser({
-          loggedIn: false,
-          username: null
+        event.preventDefault();
+        console.log('logging out!!! SEE YA');
+        axios.post('/user/logout').then(response => {
+          //console.log(response.data);
+          if(response.status === 200)
+          {
+            this.props.app.updateUser({
+              loggedIn: false,
+              username: null
+            })
+          }
+        }).catch(error => {
+          console.log("logging out caused " + error);
         })
       }
-    }).catch(error => {
-      console.log("logging out caused " + error);
-    })
-  }
     render(){
 
 		return (
@@ -48,9 +48,7 @@ class GlobalNavBar extends Component {
 			            <NavLink style={{color: "white"}} to="/signup">Sign Up</NavLink>,<Navbar.Brand></Navbar.Brand>,
 			            <NavLink style={{color: "white"}} to="/login">Login</NavLink>
 			            ]}
-			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout</Button>)}
-					
-			        
+			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout user: {this.props.username}</Button>)}
 			    </Navbar.Collapse>
 			</Navbar>
 			</>
