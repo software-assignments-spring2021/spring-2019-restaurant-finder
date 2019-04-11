@@ -1,20 +1,25 @@
+//our very secure hard coded URL for our mongodb database
 let url = 'mongodb://test1:restfinder1@ds211096.mlab.com:11096/heroku_q3kbr1nk';
-//Connect to Mongo database
 
+//interact with mongo with... mongoose
 const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise
+//some boilerplate code? don't really get it but I assume it lets us use promises with mongoose (cool??)
+mongoose.Promise = global.Promise;
+
+//our main connect function
 mongoose.connect(url).then(
     () => { 
-        /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ 
+        //good to go!
         console.log('Connected to Mongo');
         
     },
     err => {
-         /** handle initial connection error */ 
+         // handle initial connection error 
          console.log('error connecting to Mongo: ')
          console.log(err);
         }
   );
+//export the connection so we can access it as "require('/path/to/database')"
 module.exports = mongoose.connection;
 
