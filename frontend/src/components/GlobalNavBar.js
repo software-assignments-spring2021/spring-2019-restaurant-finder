@@ -32,29 +32,53 @@ class GlobalNavBar extends Component {
     })
   }
     render(){
-        return (
-            
-        <Navbar bg="light" expand="lg">
+
+		return (
+			<>
             <Switch>
-                <Route exact path="/signup" component={Signup}/>
-                <Route exact path="/login" render={() => <Login updateUser = {this.props.app.updateUser}/>}/>
-            </Switch>
-            <Navbar.Brand onClick={this.props.app.loadSearch} href="">Restaurant Finder - Username{this.props.username}</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                <a onClick={this.props.app.loadSearch}><Nav.Link href="/">Search</Nav.Link></a>
-                <p>Restaurant Finder - Username: {this.props.username}</p>
-                {!this.props.loggedIn  && [
-                    <NavLink style={{float: "right"}} to="/signup">Sign Up</NavLink>,
-                    <NavLink style={{float: "right"}} to="/login">Login</NavLink>
-                    ]}
-                    {this.props.loggedIn && (<Button onClick={this.logout}>Logout</Button>)}
+			        <Route exact path="/signup" component={Signup}/>
+			        <Route exact path="/login" render={() => <Login updateUser = {this.props.app.updateUser}/>}/>
+			    </Switch>
+			<Navbar bg="light" expand="lg">
+			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+			    <Navbar.Collapse id="basic-navbar-nav">
+			        
+			        <a onClick={this.props.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Search</Nav.Link></a>
+			        {!this.props.loggedIn  && [
+			            <NavLink style={{color: "white"}} to="/signup">Sign Up</NavLink>,<Navbar.Brand></Navbar.Brand>,
+			            <NavLink style={{color: "white"}} to="/login">Login</NavLink>
+			            ]}
+			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout</Button>)}
+					
+			        
+			    </Navbar.Collapse>
+			</Navbar>
+			</>
+			)
+
+        // return (
+            
+        // <Navbar bg="light" expand="lg">
+        //     <Switch>
+        //         <Route exact path="/signup" component={Signup}/>
+        //         <Route exact path="/login" render={() => <Login updateUser = {this.props.app.updateUser}/>}/>
+        //     </Switch>
+        //     <Navbar.Brand onClick={this.props.app.loadSearch} href="">Restaurant Finder - Username{this.props.username}</Navbar.Brand>
+        //     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        //     <Navbar.Collapse id="basic-navbar-nav">
+        //         <Nav className="mr-auto">
+        //         <a onClick={this.props.app.loadSearch}><Nav.Link href="/">Search</Nav.Link></a>
+        //         <p>Restaurant Finder - Username: {this.props.username}</p>
+        //         {!this.props.loggedIn  && [
+        //             <NavLink style={{float: "right"}} to="/signup">Sign Up</NavLink>,
+        //             <NavLink style={{float: "right"}} to="/login">Login</NavLink>
+        //             ]}
+        //             {this.props.loggedIn && (<Button onClick={this.logout}>Logout</Button>)}
                 
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-        )
+        //         </Nav>
+        //     </Navbar.Collapse>
+        // </Navbar>
+        // )
     }
 }
 

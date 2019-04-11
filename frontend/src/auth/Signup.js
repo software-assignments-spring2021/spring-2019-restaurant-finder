@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Form, Button} from "react-bootstrap";
+import {Container, Form, Button, Navbar} from "react-bootstrap";
 import axios from 'axios';
 class Signup extends Component {
     constructor(props) {
@@ -48,10 +48,11 @@ class Signup extends Component {
     render()
     {
         return(
+		<div style={{backgroundColor:"#44a6c6"}}>
         <Container style={{maxWidth: "400px", color: "white", padding: "50px"}}>
             <Form onSubmit={this.handleSubmit}>
                 <h1>Register</h1>
-                <h2 style={{fontSize:"15px"}}>Sign up for signing up purposes and signing up purposes and signing up purposes and signing up purposes and sign up because signing up is signing up and signing up.</h2>
+                <h2 style={{fontSize:"15px"}}></h2>
                 <Form.Group>
                 <label style={{color: "white" , padding: "5px 0px 5px 0px"}} htmlFor="username">Username</label>
                 <Form.Control id="username" 
@@ -66,6 +67,12 @@ class Signup extends Component {
                 placeholder="Password"
                 type="password"/>
                 </Form.Group>
+				<a href="/">
+					<Button>
+                    	Back
+                    </Button>
+				</a>
+				<Navbar.Brand></Navbar.Brand>
                 <Button
                     disabled={!this.validateForm()}
                     type="submit"
@@ -75,6 +82,7 @@ class Signup extends Component {
                 </Button>
             </Form>
         </Container>
+		</div>
         );
     }
 }
