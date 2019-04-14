@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Col, Card} from 'react-bootstrap';
 
+
+//Loads Restautant Data on Search
 class RestaurantBox extends Component {
   render() {
     return (
