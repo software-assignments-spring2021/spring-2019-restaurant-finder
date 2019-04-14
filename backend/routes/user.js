@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../database/models/user');
+const User = require('../database/models/user').User;
+const Favorite = require('../database/models/user').Favorite;
+
 const passport = require('../passport');
 
 //a post request for / (which is actually /user/) which saves a new user into the database
@@ -39,16 +41,11 @@ router.post('/', (req, res) => {
 })
 
 //make a post request to log into an account
-router.post(
-    '/login',
-    function (req, res, next) {
-        //console.log('routes/user.js, login, req.body: ');
-        //console.log(req.body)
+router.post('/login', function (req, res, next) {
+        console.log('routes/user.js, login, req.body');
         next()
-    },
-    //authenticate with passport
-    passport.authenticate('local'),
-    (req, res) => {
+    }, //authenticate with passport
+    passport.authenticate('local'), (req, res) => {
         console.log('logged in', req.user);
         //return the user info we got from passport
         var userInfo = {
@@ -67,8 +64,31 @@ router.get('/', (req, res, next) => {
     } else {
         res.json({ user: null })
     }
-})
+});
 
+//the post request for saving new favorites
+router.post("/favorites", (req, res) => {
+    const newUser = new Favorite({
+        name: req.body.name,
+        url: req.body.url
+    });
+    if (req.user)
+    {
+        req.user.favorites.push(newUser);
+        req.user.save();
+    }
+});
+
+//get all of the current user's favorites
+router.get("/favorites", (req, res) => {
+    if (req.user)
+    {
+        res.json({favorites: req.user.favorites});
+    } else
+    {
+        res.json({favorites: null});
+    }
+});
 //use the built in passport logout feature
 router.post('/logout', (req, res) => {
     if (req.user) {
