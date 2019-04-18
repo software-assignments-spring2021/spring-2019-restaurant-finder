@@ -88,14 +88,14 @@ class App extends Component {
 			//So that the data can persist after going to restaurant page
 			return (
 				<>
-				<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
-				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
+					<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
+					<SearchRestaurantsPage app ={this} loggedIn = {this.state.loggedIn} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
 				</>)
 			} else if (this.state.page === "restaurant"){
 				return (
 					<>
-					<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
-					<RestaurantPage app = {this} restaurant={this.state.restaurant}/>
+						<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
+						<RestaurantPage app = {this} loggedIn = {this.state.loggedIn} restaurant={this.state.restaurant}/>
 					</>)
 			}
 	}

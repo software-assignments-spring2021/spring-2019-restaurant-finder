@@ -52,4 +52,4 @@ userSchema.pre('save', function (next) {
 //configures this as a model, and puts it into a collection called "users" (see the database on mLab to make more sense of this)
 const User = mongoose.model('User', userSchema, 'users');
 const Favorite = mongoose.model("Favorite", favoriteRestaurant);
-module.exports = User, Favorite;
+module.exports = {User, Favorite};

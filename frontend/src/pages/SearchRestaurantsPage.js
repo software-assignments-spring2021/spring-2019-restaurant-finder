@@ -180,7 +180,8 @@ class SearchRestaurantsPage extends Component{
 					phone = {restaurant.phone}
 					price = {restaurant.price}
 					rating = {restaurant.rating}
-					distance = {restaurant.distance}>
+					distance = {restaurant.distance}
+					loggedIn = {this.props.loggedIn}>
 				</RestaurantBox>
 			</div>
 		)
