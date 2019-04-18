@@ -49,13 +49,20 @@ class GlobalNavBar extends Component {
     render(){
         return (
 				<>
+				<div className="filterDropdown">
                 <NavDropdown title="Categories" id="basic-nav-dropdown">
                    { this.loadCategories()}
                 </NavDropdown>
+                </div>
+                
+				<div className="filterDropdown">
 				<NavDropdown title="Selected" id="basic-nav-dropdown">
                 <NavDropdown.Item href="" onClick={this.handleClick.bind(this, this.state.searchOptions.categories)}>{this.state.searchOptions.categories.categoryName}</NavDropdown.Item>
                 </NavDropdown>
+                </div>
 				</>
+				
+
 				// <NavDropdown.Item href="">Action</NavDropdown.Item>
 				// <NavDropdown.Item href="">Another action</NavDropdown.Item>
 				// <NavDropdown title="Dropdown" id="basic-nav-dropdown">

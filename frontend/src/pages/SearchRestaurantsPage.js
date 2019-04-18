@@ -168,46 +168,47 @@ class SearchRestaurantsPage extends Component{
 		)
 	}
 	
+		// <Jumbotron>
+		// 	<h1 className="h1">
+		// 		Restaurant Finder
+		// 	</h1>
+		// </Jumbotron>
+
   render() {
     return (
 		<>
-		<Jumbotron>
-			<h1 className="h1">
-				Restaurant Finder
-			</h1>
-		</Jumbotron>
-		<Form className="searchBar">
-			<Row className="justify-content-xs-center">
-				<Col className='searchBarText'>
-					<form onSubmit={this.handleSubmit}>
-						<label htmlFor="term">Search Bar:   </label>
-						<input
-							id="term"
-							type="text"
-							value={this.state.searchOptions.term}
-							onChange={this.handleChange}
-						/>
-						<button type="submit" >Submit</button>
-					</form>
-				</Col>
-				<Col>
-					<NavDropdown title="Sort By" id="basic-nav-dropdown">
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={this.state.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating", 1)} style={this.state.sortSelected == 1 ? {color: "red"} : {}}>Rating</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count", 2)} style={this.state.sortSelected == 2 ? {color: "red"} : {}}>Review Count</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={this.state.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
-						<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={this.state.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
-					</NavDropdown>
-				</Col>
-				<Col>
-					<Filters searchOptions={this.state.searchOptions} app={this}></Filters>
-				</Col>
+
+		<Form className="searchBox">
+			<Row className="searchBar">
+				<form onSubmit={this.handleSubmit}>
+					<label htmlFor="term"></label>
+					<input
+						id="term"
+						type="text"
+						placeholder="search bar"
+						value={this.state.searchOptions.term}
+						onChange={this.handleChange}
+					/>
+					<button type="submit" >Submit</button>
+				</form>
+			</Row>
+			<Row className="filterDropdownSort">
+				<NavDropdown title="Sort By" id="basic-nav-dropdown">
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={this.state.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating", 1)} style={this.state.sortSelected == 1 ? {color: "red"} : {}}>Rating</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count", 2)} style={this.state.sortSelected == 2 ? {color: "red"} : {}}>Review Count</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={this.state.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={this.state.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
+				</NavDropdown>
+			
+				<Filters searchOptions={this.state.searchOptions} app={this}></Filters>
 			</Row>
 		</Form>
-		<Container>
-		{this.state.restaurants.map(this.eachRestaurant)}
-		{(this.state.restaurants.length == 0 && !this.state.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
-		{(this.state.restaurants.length == 0 && this.state.firstPage) ? <p style={{fontSize: "5em"}}>Start your search!</p>:""}
+
+		<Container className="initialpage">
+			{this.state.restaurants.map(this.eachRestaurant)}
+			{(this.state.restaurants.length == 0 && !this.state.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
+			{(this.state.restaurants.length == 0 && this.state.firstPage) ? <p style={{fontSize: "5em"}}>Start your search!</p>:""}
 		</Container>
 		</>
 		);

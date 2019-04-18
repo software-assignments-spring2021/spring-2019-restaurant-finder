@@ -81,13 +81,13 @@ class App extends Component {
 				<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
 				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
 				</>)
-			} else if (this.state.page === "restaurant"){
-				return (
-					<>
-					<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
-					<RestaurantPage app = {this} restaurant={this.state.restaurant}/>
-					</>)
-			}
+		} else if (this.state.page === "restaurant"){
+			return (
+				<>
+				<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
+				<RestaurantPage app = {this} restaurant={this.state.restaurant}/>
+				</>)
+		}
 	}
 
 }
