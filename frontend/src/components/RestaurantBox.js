@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
-import { Col, Card} from 'react-bootstrap';
-
-
+import { Col, Card, Button} from 'react-bootstrap';
+import axios from 'axios';
 //Loads Restautant Data on Search
 class RestaurantBox extends Component {
+
+	constructor(props)
+	{
+		super(props);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit() {
+		axios.post('/favorites', {
+			name:this.props.name,
+			url:this.props.url
+		});
+
+	}
   render() {
     return (
 			<Card>
@@ -23,6 +36,7 @@ class RestaurantBox extends Component {
 						<div className="card-text">Rating: {this.props.rating}</div>
 						<div className="card-text">Distance: {Math.round(this.props.distance)} meters</div>
 						<br />
+						{this.props.loggedIn && <Button onClick = {this.handleSubmit}>Favorite</Button>}
 					</Col>		
 				</div>			
 			</Card>
