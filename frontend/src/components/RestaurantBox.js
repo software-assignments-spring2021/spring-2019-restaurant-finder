@@ -35,6 +35,9 @@ class RestaurantBox extends Component {
 						<div className="card-text">Price: {this.props.price}</div>
 						<div className="card-text">Rating: {this.props.rating}</div>
 						<div className="card-text">Distance: {Math.round(this.props.distance)} meters</div>
+						<a href="http://yelp.com">
+							<img src={require('./Yelp_trademark_RGB_outline.png')} width="80" height="50" style={{position: "absolute", bottom: 0, right: 0}}/>
+						</a>
 						<br />
 						{this.props.loggedIn && <Button onClick = {this.handleSubmit}>Favorite</Button>}
 					</Col>		
