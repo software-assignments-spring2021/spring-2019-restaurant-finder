@@ -1,6 +1,8 @@
 import React, {Component } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
+
+//contains a list of all the categories that one could select... yikes
 class GlobalNavBar extends Component {
 
     constructor(props)
@@ -16,6 +18,8 @@ class GlobalNavBar extends Component {
 		this.loadCategories = this.loadCategories.bind(this);
 	}
 	
+
+	// Loads the filter otions and sub categories.... proobably best not to touch this...
 	loadFilters(index, category, arr){
 //		console.log(arr)
 		return(<>
@@ -23,6 +27,8 @@ class GlobalNavBar extends Component {
 		</>)
 
 	}
+
+	//upon click it will change the search options in all states and it will change which restaurant is selected
 	handleClick(category){
 		if (category.length>0) category = category[0];
 
@@ -38,6 +44,7 @@ class GlobalNavBar extends Component {
 		this.props.app.categoryFilter();
 	}
 
+	// Loads all the top level categories, then the filters within them from a seperate method
 	loadCategories(){
 		return (<>
 		<NavDropdown title="By Region" id="basic-nav-dropdown">{this.state.categoriesOrder["By Region"].map(value => (<NavDropdown title={value}id="basic-nav-dropdown">{this.state.mapMatrix[value].map(this.loadFilters.bind(this,[],value))}</NavDropdown>))}</NavDropdown>
@@ -61,7 +68,13 @@ class GlobalNavBar extends Component {
                 </NavDropdown>
                 </div>
 				</>
-				
+			
+        )
+    }
+}
+
+export default GlobalNavBar;
+
 
 				// <NavDropdown.Item href="">Action</NavDropdown.Item>
 				// <NavDropdown.Item href="">Another action</NavDropdown.Item>
@@ -74,10 +87,4 @@ class GlobalNavBar extends Component {
 				// </NavDropdown>
 				// <NavDropdown.Divider />
 				// <NavDropdown.Item href="">Separated link</NavDropdown.Item>
-        )
-    }
-}
-
-export default GlobalNavBar;
-
 

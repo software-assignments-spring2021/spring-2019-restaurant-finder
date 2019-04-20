@@ -1,20 +1,28 @@
 const mongoose = require('mongoose');
 //this is a "schema" we're setting up, which is basically an object representation of a user in the database
 const Schema = mongoose.Schema;
-//passwordy stuff
 const bcrypt = require('bcryptjs');
-//i promise u i have no idea what this means
 mongoose.promise = Promise;
 
+//new "favorite restaurant" schema - the only data we're saving for now is the name
+//and the URL for the restaurant - we should save more info in the future
+const favoriteRestaurant = new Schema({
+	name: {type: String},
+	url: {type: String}
+})
 // Define userSchema with configurations
 const userSchema = new Schema({
 
+	//authentication
 	username: { type: String, unique: false, required: false },
-	password: { type: String, unique: false, required: false }
+	password: { type: String, unique: false, required: false },
+	
 	//pinned restaurants: type: array of restaurants
-	//etc. etc.
+	favorites: [favoriteRestaurant]
 
 });
+
+
 
 //some boilerplate stuff a user should do (encrypt / decrypt a password)
 // Define schema methods
@@ -43,4 +51,5 @@ userSchema.pre('save', function (next) {
 
 //configures this as a model, and puts it into a collection called "users" (see the database on mLab to make more sense of this)
 const User = mongoose.model('User', userSchema, 'users');
-module.exports = User;
+const Favorite = mongoose.model("Favorite", favoriteRestaurant);
+module.exports = {User, Favorite};

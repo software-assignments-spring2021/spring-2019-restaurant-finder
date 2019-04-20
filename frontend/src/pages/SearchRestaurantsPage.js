@@ -8,8 +8,11 @@ import Filters from '../components/filters'
 class SearchRestaurantsPage extends Component{
     constructor(props){
 		super(props);
+		//Search options and sort selected remember what results appear
+		//restaurants keep and load the actual results
 		this.state = {
 			restaurants: this.props.restaurants,
+			//states weather start searching should appear or not 
 			firstPage: true,
 			searchOptions: this.props.searchOptions,
 			sortSelected: this.props.sortSelected,
@@ -25,7 +28,8 @@ class SearchRestaurantsPage extends Component{
 		this.categoryFilter = this.categoryFilter.bind(this);
 		
 	}
-
+	//This function will take the options from search options and sort selected
+	// and covert it to the path string that we must fetch to use the Yelp API
 	getSearchString(){
 		console.log(this.state.searchOptions)
 		let options = [];
@@ -39,15 +43,18 @@ class SearchRestaurantsPage extends Component{
 
 
   handleChange = (event) => {
+	  //Updates the search options in this component
 	this.state.searchOptions.term = event.target.value;
 	this.setState({});
 	console.log(this.state.searchOptions.term)
+	//Updates the search options in the app
 	this.props.app.state.searchOptions.term = event.target.value;
   }
 
   handleSubmit = (event) =>{
 	event.preventDefault();
 	console.log(this.getSearchString())
+	// fetches the restaurants while reseting seatch options, then updates the view
 	this.fetchRestaurants(response => {
 		this.state.sortSelected = 0;
 		this.props.app.state.sortSelected = 0;
@@ -57,6 +64,8 @@ class SearchRestaurantsPage extends Component{
 
 	}
 
+	//gets the search string from the method and sends it to the backed to get the results
+	// then the callbackfunction is passed in to process and render the data, for different sorts
 	fetchRestaurants(callback){
 		fetch(this.getSearchString())
 			.then(response => { return response.json()})
@@ -64,6 +73,9 @@ class SearchRestaurantsPage extends Component{
 
 	}
 
+	// This calls the previous query to the yelp api but it passes in a new key value for how it should sort
+	// then it passes in a callback where the response results are sorted further (becuase yelp barely sorts them and has other considerations)
+	// Then restaurant data is updated and so is the view
 	sort(field, i){
 		this.state.sortSelected = i;
 		this.props.app.state.sortSelected = i;
@@ -98,6 +110,8 @@ class SearchRestaurantsPage extends Component{
 		});
 	}
 
+	//This does not send a new query because there in no API sorting for price
+	//So therefore it just sorts the current restaurants by price and updates the view
 	sortPrice(){
 		this.state.sortSelected = 4;
 		this.props.app.state.sortSelected = 4;
@@ -115,6 +129,8 @@ class SearchRestaurantsPage extends Component{
 		this.props.app.state.restaurants = restaurants;		
 	}
 
+	// This sends a new fetch restaurants request with the search options on category
+	// it then sorts it based on perhaps ever sort except price...
 	categoryFilter(){
 		console.log(this.state.searchOptions)
 		this.fetchRestaurants(response => {
@@ -149,6 +165,8 @@ class SearchRestaurantsPage extends Component{
 		});
 	}
 
+	/// this method is for loading the boxes for each restaurant
+	// each box is surrounded by a div that once clicked, loads the restaurant page from the app component
 	eachRestaurant(restaurant,i){
 		return (
 			<div onClick={this.props.app.loadRestaurant.bind(this, this.state.restaurants[i].id)}>
@@ -162,7 +180,8 @@ class SearchRestaurantsPage extends Component{
 					phone = {restaurant.phone}
 					price = {restaurant.price}
 					rating = {restaurant.rating}
-					distance = {restaurant.distance}>
+					distance = {restaurant.distance}
+					loggedIn = {this.props.loggedIn}>
 				</RestaurantBox>
 			</div>
 		)

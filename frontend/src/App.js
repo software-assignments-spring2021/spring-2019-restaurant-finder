@@ -31,6 +31,10 @@ class App extends Component {
 		this.updateUser = this.updateUser.bind(this);
 	}
 
+
+	//calls the yelp API to return extended data on a single restaurant by ID
+	/// when the data is returned it changes the page to restaurant 
+	// which loads the restaurant page during render instead of search page
 	loadRestaurant(restaurantid) {
 		fetch(`api/callYelp?id=${encodeURIComponent(restaurantid)}`)
 			.then(response => { 
@@ -43,6 +47,8 @@ class App extends Component {
 	componentDidMount() {
 		this.getUser()
 	  }
+
+	//changes the route switch search so that the searchpage is loaded
 	loadSearch(){
 		console.log(this.state);
 		this.setState({page: 'search'});
@@ -75,19 +81,23 @@ class App extends Component {
 
   	render() {
 
+		//this.state.page acts as a router for the different pages
+		// each get app passed to it so it can load the other page via the route
 		if (this.state.page === "search"){
+			//Search options are saved here and passed into SearchRestaurantsPage
+			//So that the data can persist after going to restaurant page
 			return (
 				<>
-				<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
-				<SearchRestaurantsPage app ={this} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
+					<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
+					<SearchRestaurantsPage app ={this} loggedIn = {this.state.loggedIn} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
 				</>)
-		} else if (this.state.page === "restaurant"){
-			return (
-				<>
-				<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
-				<RestaurantPage app = {this} restaurant={this.state.restaurant}/>
-				</>)
-		}
+			} else if (this.state.page === "restaurant"){
+				return (
+					<>
+						<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
+						<RestaurantPage app = {this} loggedIn = {this.state.loggedIn} restaurant={this.state.restaurant}/>
+					</>)
+			}
 	}
 
 }
