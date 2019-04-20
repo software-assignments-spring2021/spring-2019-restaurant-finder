@@ -7,12 +7,12 @@ a {
   color: white;
 }
 
-.btn-outline-success {
-	border-color: #C0D5AD !important;
+.h1 {
+    font-size: 4rem !important;
+    color: white !important;
 }
-.searchButton{
-	background-color: white !important;
-}
+
+/*GlobalNavBar*/
 .navbar.bg-light.navbar-light  {
 	background-color:#44a6c6 !important;
 	top: 0;
@@ -22,39 +22,93 @@ a {
 .navbar-light .navbar-nav .nav-link{
 	color: white !important;
 }
+.navlogin {
+	text-align: right;
+}
+.logo {
+	border-radius: 50%;
+}
+.restaurantfinder {
+	font-size: 4vw;
+}
+.navbarlogin {
+	font-size: 1vw;
+	text-align: : right;
+}
 
-/*Restaurant Finder header*/
+/*Jumbotron*/
+/*deleted for now*/
 .jumbotron {
 	margin-bottom: 0px !important;
 	background-color:#add8e6 !important;
 	color: #4169e1 !important;
 	padding: 3em !important;
 }
-.h1 {
-    font-size: 4rem !important;
-    color: white !important;
-}
 
+/*SEARCH RESTAURANTS*/
+/*SEARCH BAR*/
+.btn-outline-success {
+	border-color: #C0D5AD !important;
+}
+.searchButton{
+	background-color: white !important;
+}
+.searchBox{
+	background-color: lightgray !important;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 50%;
+}
 .searchBar{
-	padding: 1em;
-	background-color: #e8f4f8 !important;
-	margin-bottom: 1em;
+	/*Centralize it*/
+	padding-top: 70px;
+	padding-left: 35%;
+	padding-right: 30%;
 }
-#searchTerm {
-	margin: 10px;
+.filterDropdown{
+	display: inline-block;
+}
+.filterDropdownSort {
+	/*Centralize it*/
+	display: inline-block;
+	padding-bottom: 50px;
+	text-align: center;
+	padding-bottom: 50px;
+	padding-left: 25%;
+	padding-right: 25%;
+}
+.initialpage {
+	text-align: center;
 }
 
-/*make all images same size*/
+/*RESTAURANTBOX*/
+.description {
+/*Restaurant info*/
+	display: block;
+}
+.column {
+/*Split into three columns*/
+	float: left;
+	width: 30%;
+  	height: auto;
+  	margin: 10px;
+}
+.card-header {
+/*Restaurant name*/
+	/*Responsive text size*/
+    font-size: 100%;
+	text-align: center;
+    overflow: hidden;
+}
 img.rounded {
-    position: relative;
-    float: left;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-	margin-right: 10px;
-
+/*Image*/
+	width: auto;
+	height: 200px;
+	object-fit: cover;
 }
 
+/*RESPONSIVE DESIGN*/
 
 /*If screen size is 992px wide, or more, make the following changes*/
 /*>992 = desktop size*/
@@ -71,44 +125,43 @@ img.rounded {
 		display: block;
 	}
 	img.rounded { 
-   		width: 30%;
+   		width: 100%;
 	}
 }
 
 /*If screen size is 992px wide, or less, make the following changes*/
 /*992px = tablet size*/
 @media screen and (max-width: 991px) {
-	.jumbotron {
+	/*.jumbotron {
 		visibility: hidden;
 		position: absolute
-	}
+	}*/
 	.navbar-brand{
 		color: white !important;
 	}
-	div.container {
-		display: block;
+	.column {
+		width: 50%;
 	}
 	img.rounded {
-   		width: 50%;
+   		width: 100%;
 	}
 }
 
 /*If screen size is 768px wide, or less, make the following changes*/
 /*768px = mobile size*/
 @media screen and (max-width: 768px) {
-	.jumbotron {
+	/*.jumbotron {
 		visibility: hidden;
 		position: absolute
-	}
+	}*/
 	.navbar-brand{
 		color: white !important;
 	}
-	img.rounded {
+	.column {
 		width: 100%;
 	}
-	.description {
-	   display: block;
-	   font-size: 20px;
+	.searchBox {
+		width: 100%;
 	}
 }
 

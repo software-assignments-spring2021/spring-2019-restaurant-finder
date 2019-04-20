@@ -42,14 +42,16 @@ class GlobalNavBar extends Component {
 			<Navbar bg="light" expand="lg">
 			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 			    <Navbar.Collapse id="basic-navbar-nav">
-			        
-			        <a onClick={this.props.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Search</Nav.Link></a>
+                    <img className="logo" src="happyeggs.ico"></img>
+			        <a className="restaurantfinder" onClick={this.props.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
+                    <div className="navbarlogin"> 
 			        {!this.props.loggedIn  && [
 			            <NavLink style={{color: "white"}} to="/signup">Sign Up</NavLink>,<Navbar.Brand></Navbar.Brand>,
 			            <NavLink style={{color: "white"}} to="/login">Login</NavLink>
-			            ]}
+                        ]}
 			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout user: {this.props.username}</Button>)}
-			    </Navbar.Collapse>
+                    </div>
+                </Navbar.Collapse>
 			</Navbar>
 			</>
 			)
