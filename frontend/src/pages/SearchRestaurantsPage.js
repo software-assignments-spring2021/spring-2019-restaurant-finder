@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { Button, Form, Jumbotron, Row, Col, Container, NavDropdown} from 'react-bootstrap';
+import searchObj from "../designPatterns/SearchStateSingleton"
 import RestaurantBox from '../components/RestaurantBox';
+import {mapMatrix,categoriesOrder} from "../FilterNames";
 import Filters from '../components/filters'
+
 
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
 class SearchRestaurantsPage extends Component{
     constructor(props){
 		super(props);
-		//Search options and sort selected remember what results appear
+		searchObj.SearchRestaurantsPage = this
 		//restaurants keep and load the actual results
 		this.state = {
-			restaurants: this.props.restaurants,
 			//states weather start searching should appear or not 
 			firstPage: true,
-			searchOptions: this.props.searchOptions,
-			sortSelected: this.props.sortSelected,
 		}
 
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -31,11 +31,10 @@ class SearchRestaurantsPage extends Component{
 	//This function will take the options from search options and sort selected
 	// and covert it to the path string that we must fetch to use the Yelp API
 	getSearchString(){
-		console.log(this.state.searchOptions)
 		let options = [];
-		for ( let key in this.state.searchOptions){
-			if (key == 'categories')options.push(key + "=" + encodeURIComponent(this.state.searchOptions[key].alias));
-			else options.push(key + "=" + encodeURIComponent(this.state.searchOptions[key]));
+		for ( let key in searchObj.searchOptions){
+			if (key == 'categories')options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key].alias));
+			else options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key]));
 		}
 		console.log(`api/callYelp?${options.join("&")}`)
 		return `api/callYelp?${options.join("&")}`;
@@ -44,11 +43,11 @@ class SearchRestaurantsPage extends Component{
 
   handleChange = (event) => {
 	  //Updates the search options in this component
-	this.state.searchOptions.term = event.target.value;
+	searchObj.searchOptions.term = event.target.value;
 	this.setState({});
-	console.log(this.state.searchOptions.term)
+	console.log(searchObj.searchOptions.term)
 	//Updates the search options in the app
-	this.props.app.state.searchOptions.term = event.target.value;
+	searchObj.searchOptions.term = event.target.value;
   }
 
   handleSubmit = (event) =>{
@@ -56,10 +55,10 @@ class SearchRestaurantsPage extends Component{
 	console.log(this.getSearchString())
 	// fetches the restaurants while reseting seatch options, then updates the view
 	this.fetchRestaurants(response => {
-		this.state.sortSelected = 0;
-		this.props.app.state.sortSelected = 0;
-		this.setState({ restaurants: response.jsonBody.businesses, firstPage: false});
-		this.props.app.state.restaurants = response.jsonBody.businesses
+		searchObj.sortSelected = 0;
+		searchObj.sortSelected = 0;
+		searchObj.restaurants = response.jsonBody.businesses
+		this.setState({firstPage: false});
 	});
 
 	}
@@ -77,9 +76,9 @@ class SearchRestaurantsPage extends Component{
 	// then it passes in a callback where the response results are sorted further (becuase yelp barely sorts them and has other considerations)
 	// Then restaurant data is updated and so is the view
 	sort(field, i){
-		this.state.sortSelected = i;
-		this.props.app.state.sortSelected = i;
-		this.state.searchOptions["sort_by"] = field;
+		searchObj.sortSelected = i;
+		searchObj.sortSelected = i;
+		searchObj.searchOptions["sort_by"] = field;
 		this.fetchRestaurants(response => {
 			let restaurants = response.jsonBody.businesses;
 			if( field != "best_match"){
@@ -105,17 +104,16 @@ class SearchRestaurantsPage extends Component{
 				restaurants.sort(compare);
 			}
 			console.log(restaurants);
-			this.setState({ restaurants, firstPage: false});
-			this.props.app.state.restaurants = restaurants;
+			searchObj.restaurants = restaurants;
+			this.setState({firstPage: false});
 		});
 	}
 
 	//This does not send a new query because there in no API sorting for price
 	//So therefore it just sorts the current restaurants by price and updates the view
 	sortPrice(){
-		this.state.sortSelected = 4;
-		this.props.app.state.sortSelected = 4;
-		let restaurants = this.state.restaurants;
+		searchObj.sortSelected = 4;
+		let restaurants = searchObj.restaurants;
 		console.log(restaurants);
 		function compare (a,b) {
 			if (a.price && b.price)
@@ -125,18 +123,18 @@ class SearchRestaurantsPage extends Component{
 		}
 		restaurants.sort(compare);
 
-		this.setState({ restaurants, firstPage: false});
-		this.props.app.state.restaurants = restaurants;		
+		searchObj.restaurants = restaurants;
+		this.setState({firstPage: false});	
 	}
 
 	// This sends a new fetch restaurants request with the search options on category
 	// it then sorts it based on perhaps ever sort except price...
 	categoryFilter(){
-		console.log(this.state.searchOptions)
+		console.log(searchObj.searchOptions)
 		this.fetchRestaurants(response => {
 			let restaurants = response.jsonBody.businesses;
 			console.log(restaurants)
-			let field = this.state.searchOptions["sort_by"]
+			let field = searchObj.searchOptions["sort_by"]
 			if( field != "best_match"){
 
 				let compare;
@@ -159,9 +157,8 @@ class SearchRestaurantsPage extends Component{
 
 				restaurants.sort(compare);
 			}
-
-			this.setState({ restaurants, firstPage: false});
-			this.props.app.state.restaurants = restaurants;
+			searchObj.restaurants = restaurants;
+			this.setState({firstPage: false});
 		});
 	}
 
@@ -169,7 +166,7 @@ class SearchRestaurantsPage extends Component{
 	// each box is surrounded by a div that once clicked, loads the restaurant page from the app component
 	eachRestaurant(restaurant,i){
 		return (
-			<div onClick={this.props.app.loadRestaurant.bind(this, this.state.restaurants[i].id)}>
+			<div onClick={searchObj.app.loadRestaurant.bind(this, searchObj.restaurants[i].id)}>
 				<RestaurantBox
 					key={i}
 					index={i}
@@ -205,7 +202,7 @@ class SearchRestaurantsPage extends Component{
 						id="term"
 						type="text"
 						placeholder="search bar"
-						value={this.state.searchOptions.term}
+						value={searchObj.searchOptions.term}
 						onChange={this.handleChange}
 					/>
 					<button type="submit" >Submit</button>
@@ -213,21 +210,21 @@ class SearchRestaurantsPage extends Component{
 			</Row>
 			<Row className="filterDropdownSort">
 				<NavDropdown title="Sort By" id="basic-nav-dropdown">
-					<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={this.state.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
-					<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating", 1)} style={this.state.sortSelected == 1 ? {color: "red"} : {}}>Rating</NavDropdown.Item>
-					<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count", 2)} style={this.state.sortSelected == 2 ? {color: "red"} : {}}>Review Count</NavDropdown.Item>
-					<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={this.state.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
-					<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={this.state.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={searchObj.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating", 1)} style={searchObj.sortSelected == 1 ? {color: "red"} : {}}>Rating</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count", 2)} style={searchObj.sortSelected == 2 ? {color: "red"} : {}}>Review Count</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={searchObj.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
+					<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={searchObj.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
 				</NavDropdown>
 			
-				<Filters searchOptions={this.state.searchOptions} app={this}></Filters>
+				<Filters></Filters>
 			</Row>
 		</Form>
 
 		<Container className="initialpage">
-			{this.state.restaurants.map(this.eachRestaurant)}
-			{(this.state.restaurants.length == 0 && !this.state.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
-			{(this.state.restaurants.length == 0 && this.state.firstPage) ? <p style={{fontSize: "5em"}}>Start your search!</p>:""}
+			{searchObj.restaurants.map(this.eachRestaurant)}
+			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
+			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}>Start your search!</p>:""}
 		</Container>
 		</>
 		);

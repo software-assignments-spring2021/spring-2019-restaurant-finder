@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import searchObj from "./designPatterns/SearchStateSingleton"
 import GlobalNavBar from "./components/GlobalNavBar";
-import SearchRestaurantsPage from './pages/SearchRestaurantsPage';
+import SearchRestaurantsPage, {f} from './pages/SearchRestaurantsPage';
 import RestaurantPage from './pages/RestaurantPage';
 import axios from "axios";
+
 
 // our main "app" 
 //this should have all routes accessible
@@ -14,15 +16,13 @@ class App extends Component {
 
 	constructor(props){
 		super(props);
-		this.state = { page: 'search',
-		 searchOptions: { term:"", categories: {alias: "restaurants"}},
-		 restaurants: [], 
-		 searchTerm: "",
-		 sortSelected: 0,
 
-		 loggedIn: false,
-		 username: null
+		searchObj.app = this;
 
+		this.state = { 
+			page: 'search',
+			loggedIn: false,
+			username: null
 		};
 
 		this.loadRestaurant = this.loadRestaurant.bind(this);
@@ -36,12 +36,13 @@ class App extends Component {
 	/// when the data is returned it changes the page to restaurant 
 	// which loads the restaurant page during render instead of search page
 	loadRestaurant(restaurantid) {
+		console.log(restaurantid);
 		fetch(`api/callYelp?id=${encodeURIComponent(restaurantid)}`)
 			.then(response => { 
 				return response.json()})
 			.then(response => {
-				console.log(response.jsonBody);
-				this.setState({page: "restaurant", restaurant: response.jsonBody});
+				searchObj.restaurant = response.jsonBody
+				this.setState({page: "restaurant"});
 			})
 	}
 	componentDidMount() {
@@ -88,14 +89,14 @@ class App extends Component {
 			//So that the data can persist after going to restaurant page
 			return (
 				<>
-					<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
-					<SearchRestaurantsPage app ={this} loggedIn = {this.state.loggedIn} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
+					<GlobalNavBar loggedIn = {this.state.loggedIn} username={this.state.username} />
+					<SearchRestaurantsPage loggedIn = {this.state.loggedIn}/>
 				</>)
 			} else if (this.state.page === "restaurant"){
 				return (
 					<>
-						<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
-						<RestaurantPage app = {this} loggedIn = {this.state.loggedIn} restaurant={this.state.restaurant}/>
+						<GlobalNavBar loggedIn = {this.state.loggedIn} username={this.state.username}/>
+						<RestaurantPage loggedIn = {this.state.loggedIn}/>
 					</>)
 			}
 	}
