@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 import {Container, Form, Button, Navbar} from "react-bootstrap";
 import axios from 'axios';
+
 class Signup extends Component {
     constructor(props) {
         super(props);
-    
         this.state = {
           username: "",
           password: "",
           redirectTo:null
         };
-    this.handleChange=this.handleChange.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
-    this.validateForm = this.validateForm.bind(this);
+        this.handleChange=this.handleChange.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+        this.validateForm = this.validateForm.bind(this);
     }  
-    handleSubmit(event)
-    {
+
+    handleSubmit(event) {
         event.preventDefault();
         axios.post("/user/", {
             username: this.state.username,
             password: this.state.password
         }).then(response => {
             console.log(response)
-            if(response.data)
-            {
+            if(response.data) {
                 console.log("successful signup");
                 this.setState({redirectTo: "/login"})
-            }
-            else
-            {
+            } else {
                 console.log("ERROR");
             }
         }).catch(error => {
@@ -39,14 +36,14 @@ class Signup extends Component {
     validateForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
     }
+
     handleChange = (event) => {
         this.setState({
           [event.target.id]: event.target.value
         });
       }
 
-    render()
-    {
+    render() {
         return(
 		<div style={{backgroundColor:"#44a6c6"}}>
         <Container style={{maxWidth: "400px", color: "white", padding: "50px"}}>

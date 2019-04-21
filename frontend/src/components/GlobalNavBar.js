@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
 import Signup from "../auth/Signup";
 import Login from "../auth/Login";
-import UserDashboard from "../pages/UserDashboard";
+import searchObj from "../designPatterns/SearchStateSingleton"
 
 class GlobalNavBar extends Component {
 
@@ -44,20 +44,22 @@ class GlobalNavBar extends Component {
 			<Navbar bg="light" expand="lg">
 			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 			    <Navbar.Collapse id="basic-navbar-nav">
-			        
-			        <a onClick={this.props.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Search</Nav.Link></a>
+                    <img className="logo" src="happyeggs.ico"></img>
+			        <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
+                    <div className="navbarlogin">
 			        {!this.props.loggedIn  && [
 			            <NavLink style={{color: "white"}} to="/signup">Sign Up</NavLink>,<Navbar.Brand></Navbar.Brand>,
 			            <NavLink style={{color: "white"}} to="/login">Login</NavLink>
-			            ]}
-			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout user: {this.props.user.username}</Button>)}
-			    </Navbar.Collapse>
+                        ]}
+			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout user: {this.props.username}</Button>)}
+                    </div>
+                </Navbar.Collapse>
 			</Navbar>
 			</>
 			)
 
         // return (
-            
+
         // <Navbar bg="light" expand="lg">
         //     <Switch>
         //         <Route exact path="/signup" component={Signup}/>
@@ -74,7 +76,7 @@ class GlobalNavBar extends Component {
         //             <NavLink style={{float: "right"}} to="/login">Login</NavLink>
         //             ]}
         //             {this.props.loggedIn && (<Button onClick={this.logout}>Logout</Button>)}
-                
+
         //         </Nav>
         //     </Navbar.Collapse>
         // </Navbar>
@@ -83,5 +85,3 @@ class GlobalNavBar extends Component {
 }
 
 export default GlobalNavBar;
-
-
