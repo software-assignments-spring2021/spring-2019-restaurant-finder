@@ -21,7 +21,7 @@ class App extends Component {
 		 sortSelected: 0,
 
 		 loggedIn: false,
-		 username: null
+		 user: null
 
 		};
 
@@ -63,17 +63,18 @@ class App extends Component {
 		  console.log('Get user response: ')
 		  console.log(response.data)
 		  if (response.data.user) {
-			console.log('Get User: There is a user saved in the server session: ')
-	
-			this.setState({
-			  loggedIn: true,
-			  username: response.data.user.username
-			})
+				console.log('Get User: There is a user saved in the server session: ')
+				console.log(response.data.user);
+				this.setState({
+					loggedIn: true,
+					user: response.data.user
+				})
+				console.log(this.state);
 		  } else {
-			console.log('Get user: no user');
-			this.setState({
-			  loggedIn: false,
-			  username: null
+				console.log('Get user: no user');
+				this.setState({
+					loggedIn: false,
+					user: null
 			})
 		  }
 		})
@@ -88,13 +89,13 @@ class App extends Component {
 			//So that the data can persist after going to restaurant page
 			return (
 				<>
-					<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} username={this.state.username} />
+					<GlobalNavBar app ={this} loggedIn = {this.state.loggedIn} user={this.state.user} />
 					<SearchRestaurantsPage app ={this} loggedIn = {this.state.loggedIn} searchOptions={this.state.searchOptions} restaurants={this.state.restaurants} searchTerm={this.state.searchTerm} sortSelected={this.state.sortSelected}/>
 				</>)
 			} else if (this.state.page === "restaurant"){
 				return (
 					<>
-						<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} username={this.state.username}/>
+						<GlobalNavBar app = {this} loggedIn = {this.state.loggedIn} user={this.state.user}/>
 						<RestaurantPage app = {this} loggedIn = {this.state.loggedIn} restaurant={this.state.restaurant}/>
 					</>)
 			}

@@ -11,11 +11,12 @@ class RestaurantBox extends Component {
 	}
 
 	handleSubmit() {
-		axios.post('/favorites', {
+		axios.post('/user/favorites', {
 			name:this.props.name,
 			url:this.props.url
+		}).catch(error => {
+			console.log(error);
 		});
-
 	}
   render() {
     return (
@@ -24,7 +25,7 @@ class RestaurantBox extends Component {
 					<div className= "h3 class-title">{this.props.name}</div>
 				</div>
 				<div className='container'>
-					<div>
+					<div onClick={this.props.onClicked}>
 						<img className="rounded" src={this.props.image_url}/>
 					</div>
 					<br />

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
 import Signup from "../auth/Signup";
 import Login from "../auth/Login";
+import UserDashboard from "../pages/UserDashboard";
 
 class GlobalNavBar extends Component {
 
@@ -24,7 +25,7 @@ class GlobalNavBar extends Component {
           {
             this.props.app.updateUser({
               loggedIn: false,
-              username: null
+              user: null
             })
           }
         }).catch(error => {
@@ -38,7 +39,8 @@ class GlobalNavBar extends Component {
             <Switch>
 			        <Route exact path="/signup" component={Signup}/>
 			        <Route exact path="/login" render={() => <Login updateUser = {this.props.app.updateUser}/>}/>
-			    </Switch>
+              <Route exact path="/userdashboard" render={() => <UserDashboard updateUser={this.props.app.updateUser} loggedIn = {this.props.loggedIn} user={this.props.user}/>}/>
+          </Switch>
 			<Navbar bg="light" expand="lg">
 			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
 			    <Navbar.Collapse id="basic-navbar-nav">
@@ -48,7 +50,7 @@ class GlobalNavBar extends Component {
 			            <NavLink style={{color: "white"}} to="/signup">Sign Up</NavLink>,<Navbar.Brand></Navbar.Brand>,
 			            <NavLink style={{color: "white"}} to="/login">Login</NavLink>
 			            ]}
-			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout user: {this.props.username}</Button>)}
+			            {this.props.loggedIn && (<Button onClick={this.logout}>Logout user: {this.props.user.username}</Button>)}
 			    </Navbar.Collapse>
 			</Navbar>
 			</>

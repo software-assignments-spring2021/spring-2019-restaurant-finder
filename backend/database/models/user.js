@@ -10,6 +10,7 @@ const favoriteRestaurant = new Schema({
 	name: {type: String},
 	url: {type: String}
 })
+
 // Define userSchema with configurations
 const userSchema = new Schema({
 

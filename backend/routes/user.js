@@ -9,7 +9,7 @@ const passport = require('../passport');
 router.post('/', (req, res) => {
     console.log('user signup');
     //get the raw username and password from the body
-    const { username, password } = req.body
+    const { username, password } = req.body;
 
     //if we want credential requirements (email, whatever?, add it here)
 
@@ -26,7 +26,8 @@ router.post('/', (req, res) => {
         else {
             const newUser = new User({
                 username: username,
-                password: password
+                password: password,
+                favorites:[]
             })
             newUser.save((err, savedUser) => {
                 if (err) 
@@ -48,10 +49,9 @@ router.post('/login', function (req, res, next) {
     passport.authenticate('local'), (req, res) => {
         console.log('logged in', req.user);
         //return the user info we got from passport
-        var userInfo = {
-            username: req.user.username
-        };
-        res.send(userInfo);
+        res.send({
+            user: req.user
+        });
     }
 )
 
@@ -67,17 +67,17 @@ router.get('/', (req, res, next) => {
 });
 
 //the post request for saving new favorites
-router.post("/favorites", (req, res) => {
-    const newUser = new Favorite({
-        name: req.body.name,
-        url: req.body.url
-    });
-    if (req.user)
-    {
-        req.user.favorites.push(newUser);
-        req.user.save();
+router.post('/favorites', function (req, res, next) {
+    console.log('routes/user.js, favorites, '+ JSON.stringify(req.body));
+    next()
+    }, //authenticate with passport
+    passport.authenticate('local'), (req, res) => {
+        console.log('logged in', req.user);
+        console.log(req.user.favorites);
+        console.log(req.body + "IN SCOPE??");//return the user info we got from passport
+        
     }
-});
+);
 
 //get all of the current user's favorites
 router.get("/favorites", (req, res) => {

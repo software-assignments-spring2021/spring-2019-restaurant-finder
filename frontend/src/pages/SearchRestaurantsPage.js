@@ -169,7 +169,7 @@ class SearchRestaurantsPage extends Component{
 	// each box is surrounded by a div that once clicked, loads the restaurant page from the app component
 	eachRestaurant(restaurant,i){
 		return (
-			<div onClick={this.props.app.loadRestaurant.bind(this, this.state.restaurants[i].id)}>
+			<>
 				<RestaurantBox
 					key={i}
 					index={i}
@@ -183,7 +183,10 @@ class SearchRestaurantsPage extends Component{
 					distance = {restaurant.distance}
 					loggedIn = {this.props.loggedIn}>
 				</RestaurantBox>
-			</div>
+				<Button onClick={this.props.app.loadRestaurant.bind(this, this.state.restaurants[i].id)}>
+				More Info
+				</Button>
+			</>
 		)
 	}
 	
