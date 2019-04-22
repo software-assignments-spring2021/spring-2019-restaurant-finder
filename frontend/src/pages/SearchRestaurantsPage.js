@@ -3,7 +3,7 @@ import { Button, Form, Jumbotron, Row, Col, Container, NavDropdown} from 'react-
 import searchObj from "../designPatterns/SearchStateSingleton"
 import RestaurantBox from '../components/RestaurantBox';
 import {mapMatrix,categoriesOrder} from "../FilterNames";
-import Filters from '../components/filters'
+import Filter from '../components/filters'
 
 
 //this class is the basic search restaurants page that handles our basic test functionalit
@@ -216,8 +216,7 @@ class SearchRestaurantsPage extends Component{
 					<NavDropdown.Item href="" onClick={this.sort.bind(this, "distance", 3)} style={searchObj.sortSelected == 3 ? {color: "red"} : {}}>Distance</NavDropdown.Item>
 					<NavDropdown.Item href="" onClick={this.sortPrice.bind(this)} style={searchObj.sortSelected == 4 ? {color: "red"} : {}}>Price</NavDropdown.Item>
 				</NavDropdown>
-			
-				<Filters></Filters>
+				<Filter></Filter>
 			</Row>
 		</Form>
 

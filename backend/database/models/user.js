@@ -19,10 +19,7 @@ const userSchema = new Schema({
 	
 	//pinned restaurants: type: array of restaurants
 	favorites: [favoriteRestaurant]
-
 });
-
-
 
 //some boilerplate stuff a user should do (encrypt / decrypt a password)
 // Define schema methods

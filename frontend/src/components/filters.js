@@ -4,7 +4,7 @@ import searchObj from "../designPatterns/SearchStateSingleton"
 import {mapMatrix,categoriesOrder} from "../FilterNames";
 
 //contains a list of all the categories that one could select... yikes
-class GlobalNavBar extends Component {
+class Filter extends Component {
 
     constructor(props)
     {
@@ -69,7 +69,7 @@ class GlobalNavBar extends Component {
     }
 }
 
-export default GlobalNavBar;
+export default Filter;
 
 
 				// <NavDropdown.Item href="">Action</NavDropdown.Item>

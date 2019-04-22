@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import {Container, Form, Button, Navbar} from "react-bootstrap";
-import axios from 'axios';
+import Auth from '../Auth';
 
 class Login extends Component {
     constructor() {
         super()
         this.state = {
             username: '',
-            password: '',
-            redirectTo: null
+            password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -24,37 +22,15 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault()
         console.log('handleSubmit')
-
-        axios
-            .post('/user/login', {
-                username: this.state.username,
-                password: this.state.password
-            })
-            .then(response => {
-                console.log('login response: ')
-                console.log(response)
-                if (response.status === 200) {
-                    // update App.js state
-                    this.props.updateUser({
-                        loggedIn: true,
-                        username: response.data.username
-                    })
-                    // update the state to redirect to home
-                    this.setState({
-                        redirectTo: '/'
-                    })
-                }
-            }).catch(error => {
-                console.log('login error: ')
-                console.log(error);
-                
-            })
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        this.props.Auth.login(user);
+        this.props.displayLogin();
     }
 
     render() {
-        if (this.state.redirectTo) {
-            return <Redirect to={{ pathname: this.state.redirectTo }} />
-        } else {
             return (
 				<div style={{backgroundColor:"#44a6c6"}}>
                 <Container style={{maxWidth: "400px", color: "white", padding: "25px"}}>
@@ -77,13 +53,8 @@ class Login extends Component {
                             value={this.state.password} 
                             type="password"/>
                             </Form.Group>
-                        <a href="/"><Button>
-                            Back
-                        </Button>
-						</a>
 						<Navbar.Brand></Navbar.Brand>
 						<Button
-                            
                             type="submit"
                         >
                             Sign In
@@ -92,7 +63,6 @@ class Login extends Component {
                 </Container>
 				</div>
             )
-        }
     }
 }
 

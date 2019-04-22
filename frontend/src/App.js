@@ -4,7 +4,7 @@ import GlobalNavBar from "./components/GlobalNavBar";
 import SearchRestaurantsPage, {f} from './pages/SearchRestaurantsPage';
 import RestaurantPage from './pages/RestaurantPage';
 import axios from "axios";
-
+import Auth from './auth/Auth';
 
 // our main "app" 
 //this should have all routes accessible
@@ -18,17 +18,15 @@ class App extends Component {
 		super(props);
 
 		searchObj.app = this;
-
 		this.state = { 
 			page: 'search',
 			loggedIn: false,
 			username: null
 		};
+		this.Auth = new Auth();
 
 		this.loadRestaurant = this.loadRestaurant.bind(this);
 		this.loadSearch = this.loadSearch.bind(this);
-		this.getUser = this.getUser.bind(this);
-		this.updateUser = this.updateUser.bind(this);
 	}
 
 
@@ -46,38 +44,13 @@ class App extends Component {
 			})
 	}
 	componentDidMount() {
-		this.getUser()
+		this.Auth.getUser()
 	  }
 
 	//changes the route switch search so that the searchpage is loaded
 	loadSearch(){
 		console.log(this.state);
 		this.setState({page: 'search'});
-	}
-
-	updateUser (userObject) {
-		this.setState(userObject)
-	  }
-
-	getUser() {
-		axios.get('/user/').then(response => {
-		  console.log('Get user response: ')
-		  console.log(response.data)
-		  if (response.data.user) {
-			console.log('Get User: There is a user saved in the server session: ')
-	
-			this.setState({
-			  loggedIn: true,
-			  username: response.data.user.username
-			})
-		  } else {
-			console.log('Get user: no user');
-			this.setState({
-			  loggedIn: false,
-			  username: null
-			})
-		  }
-		})
 	}
 
   	render() {
@@ -89,14 +62,16 @@ class App extends Component {
 			//So that the data can persist after going to restaurant page
 			return (
 				<>
-					<GlobalNavBar loggedIn = {this.state.loggedIn} username={this.state.username} />
-					<SearchRestaurantsPage loggedIn = {this.state.loggedIn}/>
+					<GlobalNavBar Auth = {this.Auth}/>
+					<SearchRestaurantsPage Auth = {this.Auth} />
 				</>)
-			} else if (this.state.page === "restaurant"){
+			} else if 
+			(this.state.page === "restaurant")
+			{
 				return (
 					<>
-						<GlobalNavBar loggedIn = {this.state.loggedIn} username={this.state.username}/>
-						<RestaurantPage loggedIn = {this.state.loggedIn}/>
+						<GlobalNavBar Auth = {this.Auth}/>
+						<RestaurantPage Auth = {this.Auth}/>
 					</>)
 			}
 	}
