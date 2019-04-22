@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {Container, Form, Button, Navbar} from "react-bootstrap";
-import axios from 'axios';
+import Auth from '../Auth';
 
 class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = {
           username: "",
-          password: "",
-          redirectTo:null
+          password: ""
         };
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -17,20 +16,12 @@ class Signup extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post("/user/", {
+        const user = {
             username: this.state.username,
             password: this.state.password
-        }).then(response => {
-            console.log(response)
-            if(response.data) {
-                console.log("successful signup");
-                this.setState({redirectTo: "/login"})
-            } else {
-                console.log("ERROR");
-            }
-        }).catch(error => {
-            console.log("ERROR - SIGN UP\n" + error);
-        })
+        };
+        this.props.Auth.signUp(user);
+        this.props.displaySignup();
     }
     
     validateForm() {
@@ -64,11 +55,6 @@ class Signup extends Component {
                 placeholder="Password"
                 type="password"/>
                 </Form.Group>
-				<a href="/">
-					<Button>
-                    	Back
-                    </Button>
-				</a>
 				<Navbar.Brand></Navbar.Brand>
                 <Button
                     disabled={!this.validateForm()}

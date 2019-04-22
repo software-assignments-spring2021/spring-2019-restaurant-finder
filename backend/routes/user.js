@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
                     console.log("failed at userSave");
                     return res.json(err)
                 }
-                res.json(savedUser)
+                res.json({user: savedUser});
             })
         }
     })
@@ -48,10 +48,7 @@ router.post('/login', function (req, res, next) {
     passport.authenticate('local'), (req, res) => {
         console.log('logged in', req.user);
         //return the user info we got from passport
-        var userInfo = {
-            username: req.user.username
-        };
-        res.send(userInfo);
+        res.send({user: req.user});
     }
 )
 
