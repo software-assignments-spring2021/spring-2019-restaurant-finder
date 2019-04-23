@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+//This is a class that serves as our "proxy" and takes care of all user authentication in our app.
+//we can then simply call "auth.logOut" to log out, and we don't need a complicated axios call
 class Auth {
 
+    //bind all the functions within the context of the class
     constructor()
     {
         this.isLoggedIn = this.isLoggedIn.bind(this);
@@ -14,29 +17,21 @@ class Auth {
         this.newFavorite = this.newFavorite.bind(this);
     }
 
-    /*
-    function axiosTest() {
-        return axios.get(url).then(response => {
-            // returning the data here allows the caller to get it through another .then(...)
-            return response.data
-    })
-    }
-
-    axiosTest().then(data => {
-    response.json({ message: 'Request received!', data })
-    })
-    */
-
+    //a function that gets all of our user's current favorites
     getFavorites()
     {
         return axios.get('/user/favorites')
     }
+
+    //makes a post request to create new favorite based on our Favorite schema
     newFavorite(newFav){
         axios.post('/user/favorites', {
 			name:newFav.name,
 			url:newFav.url
 		});
     }
+
+    //returns a boolean in .then((response) => if you are currently logged in
     isLoggedIn ()
     {
        return this.getUser().then(data => {
@@ -50,6 +45,7 @@ class Auth {
        })
 
     }
+    //tells the app to log itself out
     logOut() {
         return axios.post('/user/logout').then(response => {
             console.log(response.data);
@@ -59,6 +55,8 @@ class Auth {
             return error;
           });
     }
+
+    //gets the current user (if they exist) and returns their object
     getUser() {
 		return axios.get('/user/').then(response => {
 		  console.log('Get user response: ')
@@ -71,11 +69,14 @@ class Auth {
 			return({user: null});
 		  }
 		});
-	}
+    }
+    
+    //init function probably unneeded
     initialize() {
         console.log("init auth object");
     }
 
+    //makes the post request to create a new user in our database.
     signUp(user){
         return axios.post('/user/', {
             username: user.username,
@@ -96,6 +97,7 @@ class Auth {
         });
     }
 
+    //makes a post request logging in our current user.
     login(u){
         return axios.post('/user/login', {
             username: u.username,

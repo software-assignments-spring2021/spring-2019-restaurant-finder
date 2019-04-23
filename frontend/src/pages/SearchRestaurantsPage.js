@@ -5,6 +5,7 @@ import RestaurantBox from '../components/RestaurantBox';
 import {mapMatrix,categoriesOrder} from "../FilterNames";
 import Filter from '../components/filters'
 import Auth from "../auth/Auth";
+import {PropagateLoader} from 'react-spinners';
 
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
@@ -16,7 +17,8 @@ class SearchRestaurantsPage extends Component{
 		this.state = {
 			//states weather start searching should appear or not 
 			firstPage: true,
-			loggedIn: false
+			loggedIn: false,
+			loading: false
 		}
 		this.Auth = new Auth();
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -66,13 +68,14 @@ class SearchRestaurantsPage extends Component{
 
   handleSubmit = (event) =>{
 		event.preventDefault();
+		this.setState({loading: true});
 		console.log(this.getSearchString())
 		// fetches the restaurants while reseting seatch options, then updates the view
 		this.fetchRestaurants(response => {
 			searchObj.sortSelected = 0;
 			searchObj.sortSelected = 0;
 			searchObj.restaurants = response.jsonBody.businesses
-			this.setState({firstPage: false});
+			this.setState({firstPage: false, loading: false});
 		});
 		this.checkLogin();
 	}
@@ -209,21 +212,19 @@ class SearchRestaurantsPage extends Component{
   render() {
     return (
 		<>
-
-		<Form className="searchBox">
+		<Form className="searchBox" onSubmit={this.handleSubmit}>
 			<Row className="searchBar">
-				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="term"></label>
-					<input
-						id="term"
-						type="text"
-						placeholder="search bar"
-						value={searchObj.searchOptions.term}
-						onChange={this.handleChange}
-					/>
-					<button type="submit" >Submit</button>
-				</form>
+						<Form.Group>
+							<Form.Control 
+								type="text" 
+								placeholder="Search" 
+								value={searchObj.searchOptions.term}
+								onChange={this.handleChange}/>
+				<Button type="submit" >Submit</Button>
+					</Form.Group>
 			</Row>
+
 			<Row className="filterDropdownSort">
 				<NavDropdown title="Sort By" id="basic-nav-dropdown">
 					<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={searchObj.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
@@ -235,14 +236,18 @@ class SearchRestaurantsPage extends Component{
 				<Filter></Filter>
 			</Row>
 		</Form>
+		<Container style={{padding: '20px'}}>
+			<Container style={{paddingLeft:'50%'}}>
+				<PropagateLoader loading={this.state.loading} size={30}/>
+			</Container>
+		</Container>
 
 		<Container className="initialpage">
 			{searchObj.restaurants.map(this.eachRestaurant)}
-			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}>No Restaurants Found</p>:""}
-			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}>Start your search!</p>:""}
+			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}></p>:""}
+			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}></p>:""}
 		</Container>
-		</>
-		);
+		</>);
   }
 }
 export default SearchRestaurantsPage;

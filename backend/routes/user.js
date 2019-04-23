@@ -45,17 +45,21 @@ router.post('/', (req, res) => {
 //make a post request to log into an account
 router.post('/login', function (req, res, next) {
         console.log('routes/user.js, login, req.body');
+        console.log(req.body);
         next()
     }, //authenticate with passport
     passport.authenticate('local'), (req, res) => {
         console.log('logged in', req.user);
         //return the user info we got from passport
-        if(req.user !== null)
+        if(req.user !== null || req.user !== undefined)
         {
-            res.send({user: req.user});
-            return;
+            return res.send({user: req.user});
         }
-        res.send(null);
+        else
+        {
+            return res.send({user: null});
+        }
+
     });
 
 //gives us the current user we're logged in as

@@ -24,16 +24,16 @@ class UserDashboard extends Component {
     render()
     {
         return(
-            <Container>
+            <Container style={{margin: 'auto', textAlign: 'center'}}>
             <h1> Username: {this.state.username} </h1>
-            <h2>Favorites: </h2>
-            <ul>
+            <h2>Favorites</h2>
+            <ol>
             {this.state.favorites.map((e) => {
                 return (
                 <li><a href={e.url}>{e.name}</a></li>
                 )}
             )}
-            </ul>
+            </ol>
             
             <Button onClick = {this.props.displayDashboard}>Close</Button>
             </Container>
