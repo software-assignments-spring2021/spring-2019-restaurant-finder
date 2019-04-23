@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import searchObj from "../designPatterns/SearchStateSingleton"
+import searchObj from "../designPatterns/SearchStateSingleton";
+import Observer from "../designPatterns/observerPattern";
 import {mapMatrix,categoriesOrder} from "../FilterNames";
 
 //contains a list of all the categories that one could select... yikes
@@ -63,8 +64,12 @@ class Filter extends Component {
                 <NavDropdown.Item href="" onClick={this.handleClick.bind(this, searchObj.searchOptions.categories)}>{searchObj.searchOptions.categories.categoryName}</NavDropdown.Item>
                 </NavDropdown>
                 </div>
+
+				<Observer/>
+
 				</>
-			
+
+
         )
     }
 }

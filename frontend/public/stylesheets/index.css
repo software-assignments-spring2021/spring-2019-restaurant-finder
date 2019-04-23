@@ -35,6 +35,10 @@ a {
 	font-size: 1vw;
 	text-align: : right;
 }
+.observer {
+	display: inline-block;
+	text-align: center;
+}
 
 /*Jumbotron*/
 /*deleted for now*/
