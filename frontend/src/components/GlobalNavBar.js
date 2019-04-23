@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { Navbar, Nav, NavDropdown, Button, Container } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Button, Alert } from 'react-bootstrap';
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
@@ -17,20 +17,36 @@ class GlobalNavBar extends Component {
         this.state = {
           showDashboard:false,
           showLogin: false,
-          showSignup: false
+          showSignup: false,
+          loggedIn: false
         }
+        this.Auth = new Auth();
         this.logout = this.logout.bind(this);
         this.displayDashboard = this.displayDashboard.bind(this);
         this.displayLogin = this.displayLogin.bind(this);
         this.displaySignup = this.displaySignup.bind(this);
+        this.refresh = this.refresh.bind(this);
+        this.checkLogIn = this.checkLogIn.bind(this);
     }
 
-    componentDidUpdate()
+    refresh()
     {
-      this.props.Auth.getUser()
-      console.log("CURRENT LOGIN STATE: " + this.props.Auth.state.loggedIn);
+      this.checkLogIn();
     }
-
+    componentDidMount()
+    {
+      this.checkLogIn();
+    }
+    checkLogIn()
+    {
+      this.Auth.isLoggedIn().then((returned) => {
+        this.setState({
+          loggedIn: returned
+        });
+        this.forceUpdate();
+      });
+      this.forceUpdate();
+    }
     displayDashboard(){
       console.log("switch on / off dash");
 
@@ -63,9 +79,18 @@ class GlobalNavBar extends Component {
     logout(event)
     {
         event.preventDefault();
+        this.Auth.logOut().then((response) => {
+          if (response !== null || response !== undefined)
+          {          
+            this.setState({
+              loggedIn: false,
+              msg: response.msg
+            })
+          }
+
+        });
         console.log('logging out!!');
-        this.props.Auth.logOut();
-        this.props.Auth.getUser();
+
     }
     render(){
 		return (
@@ -75,11 +100,11 @@ class GlobalNavBar extends Component {
 			    <Navbar.Collapse id="basic-navbar-nav">
                     <img className="logo" src="happyeggs.ico"></img>
 			        <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
-			        {this.props.Auth.state.loggedIn  && (<>
+			        {this.state.loggedIn  && (<>
                 <Button onClick={this.logout}>Logout</Button>
-                <Button onClick={this.displayDashboard}>Display User Dashboard</Button>
+                <Button onClick={this.displayDashboard} >Display User Dashboard</Button>
               </>)}
-			          {!this.props.Auth.state.loggedIn && (<>
+			          {!this.state.loggedIn && (<>
                   <Button onClick = {this.displayLogin}>Log In</Button>
                   <Button onClick = {this.displaySignup}>Sign Up</Button>
                   </>
@@ -87,13 +112,13 @@ class GlobalNavBar extends Component {
           </Navbar.Collapse>
 			</Navbar>
       {this.state.showDashboard && (
-        <UserDashboard Auth = {this.props.Auth} displayDashboard={this.displayDashboard}></UserDashboard>
+        <UserDashboard displayDashboard={this.displayDashboard} refresh={this.refresh}></UserDashboard>
       )}
       {this.state.showLogin && (
-        <Login Auth = {this.props.Auth} displayLogin = {this.displayLogin}/>
+        <Login displayLogin = {this.displayLogin} refresh={this.refresh}/>
       )}
       {this.state.showSignup && (
-        <Signup Auth = {this.props.Auth} displaySignup = {this.displaySignup}/>
+        <Signup displaySignup = {this.displaySignup} refresh={this.refresh}/>
       )}
 			</>
 			)

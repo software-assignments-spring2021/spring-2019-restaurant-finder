@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Form, Button, Navbar} from "react-bootstrap";
+import {Container, Form, Button, Navbar, Alert} from "react-bootstrap";
 import Auth from '../Auth';
 
 class Signup extends Component {
@@ -7,11 +7,14 @@ class Signup extends Component {
         super(props);
         this.state = {
           username: "",
-          password: ""
+          password: "",
+          userObject: null
         };
+        this.Auth = new Auth();
         this.handleChange=this.handleChange.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
+        
     }  
 
     handleSubmit(event) {
@@ -20,8 +23,15 @@ class Signup extends Component {
             username: this.state.username,
             password: this.state.password
         };
-        this.props.Auth.signUp(user);
-        this.props.displaySignup();
+        this.Auth.signUp(user).then((response) => {
+            if (response !== null || response !== undefined)
+            {
+                this.setState({
+                    userObject: response.user
+                })
+            }
+            
+        });
     }
     
     validateForm() {
@@ -60,11 +70,15 @@ class Signup extends Component {
                     disabled={!this.validateForm()}
                     type="submit"
                     >
-                
                     Sign Up
                 </Button>
+                <br></br>
             </Form>
+            <div style={{paddingTop: '20px'}} >
+            {this.state.userObject !== null && (<Alert variant="danger">{this.state.userObject.username} user created.</Alert>)}
+            </div>
         </Container>
+
 		</div>
         );
     }

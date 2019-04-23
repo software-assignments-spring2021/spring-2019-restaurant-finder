@@ -19,12 +19,8 @@ class App extends Component {
 
 		searchObj.app = this;
 		this.state = { 
-			page: 'search',
-			loggedIn: false,
-			username: null
+			page: 'search'
 		};
-		this.Auth = new Auth();
-
 		this.loadRestaurant = this.loadRestaurant.bind(this);
 		this.loadSearch = this.loadSearch.bind(this);
 	}
@@ -43,10 +39,6 @@ class App extends Component {
 				this.setState({page: "restaurant"});
 			})
 	}
-	componentDidMount() {
-		this.Auth.getUser()
-	  }
-
 	//changes the route switch search so that the searchpage is loaded
 	loadSearch(){
 		console.log(this.state);
@@ -62,16 +54,16 @@ class App extends Component {
 			//So that the data can persist after going to restaurant page
 			return (
 				<>
-					<GlobalNavBar Auth = {this.Auth}/>
-					<SearchRestaurantsPage Auth = {this.Auth} />
+					<GlobalNavBar/>
+					<SearchRestaurantsPage/>
 				</>)
 			} else if 
 			(this.state.page === "restaurant")
 			{
 				return (
 					<>
-						<GlobalNavBar Auth = {this.Auth}/>
-						<RestaurantPage Auth = {this.Auth}/>
+						<GlobalNavBar/>
+						<RestaurantPage/>
 					</>)
 			}
 	}

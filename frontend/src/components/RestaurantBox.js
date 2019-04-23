@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { Col, Card, Button} from 'react-bootstrap';
+import { Col, Card, Button, Container} from 'react-bootstrap';
 import axios from 'axios';
 //Loads Restautant Data on Search
+import Auth from '../auth/Auth'
 class RestaurantBox extends Component {
 
 	constructor(props)
 	{
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.Auth = new Auth();
 	}
-
+	
 	handleSubmit() {
-		axios.post('/favorites', {
-			name:this.props.name,
-			url:this.props.url
-		});
-
+		const newFav = {name: this.props.name, url: this.props.url};
+		this.Auth.newFavorite(newFav);
 	}
   render() {
     return (
@@ -38,9 +37,13 @@ class RestaurantBox extends Component {
 							<img src={require('./Yelp_trademark_RGB_outline.png')} width="80" height="50" style={{position: "absolute", bottom: 0, right: 0}}/>
 						</a>
 						<br />
-						{this.props.loggedIn && <Button onClick = {this.handleSubmit}>Favorite</Button>}
 					</Col>		
-				</div>			
+				</div>
+				<Container>
+				{this.props.loggedIn && <Button onClick = {this.handleSubmit}>Favorite</Button>}
+				<Button onClick={this.props.moreInfo}>More Info</Button>
+				</Container>
+
 			</Card>
 	);
   }

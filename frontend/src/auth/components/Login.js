@@ -9,6 +9,7 @@ class Login extends Component {
             username: '',
             password: ''
         }
+        this.Auth = new Auth();
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
@@ -26,8 +27,20 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         }
-        this.props.Auth.login(user);
         this.props.displayLogin();
+        let userData;
+        this.Auth.login(user).then((response) => {
+            if (response !== undefined)
+            {
+                userData = response.user;
+            }
+            this.props.refresh();
+        });
+        if (userData !== null)
+        {
+            console.log(JSON.stringify(userData));
+        }
+
     }
 
     render() {
