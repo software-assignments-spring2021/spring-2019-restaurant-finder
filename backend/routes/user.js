@@ -6,6 +6,7 @@ const Favorite = require('../database/models/user').Favorite;
 const passport = require('../passport');
 
 //a post request for / (which is actually /user/) which saves a new user into the database
+//this post returns a user object
 router.post('/', (req, res) => {
     console.log('user signup');
     //get the raw username and password from the body
@@ -32,7 +33,7 @@ router.post('/', (req, res) => {
                 if (err) 
                 {
                     console.log("failed at userSave");
-                    return res.json(err)
+                    res.json(err)
                 }
                 res.json({user: savedUser});
             })
@@ -40,6 +41,7 @@ router.post('/', (req, res) => {
     })
 })
 
+//returns a user object
 //make a post request to log into an account
 router.post('/login', function (req, res, next) {
         console.log('routes/user.js, login, req.body');
@@ -48,30 +50,34 @@ router.post('/login', function (req, res, next) {
     passport.authenticate('local'), (req, res) => {
         console.log('logged in', req.user);
         //return the user info we got from passport
-        res.send({user: req.user});
-    }
-)
+        if(req.user !== null)
+        {
+            res.send({user: req.user});
+            return;
+        }
+        res.send(null);
+    });
 
 //gives us the current user we're logged in as
 router.get('/', (req, res, next) => {
     console.log('===== getting current user!!======')
-    console.log(req.user)
+    console.log(JSON.stringify(req.user));
     if (req.user) {
         res.json({ user: req.user })
     } else {
-        res.json({ user: null })
+        res.send(null);
     }
 });
 
 //the post request for saving new favorites
 router.post("/favorites", (req, res) => {
-    const newUser = new Favorite({
+    const newFav = new Favorite({
         name: req.body.name,
         url: req.body.url
     });
     if (req.user)
     {
-        req.user.favorites.push(newUser);
+        req.user.favorites.push(newFav);
         req.user.save();
     }
 });
@@ -83,16 +89,16 @@ router.get("/favorites", (req, res) => {
         res.json({favorites: req.user.favorites});
     } else
     {
-        res.json({favorites: null});
+        res.json(null);
     }
 });
 //use the built in passport logout feature
 router.post('/logout', (req, res) => {
     if (req.user) {
         req.logout()
-        res.send({ msg: 'logging out' })
+        res.send({ msg: 'Logging out!' })
     } else {
-        res.send({ msg: 'no user to log out' })
+        res.send({ msg: 'No user to log out... this is a bug.' })
     }
 })
 

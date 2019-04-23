@@ -4,7 +4,7 @@ import searchObj from "../designPatterns/SearchStateSingleton"
 import RestaurantBox from '../components/RestaurantBox';
 import {mapMatrix,categoriesOrder} from "../FilterNames";
 import Filter from '../components/filters'
-
+import Auth from "../auth/Auth";
 
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
@@ -16,8 +16,9 @@ class SearchRestaurantsPage extends Component{
 		this.state = {
 			//states weather start searching should appear or not 
 			firstPage: true,
+			loggedIn: false
 		}
-
+		this.Auth = new Auth();
 		this.eachRestaurant=this.eachRestaurant.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +27,12 @@ class SearchRestaurantsPage extends Component{
 		this.getSearchString = this.getSearchString.bind(this);
 		this.fetchRestaurants = this.fetchRestaurants.bind(this);
 		this.categoryFilter = this.categoryFilter.bind(this);
+		this.checkLogin = this.checkLogin.bind(this);
 		
+	}
+	componentDidMount()
+	{
+		this.checkLogin();
 	}
 	//This function will take the options from search options and sort selected
 	// and covert it to the path string that we must fetch to use the Yelp API
@@ -41,6 +47,14 @@ class SearchRestaurantsPage extends Component{
 	}
 
 
+	checkLogin()
+	{
+		this.Auth.isLoggedIn().then((response) => {
+			this.setState({
+				loggedIn: response
+			});
+		});
+	}
   handleChange = (event) => {
 	  //Updates the search options in this component
 	searchObj.searchOptions.term = event.target.value;
@@ -51,16 +65,16 @@ class SearchRestaurantsPage extends Component{
   }
 
   handleSubmit = (event) =>{
-	event.preventDefault();
-	console.log(this.getSearchString())
-	// fetches the restaurants while reseting seatch options, then updates the view
-	this.fetchRestaurants(response => {
-		searchObj.sortSelected = 0;
-		searchObj.sortSelected = 0;
-		searchObj.restaurants = response.jsonBody.businesses
-		this.setState({firstPage: false});
-	});
-
+		event.preventDefault();
+		console.log(this.getSearchString())
+		// fetches the restaurants while reseting seatch options, then updates the view
+		this.fetchRestaurants(response => {
+			searchObj.sortSelected = 0;
+			searchObj.sortSelected = 0;
+			searchObj.restaurants = response.jsonBody.businesses
+			this.setState({firstPage: false});
+		});
+		this.checkLogin();
 	}
 
 	//gets the search string from the method and sends it to the backed to get the results
@@ -166,7 +180,7 @@ class SearchRestaurantsPage extends Component{
 	// each box is surrounded by a div that once clicked, loads the restaurant page from the app component
 	eachRestaurant(restaurant,i){
 		return (
-			<div onClick={searchObj.app.loadRestaurant.bind(this, searchObj.restaurants[i].id)}>
+			<div>
 				<RestaurantBox
 					key={i}
 					index={i}
@@ -178,7 +192,9 @@ class SearchRestaurantsPage extends Component{
 					price = {restaurant.price}
 					rating = {restaurant.rating}
 					distance = {restaurant.distance}
-					loggedIn = {this.props.loggedIn}>
+					loggedIn = {this.state.loggedIn}
+					moreInfo={searchObj.app.loadRestaurant.bind(this, searchObj.restaurants[i].id)}
+					>
 				</RestaurantBox>
 			</div>
 		)
