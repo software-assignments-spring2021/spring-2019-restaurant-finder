@@ -18,7 +18,11 @@ class SearchRestaurantsPage extends Component{
 			//states weather start searching should appear or not 
 			firstPage: true,
 			loggedIn: false,
-			loading: false
+			loading: false,
+			location: {
+				lat: 0,
+				long: 0
+			}
 		}
 		this.Auth = new Auth();
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -30,11 +34,33 @@ class SearchRestaurantsPage extends Component{
 		this.fetchRestaurants = this.fetchRestaurants.bind(this);
 		this.categoryFilter = this.categoryFilter.bind(this);
 		this.checkLogin = this.checkLogin.bind(this);
-		
+		this.getLocation = this.getLocation.bind(this);
+		this.printLocation = this.printLocation.bind(this);
 	}
+
+	printLocation() {
+		console.log("LOCATION" + JSON.stringify(this.state.location))
+	}
+	
+	getLocation() {
+		if (!navigator.geolocation) {
+			return;
+		}
+			
+		navigator.geolocation.getCurrentPosition((position) => {
+			const lng = position.coords.longitude;
+			const lat = position.coords.latitude;
+		
+				this.setState({location: { 
+					lat: lat,
+					long: lng
+				}});
+			});
+	};
 	componentDidMount()
 	{
 		this.checkLogin();
+		
 	}
 	//This function will take the options from search options and sort selected
 	// and covert it to the path string that we must fetch to use the Yelp API
@@ -241,7 +267,9 @@ class SearchRestaurantsPage extends Component{
 				<PropagateLoader loading={this.state.loading} size={30}/>
 			</Container>
 		</Container>
+		<Button onClick = {this.getLocation}>Get Location </Button>
 
+		<Button onClick = {this.printLocation}>Print Location to Console</Button>
 		<Container className="initialpage">
 			{searchObj.restaurants.map(this.eachRestaurant)}
 			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}></p>:""}
