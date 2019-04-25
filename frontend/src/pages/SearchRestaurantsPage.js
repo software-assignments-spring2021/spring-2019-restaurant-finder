@@ -212,17 +212,18 @@ class SearchRestaurantsPage extends Component{
   render() {
     return (
 		<>
+		<div className="searchBackground">
 		<Form className="searchBox" onSubmit={this.handleSubmit}>
-			<Row className="searchBar">
-					<label htmlFor="term"></label>
-						<Form.Group>
-							<Form.Control 
-								type="text" 
-								placeholder="Search" 
-								value={searchObj.searchOptions.term}
-								onChange={this.handleChange}/>
-				<Button type="submit" >Submit</Button>
-					</Form.Group>
+			<Row className="searchBar" >
+				<label htmlFor="term"></label>
+				<Form.Group className="searchInput">
+					<Form.Control 
+						type="text" 
+						placeholder="Search" 
+						value={searchObj.searchOptions.term}
+						onChange={this.handleChange}/>
+				<Button	className="btn btn-light" type="submit" >Submit</Button>
+				</Form.Group>
 			</Row>
 
 			<Row className="filterDropdownSort">
@@ -236,16 +237,18 @@ class SearchRestaurantsPage extends Component{
 				<Filter></Filter>
 			</Row>
 		</Form>
+
 		<Container style={{padding: '20px'}}>
 			<Container style={{paddingLeft:'50%'}}>
 				<PropagateLoader loading={this.state.loading} size={30}/>
 			</Container>
 		</Container>
+		</div>
 
-		<Container className="initialpage">
+		<Container>
 			{searchObj.restaurants.map(this.eachRestaurant)}
-			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}></p>:""}
-			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}></p>:""}
+			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
+			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
 		</Container>
 		</>);
   }
