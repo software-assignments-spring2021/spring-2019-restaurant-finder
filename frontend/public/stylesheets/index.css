@@ -1,6 +1,7 @@
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightgray !important;
 }
 
 a {
@@ -14,7 +15,7 @@ a {
 
 /*GlobalNavBar*/
 .navbar.bg-light.navbar-light  {
-	background-color:#44a6c6 !important;
+	background-color:black !important;
 	top: 0;
 	position: sticky;
 	z-index: 5;
@@ -39,18 +40,21 @@ a {
 	display: inline-block;
 	text-align: center;
 }
-
-/*Jumbotron*/
-/*deleted for now*/
-.jumbotron {
-	margin-bottom: 0px !important;
-	background-color:#add8e6 !important;
-	color: #4169e1 !important;
-	padding: 3em !important;
+.navbar-right {
+	position: absolute;
+	right: 0;
+	padding-right: 20px;
+}
+.spacing {
+	margin-right: 20px;
 }
 
 /*SEARCH RESTAURANTS*/
 /*SEARCH BAR*/
+.searchBackground {
+	background-color: lightgray;
+	padding-top: 50px;
+}
 .btn-outline-success {
 	border-color: #C0D5AD !important;
 }
@@ -58,17 +62,22 @@ a {
 	background-color: white !important;
 }
 .searchBox{
-	background-color: lightgray !important;
-	margin: auto;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	background-color: lightblue !important;
+	margin-left: 25%;
 	width: 50%;
+	border-color: white;
+	border-style: solid;
+	border-width: 5px;
 }
 .searchBar{
 	/*Centralize it*/
+	margin: auto !important;
 	padding-top: 70px;
-	padding-left: 35%;
+	padding-left: 30%;
 	padding-right: 30%;
+}
+.searchInput{
+	display: inline-block !important;
 }
 .filterDropdown{
 	display: inline-block;
@@ -76,7 +85,6 @@ a {
 .filterDropdownSort {
 	/*Centralize it*/
 	display: inline-block;
-	padding-bottom: 50px;
 	text-align: center;
 	padding-bottom: 50px;
 	padding-left: 25%;
@@ -110,6 +118,10 @@ img.rounded {
 	width: auto;
 	height: 200px;
 	object-fit: cover;
+}
+
+.restaurantBody {
+	background-color: black !important;
 }
 
 /*RESPONSIVE DESIGN*/
