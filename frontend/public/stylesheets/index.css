@@ -1,7 +1,7 @@
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: black !important;
+  background-color: lightgray !important;
 }
 
 a {
@@ -62,7 +62,7 @@ a {
 	background-color: white !important;
 }
 .searchBox{
-	background-color: darkgray !important;
+	background-color: lightblue !important;
 	margin-left: 25%;
 	width: 50%;
 	border-color: white;
