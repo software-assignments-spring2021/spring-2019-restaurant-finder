@@ -271,8 +271,6 @@ class SearchRestaurantsPage extends Component{
 		</Container>
 		</div>
 
-		<Container>
-
 		<Button onClick = {this.getLocation}>Get Location </Button>
 
 		<Button onClick = {this.printLocation}>Print Location to Console</Button>
