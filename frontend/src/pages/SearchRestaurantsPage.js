@@ -6,7 +6,7 @@ import {mapMatrix,categoriesOrder} from "../FilterNames";
 import Filter from '../components/filters'
 import Auth from "../auth/Auth";
 import {PropagateLoader} from 'react-spinners';
-
+import MapBox from '../components/MapBox';
 //this class is the basic search restaurants page that handles our basic test functionalit
 //right now it basically replicates yelp, searching in new york (backend stuff)
 class SearchRestaurantsPage extends Component{
@@ -22,7 +22,8 @@ class SearchRestaurantsPage extends Component{
 			location: {
 				lat: 0,
 				long: 0
-			}
+			},
+			showMap: false
 		}
 		this.Auth = new Auth();
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -36,8 +37,12 @@ class SearchRestaurantsPage extends Component{
 		this.checkLogin = this.checkLogin.bind(this);
 		this.getLocation = this.getLocation.bind(this);
 		this.printLocation = this.printLocation.bind(this);
+		this.displayMap = this.displayMap.bind(this);
 	}
 
+	displayMap() {
+		this.setState({showMap: true});
+	}
 	printLocation() {
 		console.log("LOCATION" + JSON.stringify(this.state.location))
 	}
@@ -51,10 +56,14 @@ class SearchRestaurantsPage extends Component{
 			const lng = position.coords.longitude;
 			const lat = position.coords.latitude;
 		
-				this.setState({location: { 
-					lat: lat,
-					long: lng
-				}});
+			this.setState(
+				{
+					location: { 
+						lat: lat,
+						long: lng
+					}
+				});
+			this.displayMap();
 			});
 	};
 	componentDidMount()
@@ -237,7 +246,7 @@ class SearchRestaurantsPage extends Component{
 
   render() {
     return (
-		<>
+		<Container>
 		<div className="searchBackground">
 		<Form className="searchBox" onSubmit={this.handleSubmit}>
 			<Row className="searchBar" >
@@ -267,19 +276,19 @@ class SearchRestaurantsPage extends Component{
 			<Container style={{paddingLeft:'50%'}}>
 				<PropagateLoader loading={this.state.loading} size={30}/>
 			</Container>
+			<Container>
+				<Button onClick = {this.getLocation}>Get Location </Button>
+				{this.state.showMap && (<MapBox lng = {this.state.location.long} lat = {this.state.location.lat}/>)}
+			</Container>
 		</Container>
 		</div>
 
-		<Button onClick = {this.getLocation}> Get Location </Button>
-		<Button onClick = {this.printLocation}> Print Location to Console </Button>
-		
 		<Container className="initialpage">
 			{searchObj.restaurants.map(this.eachRestaurant)}
 			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
 			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
 		</Container>
-		</>
-	)
+	</Container>);
   }
 }
 export default SearchRestaurantsPage;
