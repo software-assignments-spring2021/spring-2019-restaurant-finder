@@ -1,13 +1,13 @@
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: lightgray !important;
+  background-color: #2F4F4F !important;
 }
 
 a {
   color: white;
 }
-
+ 
 .h1 {
     font-size: 4rem !important;
     color: white !important;
@@ -15,7 +15,7 @@ a {
 
 /*GlobalNavBar*/
 .navbar.bg-light.navbar-light  {
-	background-color:black !important;
+	background-color: black !important;
 	top: 0;
 	position: sticky;
 	z-index: 5;
@@ -36,6 +36,9 @@ a {
 	font-size: 1vw;
 	text-align: : right;
 }
+.navbar-toggler {
+	background-color: white !important;
+}
 .observer {
 	display: inline-block;
 	text-align: center;
@@ -52,8 +55,8 @@ a {
 /*SEARCH RESTAURANTS*/
 /*SEARCH BAR*/
 .searchBackground {
-	background-color: lightgray;
-	padding-top: 50px;
+	background-color: #2F4F4F;
+	padding: 50px 50px;
 }
 .btn-outline-success {
 	border-color: #C0D5AD !important;
@@ -62,35 +65,33 @@ a {
 	background-color: white !important;
 }
 .searchBox{
-	background-color: lightblue !important;
+	background-color: #DCDCDC !important;
 	margin-left: 25%;
 	width: 50%;
 	border-color: white;
 	border-style: solid;
+	border-radius: 30px; 
 	border-width: 5px;
+	padding: 5% 10% 5% 10%;
 }
 .searchBar{
 	/*Centralize it*/
-	margin: auto !important;
-	padding-top: 70px;
-	padding-left: 30%;
-	padding-right: 30%;
+	text-align: center;
 }
 .searchInput{
+	width: 75%;
+}
+.searchComponent {
 	display: inline-block !important;
+	border-radius: 5px; 
 }
 .filterDropdown{
+	margin: 0 auto !important;
 	display: inline-block;
 }
 .filterDropdownSort {
-	/*Centralize it*/
+	margin: 0 auto !important;
 	display: inline-block;
-	text-align: center;
-	padding-bottom: 50px;
-	padding-left: 25%;
-	padding-right: 25%;
-}
-.initialpage {
 	text-align: center;
 }
 
@@ -102,7 +103,7 @@ a {
 .column {
 /*Split into three columns*/
 	float: left;
-	width: 30%;
+	width: 31%;
   	height: auto;
   	margin: 10px;
 }
@@ -122,8 +123,28 @@ img.rounded {
 
 .restaurantBody {
 	background-color: black !important;
+	padding: auto;
 }
 
+/*Individual Restaurant Page*/
+.restaurantPage {
+	background-color: white !important;
+}
+.restaurantTitle {
+	text-align: left;
+	font-size: 10em;
+	display: block;
+	background-color: white;
+}
+.image {
+	width: 25%;
+	height: auto;
+	vertical-align: baseline;
+}
+.restaurantInfo {
+	display: inline-block;
+	font-size: 2em;
+}
 /*RESPONSIVE DESIGN*/
 
 /*If screen size is 992px wide, or more, make the following changes*/
@@ -148,36 +169,63 @@ img.rounded {
 /*If screen size is 992px wide, or less, make the following changes*/
 /*992px = tablet size*/
 @media screen and (max-width: 991px) {
-	/*.jumbotron {
-		visibility: hidden;
-		position: absolute
-	}*/
 	.navbar-brand{
 		color: white !important;
 	}
+	.logo {
+		width: 60px;
+		height: 50px;
+		display: inline-block;
+	}
+	.restaurantfinder {
+		display: inline-block;
+	}
+	.navbar-button {
+		display: inline-block;
+		margin: 0;
+	}
 	.column {
-		width: 50%;
+		width: 45%;
 	}
 	img.rounded {
    		width: 100%;
+	}
+	.searchBox {
+		width: 80% !import;
+		margin: auto;
+	}
+	.searchInput {
+		width: 65% !important;
 	}
 }
 
 /*If screen size is 768px wide, or less, make the following changes*/
 /*768px = mobile size*/
 @media screen and (max-width: 768px) {
-	/*.jumbotron {
-		visibility: hidden;
-		position: absolute
-	}*/
 	.navbar-brand{
 		color: white !important;
+	}
+	.logo {
+		width: 60px;
+		height: 50px;
+		display: inline-block;
+	}
+	.restaurantfinder {
+		display: inline-block;
+	}
+	.navbar-button {
+		display: inline-block;
+		margin: 0;
 	}
 	.column {
 		width: 100%;
 	}
 	.searchBox {
 		width: 100%;
+		margin: auto;
+	}
+	.searchInput{
+		width: 65% !important;
 	}
 }
 

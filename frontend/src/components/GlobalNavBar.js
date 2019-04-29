@@ -101,12 +101,12 @@ class GlobalNavBar extends Component {
                     <img className="logo" src="happyeggs.ico"></img>
 			        <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
 			        {this.state.loggedIn  && (
-              <div className="navbar-right">
+              <div className="navbar-right navbar-button">
                 <Button className="spacing btn btn-light" onClick={this.logout}>Logout</Button>
                 <Button className="spacing btn btn-light" onClick={this.displayDashboard} >Display User Dashboard</Button>
               </div>)}
 			          {!this.state.loggedIn && (
-                  <div className="navbar-right">
+                  <div className="navbar-right navbar-button">
                   <Button className="spacing btn btn-light" onClick = {this.displayLogin}>Log In</Button>
                   <Button className="spacing btn btn-light" onClick = {this.displaySignup}>Sign Up</Button>
                   </div>
