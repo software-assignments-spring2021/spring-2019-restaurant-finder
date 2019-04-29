@@ -20,7 +20,7 @@ class RestaurantBox extends Component {
 	handleRatings(){
 		if (this.props.rating == 0){
 			return <img src={require('./yelp_stars/web_and_ios/regular/regular_0.png')}/>
-		}
+		} 
 		if (this.props.rating == 1){
 			return <img src={require('./yelp_stars/web_and_ios/regular/regular_1_half.png')}/>
 		}
