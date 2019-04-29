@@ -10,7 +10,7 @@ class RestaurantBox extends Component {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.Auth = new Auth();
-	}
+	} 
 	
 	handleSubmit() {
 		const newFav = {name: this.props.name, url: this.props.url};

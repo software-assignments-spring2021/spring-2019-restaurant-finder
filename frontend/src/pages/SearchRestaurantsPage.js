@@ -251,14 +251,13 @@ class SearchRestaurantsPage extends Component{
 		<Form className="searchBox" onSubmit={this.handleSubmit}>
 			<Row className="searchBar" >
 				<label htmlFor="term"></label>
-				<Form.Group className="searchInput">
-					<Form.Control 
+					<input 
 						type="text" 
+						className="searchInput searchComponent"
 						placeholder="Search" 
 						value={searchObj.searchOptions.term}
 						onChange={this.handleChange}/>
-				<Button	className="btn btn-light" type="submit" >Submit</Button>
-				</Form.Group>
+				<Button	className="btn btn-light searchComponent" type="submit" >Submit</Button>
 			</Row>
 
 			<Row className="filterDropdownSort">
@@ -272,7 +271,7 @@ class SearchRestaurantsPage extends Component{
 				<Filter></Filter>
 			</Row>
 		</Form>
-
+		
 		<Container style={{padding: '20px'}}>
 			<Container style={{paddingLeft:'50%'}}>
 				<PropagateLoader loading={this.state.loading} size={30}/>
@@ -285,13 +284,11 @@ class SearchRestaurantsPage extends Component{
 		</div>
 
 		<Container className="initialpage">
-
 			{searchObj.restaurants.map(this.eachRestaurant)}
 			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
 			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
 		</Container>
-		</Container>
-		);
+	</Container>);
   }
 }
 export default SearchRestaurantsPage;
