@@ -52,14 +52,14 @@ class SearchRestaurantsPage extends Component{
 		}
 
 		//
-		// searchObj.searchOptions.latitude = 40.723412;
-		// searchObj.searchOptions.longitude = -73.980813;
-		// if (searchObj.restaurants.length) this.fetchRestaurants(response => {
-		// 		searchObj.restaurants = response.jsonBody.businesses
-		// 		this.setState({loading: false});
-		// });
+		searchObj.searchOptions.latitude = 40.723412;
+		searchObj.searchOptions.longitude = -73.980813;
+		if (searchObj.restaurants.length) this.fetchRestaurants(response => {
+				searchObj.restaurants = response.jsonBody.businesses
+				this.setState({loading: false});
+		});
 
-		// this.displayMap();
+		this.displayMap();
 		//
 
 		navigator.geolocation.getCurrentPosition((position) => {
@@ -102,6 +102,7 @@ class SearchRestaurantsPage extends Component{
   handleChange = (event) => {
 	  //Updates the search options
 	searchObj.searchOptions.term = event.target.value;
+	--searchObj.searchNum;
 	this.setState({});
 	console.log(searchObj.searchOptions.term)
   }
@@ -248,7 +249,7 @@ class SearchRestaurantsPage extends Component{
 
   render() {
 
-
+	++searchObj.searchNum;
     return (
 		<Container>
 		<div className="searchBackground">
@@ -281,7 +282,7 @@ class SearchRestaurantsPage extends Component{
 			</Container>
 			<Container>
 				<Button onClick = {this.getLocation}>Get Location </Button>
-				{searchObj.showMap && (<MapBox key={searchObj.searchNum++}/>)}
+				{searchObj.showMap && (<MapBox key={searchObj.searchNum}/>)}
 			</Container>
 		</Container>
 		</div>

@@ -27,7 +27,8 @@ class MapBox extends Component {
 					return{
 						lat: r.coordinates.latitude,
 						lng: r.coordinates.longitude,
-						name: r.name
+						name: r.name,
+						id: r.id
 					}
 				})
             ]
@@ -36,7 +37,7 @@ class MapBox extends Component {
 	}
 
     render() {
-		
+		console.log(this.state.locations)
         return (
             <Container>
                 <ReactMapGL
@@ -45,7 +46,7 @@ class MapBox extends Component {
                     onViewportChange={(viewport) => this.setState({viewport})}
                 >
                 {this.state.locations.map((loc) => { return (
-                <Popup 
+                <Popup onClick={searchObj.app.loadRestaurant.bind(searchObj.app, loc.id)}
                     latitude={loc.lat} 
                     longitude={loc.lng} 
                     closeButton={false} 
