@@ -56,6 +56,7 @@ app.use('/api', yelpRouter);
 //use our user router for our database user schema
 app.use('/user', user);
 
+console.log(__dirname + '/../frontend/build');
 //I don't really know what this does? I think it basically allows us to serve all routes through the frontend? that's what it seems like
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '/../frontend/build', 'index.html'));
