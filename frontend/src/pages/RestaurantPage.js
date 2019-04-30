@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardImg,} from 'react-bootstrap';
 import searchObj from "../designPatterns/SearchStateSingleton"
+import TwoPointMapBox from "../components/TwoPointMapBox"
 
 class RestaurantPage extends Component {
 
@@ -20,6 +21,7 @@ class RestaurantPage extends Component {
 			<div className="card-text">Rating: {searchObj.restaurant.rating}</div>
 			</div>
 			</div>
+			<TwoPointMapBox />
 		</>
 	);
   }

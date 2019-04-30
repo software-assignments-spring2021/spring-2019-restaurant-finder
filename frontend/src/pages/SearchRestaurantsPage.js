@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, Jumbotron, Row, Col, Container, NavDropdown} from 'react-bootstrap';
 import searchObj from "../designPatterns/SearchStateSingleton"
 import RestaurantBox from '../components/RestaurantBox';
-import {mapMatrix,categoriesOrder} from "../FilterNames";
 import Filter from '../components/filters'
 import Auth from "../auth/Auth";
 import {PropagateLoader} from 'react-spinners';
@@ -52,14 +51,14 @@ class SearchRestaurantsPage extends Component{
 		}
 
 		//
-		searchObj.searchOptions.latitude = 40.723412;
-		searchObj.searchOptions.longitude = -73.980813;
-		if (searchObj.restaurants.length) this.fetchRestaurants(response => {
-				searchObj.restaurants = response.jsonBody.businesses
-				this.setState({loading: false});
-		});
+		// searchObj.searchOptions.latitude = 40.723412;
+		// searchObj.searchOptions.longitude = -73.980813;
+		// if (searchObj.restaurants.length) this.fetchRestaurants(response => {
+		// 		searchObj.restaurants = response.jsonBody.businesses
+		// 		this.setState({loading: false});
+		// });
 
-		this.displayMap();
+		// this.displayMap();
 		//
 
 		navigator.geolocation.getCurrentPosition((position) => {
@@ -81,7 +80,7 @@ class SearchRestaurantsPage extends Component{
 	//This function will take the options from search options and sort selected
 	// and covert it to the path string that we must fetch to use the Yelp API
 	getSearchString(){
-		let options = [];
+		let options = []
 		for ( let key in searchObj.searchOptions){
 			if (key == 'categories') options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key].alias));
 			else options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key]));
