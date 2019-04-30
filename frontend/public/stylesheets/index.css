@@ -1,7 +1,7 @@
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #2F4F4F !important;
+  background-color: #EFE2BA !important;
 }
 
 a {
@@ -15,7 +15,7 @@ a {
 
 /*GlobalNavBar*/
 .navbar.bg-light.navbar-light  {
-	background-color: black !important;
+	background-color: #484848 !important;
 	top: 0;
 	position: sticky;
 	z-index: 5;
@@ -51,24 +51,32 @@ a {
 .spacing {
 	margin-right: 20px;
 }
+.dashboard {
+	margin-top: 20px;
+	margin: auto;
+	text-align: center;
+	width: 50;
+}
 
 /*SEARCH RESTAURANTS*/
 /*SEARCH BAR*/
 .searchBackground {
-	background-color: #2F4F4F;
+	background-color: #EFE2BA;
 	padding: 50px 50px;
+	margin: auto;
 }
 .btn-outline-success {
 	border-color: #C0D5AD !important;
 }
 .searchButton{
-	background-color: white !important;
+	background-color: #FDBFA8 !important;
+	border-color: #FDBFA8 !important;
 }
 .searchBox{
-	background-color: #DCDCDC !important;
+	background-color: #F8F9FA !important;
 	margin-left: 25%;
 	width: 50%;
-	border-color: white;
+	border-color: #FDBFA8;
 	border-style: solid;
 	border-radius: 30px; 
 	border-width: 5px;
@@ -99,6 +107,7 @@ a {
 .description {
 /*Restaurant info*/
 	display: block;
+	margin-top: 10px;
 }
 .column {
 /*Split into three columns*/
@@ -113,38 +122,45 @@ a {
     font-size: 100%;
 	text-align: center;
     overflow: hidden;
+	border-color: #FDBFA8 !important;
 }
 img.rounded {
 /*Image*/
+	margin-top: 15px;
 	width: auto;
 	height: 200px;
 	object-fit: cover;
 }
-
 .restaurantBody {
 	background-color: black !important;
 	padding: auto;
 }
-
 /*Individual Restaurant Page*/
 .restaurantPage {
-	background-color: white !important;
+	background-color: #FDBFA8 !important;
 }
 .restaurantTitle {
-	text-align: left;
-	font-size: 10em;
+	text-align: center;
+	font-size: 5em;
 	display: block;
-	background-color: white;
 }
-.image {
-	width: 25%;
+img.image {
+	width: 30%;
 	height: auto;
-	vertical-align: baseline;
+	padding: 0px;
+	vertical-align: top;
 }
 .restaurantInfo {
-	display: inline-block;
+	margin: auto !important;
 	font-size: 2em;
+	width: 50% !important;
 }
+.restaurantText {
+	display: inline-block;
+	height: auto;
+	padding-left: 10% !important;
+}
+
 /*RESPONSIVE DESIGN*/
 
 /*If screen size is 992px wide, or more, make the following changes*/
@@ -191,7 +207,7 @@ img.rounded {
    		width: 100%;
 	}
 	.searchBox {
-		width: 80% !import;
+		width: 80% !important;
 		margin: auto;
 	}
 	.searchInput {

@@ -257,7 +257,7 @@ class SearchRestaurantsPage extends Component{
 						placeholder="Search" 
 						value={searchObj.searchOptions.term}
 						onChange={this.handleChange}/>
-				<Button	className="btn btn-light searchComponent" type="submit" >Submit</Button>
+				<Button	className="btn btn-light searchComponent searchButton" type="submit" >Submit</Button>
 			</Row>
 
 			<Row className="filterDropdownSort">
