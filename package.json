@@ -8,8 +8,7 @@
     "start": "node backend/app.js",
     "devstart": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
     "installit": "npm install && cd backend && npm install && cd ../ && cd frontend && npm install && cd ../",
-    "build": "cd frontend/ &&  && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
-    "heroku-postbuild": "npm run installit"
+    "heroku-postbuild": "cd frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
     "type": "git",
