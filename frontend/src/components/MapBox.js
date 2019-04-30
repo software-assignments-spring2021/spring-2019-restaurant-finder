@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import {Container} from 'react-bootstrap';
 import ReactMapGL, {Popup} from 'react-map-gl';
+import searchObj from "../designPatterns/SearchStateSingleton"
 let token = 'pk.eyJ1IjoiY21yNjI0IiwiYSI6ImNqdXp2YXhjNjBrZms0ZHBoejB0MjYxencifQ.RwRI3gBw5GiU-J8a3-xSlg';
 
 class MapBox extends Component {
 
     constructor(props)
     {
-        super(props);
+		super(props);
+		searchObj.map=this;
         this.state={
             viewport: {
                 width: 400,
                 height: 400,
-                latitude: this.props.lat,
-                longitude: this.props.lng,
-                zoom: 15
+				zoom: 15,
+				latitude: searchObj.searchOptions.latitude, 
+                longitude: searchObj.searchOptions.longitude
               },
             locations:[
                 {
-                    lat: this.props.lat, 
-                    lng: this.props.lng,
-                    name: 'User Location!'
-                }
+                    lat: searchObj.searchOptions.latitude, 
+                    lng: searchObj.searchOptions.longitude,
+                    name: 'You are here'
+                }, ...searchObj.restaurants.map((r)=>{
+					return{
+						lat: r.coordinates.latitude,
+						lng: r.coordinates.longitude,
+						name: r.name
+					}
+				})
             ]
             
         };
-    }
+	}
 
     render() {
+		
         return (
             <Container>
                 <ReactMapGL

@@ -18,6 +18,8 @@ if (instance){
 			this.sortSelected = 0;
 			this.app = app
 			this.restaurant = undefined;
+			this.showMap= false;
+			this.searchNum=0;
 		 }
 	
 	
