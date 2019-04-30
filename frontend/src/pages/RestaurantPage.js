@@ -5,6 +5,7 @@ import searchObj from "../designPatterns/SearchStateSingleton"
 class RestaurantPage extends Component {
 
   render() {
+	  console.log(searchObj.restaurants);
     return (
 		<>	
 			<div className="restaurantPage">

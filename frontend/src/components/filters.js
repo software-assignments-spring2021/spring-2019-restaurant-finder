@@ -20,7 +20,7 @@ class Filter extends Component {
 	loadFilters(index, category, arr){
 //		console.log(arr)
 		return(<>
-			{arr.length>1 ? <NavDropdown title={arr[0].categoryName} id="basic-nav-dropdown">{arr.map(this.loadFilters.bind(this, index,category))}</NavDropdown> : <NavDropdown.Item href="" onClick={this.handleClick.bind(this, arr)} style={(arr.selected == true || (arr[0] && arr[0].selected == true)) ? {color: 'red'} : {}}>{ arr.categoryName || arr[0].categoryName}</NavDropdown.Item>}
+			{arr.length>1 ? <NavDropdown title={arr[0].categoryName} id="basic-nav-dropdown">{arr.map(this.loadFilters.bind(this, index,category))}</NavDropdown> : <NavDropdown.Item href="" onClick={this.handleClick.bind(this, arr)}>{ arr.categoryName || arr[0].categoryName}</NavDropdown.Item>}
 		</>)
 
 	}

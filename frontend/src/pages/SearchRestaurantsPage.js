@@ -16,14 +16,12 @@ class SearchRestaurantsPage extends Component{
 		//restaurants keep and load the actual results
 		this.state = {
 			//states weather start searching should appear or not 
-			firstPage: true,
 			loggedIn: false,
 			loading: false,
 			location: {
 				lat: 0,
 				long: 0
 			},
-			showMap: false
 		}
 		this.Auth = new Auth();
 		this.eachRestaurant=this.eachRestaurant.bind(this);
@@ -41,30 +39,39 @@ class SearchRestaurantsPage extends Component{
 	}
 
 	displayMap() {
-		this.setState({showMap: true});
+		searchObj.showMap= true;
+		this.setState({});
 	}
 	printLocation() {
-		console.log("LOCATION" + JSON.stringify(this.state.location))
+		console.log(`Latitude: ${searchObj.searchOptions.latitude}, Longitude: ${searchObj.searchOptions.longitude}`)
 	}
 	
 	getLocation() {
 		if (!navigator.geolocation) {
 			return;
 		}
-			
+
+		//
+		// searchObj.searchOptions.latitude = 40.723412;
+		// searchObj.searchOptions.longitude = -73.980813;
+		// if (searchObj.restaurants.length) this.fetchRestaurants(response => {
+		// 		searchObj.restaurants = response.jsonBody.businesses
+		// 		this.setState({loading: false});
+		// });
+
+		// this.displayMap();
+		//
+
 		navigator.geolocation.getCurrentPosition((position) => {
-			const lng = position.coords.longitude;
-			const lat = position.coords.latitude;
-		
-			this.setState(
-				{
-					location: { 
-						lat: lat,
-						long: lng
-					}
-				});
-			this.displayMap();
+			searchObj.searchOptions.latitude = position.coords.latitude;
+			searchObj.searchOptions.longitude = position.coords.longitude;
+			if (searchObj.restaurants.length) this.fetchRestaurants(response => {
+				searchObj.restaurants = response.jsonBody.businesses
+				this.setState({loading: false});
 			});
+			this.displayMap();
+
+			},(err)=>{alert("Cannot Get Location")});
 	};
 	componentDidMount()
 	{
@@ -76,7 +83,7 @@ class SearchRestaurantsPage extends Component{
 	getSearchString(){
 		let options = [];
 		for ( let key in searchObj.searchOptions){
-			if (key == 'categories')options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key].alias));
+			if (key == 'categories') options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key].alias));
 			else options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key]));
 		}
 		console.log(`api/callYelp?${options.join("&")}`)
@@ -93,24 +100,23 @@ class SearchRestaurantsPage extends Component{
 		});
 	}
   handleChange = (event) => {
-	  //Updates the search options in this component
+	  //Updates the search options
 	searchObj.searchOptions.term = event.target.value;
 	this.setState({});
 	console.log(searchObj.searchOptions.term)
-	//Updates the search options in the app
-	searchObj.searchOptions.term = event.target.value;
   }
 
   handleSubmit = (event) =>{
 		event.preventDefault();
 		this.setState({loading: true});
 		console.log(this.getSearchString())
+		searchObj.sortSelected = 0;
+		delete searchObj.searchOptions["sort_by"];
+		searchObj.searchOptions["categories"] = {alias: "restaurants"};
 		// fetches the restaurants while reseting seatch options, then updates the view
 		this.fetchRestaurants(response => {
-			searchObj.sortSelected = 0;
-			searchObj.sortSelected = 0;
 			searchObj.restaurants = response.jsonBody.businesses
-			this.setState({firstPage: false, loading: false});
+			this.setState({loading: false});
 		});
 		this.checkLogin();
 	}
@@ -157,9 +163,10 @@ class SearchRestaurantsPage extends Component{
 			}
 			console.log(restaurants);
 			searchObj.restaurants = restaurants;
-			this.setState({firstPage: false});
+			this.setState({});
 		});
 	}
+
 
 	//This does not send a new query because there in no API sorting for price
 	//So therefore it just sorts the current restaurants by price and updates the view
@@ -176,7 +183,7 @@ class SearchRestaurantsPage extends Component{
 		restaurants.sort(compare);
 
 		searchObj.restaurants = restaurants;
-		this.setState({firstPage: false});	
+		this.setState({});	
 	}
 
 	// This sends a new fetch restaurants request with the search options on category
@@ -210,7 +217,7 @@ class SearchRestaurantsPage extends Component{
 				restaurants.sort(compare);
 			}
 			searchObj.restaurants = restaurants;
-			this.setState({firstPage: false});
+			this.setState({});
 		});
 	}
 
@@ -238,13 +245,10 @@ class SearchRestaurantsPage extends Component{
 		)
 	}
 	
-		// <Jumbotron>
-		// 	<h1 className="h1">
-		// 		Restaurant Finder
-		// 	</h1>
-		// </Jumbotron>
 
   render() {
+
+
     return (
 		<Container>
 		<div className="searchBackground">
@@ -271,22 +275,19 @@ class SearchRestaurantsPage extends Component{
 				<Filter></Filter>
 			</Row>
 		</Form>
-		
 		<Container style={{padding: '20px'}}>
 			<Container style={{paddingLeft:'50%'}}>
 				<PropagateLoader loading={this.state.loading} size={30}/>
 			</Container>
 			<Container>
 				<Button onClick = {this.getLocation}>Get Location </Button>
-				{this.state.showMap && (<MapBox lng = {this.state.location.long} lat = {this.state.location.lat}/>)}
+				{searchObj.showMap && (<MapBox key={searchObj.searchNum++}/>)}
 			</Container>
 		</Container>
 		</div>
 
 		<Container className="initialpage">
 			{searchObj.restaurants.map(this.eachRestaurant)}
-			{(searchObj.restaurants.length == 0 && !searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
-			{(searchObj.restaurants.length == 0 && searchObj.firstPage) ? <p style={{fontSize: "5em"}}> </p>:""}
 		</Container>
 	</Container>);
   }
