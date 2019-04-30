@@ -36,6 +36,8 @@ class MapBox extends Component {
         };
 	}
 
+
+
     render() {
 		console.log(this.state.locations)
         return (
@@ -46,11 +48,15 @@ class MapBox extends Component {
                     onViewportChange={(viewport) => this.setState({viewport})}
                 >
                 {this.state.locations.map((loc) => { return (
-                <Popup onClick={searchObj.app.loadRestaurant.bind(searchObj.app, loc.id)}
+                <Popup
                     latitude={loc.lat} 
                     longitude={loc.lng} 
-                    closeButton={false} 
-                    closeOnClick={true} 
+                    closeButton={true} 
+					closeOnClick={true} 
+					onClose={()=>{
+						searchObj.app.loadRestaurant(loc.id);
+						this.setState({});
+					}}
                     anchor="bottom"
                     >
                     <div>{loc.name}</div>

@@ -37,6 +37,7 @@ class App extends Component {
 			.then(response => {
 				searchObj.restaurant = response.jsonBody
 				this.setState({page: "restaurant"});
+				console.log("bye");
 			})
 	}
 	//changes the route switch search so that the searchpage is loaded
