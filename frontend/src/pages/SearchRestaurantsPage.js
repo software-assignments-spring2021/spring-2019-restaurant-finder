@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Form, Jumbotron, Row, Col, Container, NavDropdown} from 'react-bootstrap';
 import searchObj from "../designPatterns/SearchStateSingleton"
 import RestaurantBox from '../components/RestaurantBox';
-import {mapMatrix,categoriesOrder} from "../FilterNames";
 import Filter from '../components/filters'
 import Auth from "../auth/Auth";
 import {PropagateLoader} from 'react-spinners';
@@ -81,7 +80,7 @@ class SearchRestaurantsPage extends Component{
 	//This function will take the options from search options and sort selected
 	// and covert it to the path string that we must fetch to use the Yelp API
 	getSearchString(){
-		let options = [];
+		let options = []
 		for ( let key in searchObj.searchOptions){
 			if (key == 'categories') options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key].alias));
 			else options.push(key + "=" + encodeURIComponent(searchObj.searchOptions[key]));
@@ -102,6 +101,7 @@ class SearchRestaurantsPage extends Component{
   handleChange = (event) => {
 	  //Updates the search options
 	searchObj.searchOptions.term = event.target.value;
+	--searchObj.searchNum;
 	this.setState({});
 	console.log(searchObj.searchOptions.term)
   }
@@ -248,7 +248,7 @@ class SearchRestaurantsPage extends Component{
 
   render() {
 
-
+	++searchObj.searchNum;
     return (
 		<Container>
 		<div className="searchBackground">
@@ -281,7 +281,7 @@ class SearchRestaurantsPage extends Component{
 			</Container>
 			<Container>
 				<Button onClick = {this.getLocation}>Get Location </Button>
-				{searchObj.showMap && (<MapBox key={searchObj.searchNum++}/>)}
+				{searchObj.showMap && (<MapBox key={searchObj.searchNum}/>)}
 			</Container>
 		</Container>
 		</div>

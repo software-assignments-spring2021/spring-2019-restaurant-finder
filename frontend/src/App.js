@@ -30,13 +30,14 @@ class App extends Component {
 	/// when the data is returned it changes the page to restaurant 
 	// which loads the restaurant page during render instead of search page
 	loadRestaurant(restaurantid) {
-		console.log(restaurantid);
+		if(!restaurantid) return;
 		fetch(`api/callYelp?id=${encodeURIComponent(restaurantid)}`)
 			.then(response => { 
 				return response.json()})
 			.then(response => {
 				searchObj.restaurant = response.jsonBody
 				this.setState({page: "restaurant"});
+				console.log("bye");
 			})
 	}
 	//changes the route switch search so that the searchpage is loaded

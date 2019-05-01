@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardImg,} from 'react-bootstrap';
 import searchObj from "../designPatterns/SearchStateSingleton"
+import TwoPointMapBox from "../components/TwoPointMapBox"
 
 class RestaurantPage extends Component {
 
@@ -22,6 +23,7 @@ class RestaurantPage extends Component {
 				</div> 
 			</div>
 			</div>
+			<TwoPointMapBox />
 		</>
 	);
   }

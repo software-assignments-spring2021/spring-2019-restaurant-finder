@@ -4,7 +4,7 @@ import ReactMapGL, {Popup} from 'react-map-gl';
 import searchObj from "../designPatterns/SearchStateSingleton"
 let token = 'pk.eyJ1IjoiY21yNjI0IiwiYSI6ImNqdXp2YXhjNjBrZms0ZHBoejB0MjYxencifQ.RwRI3gBw5GiU-J8a3-xSlg';
 
-class MapBox extends Component {
+class TwoPointMapBox extends Component {
 
     constructor(props)
     {
@@ -23,14 +23,13 @@ class MapBox extends Component {
                     lat: searchObj.searchOptions.latitude, 
                     lng: searchObj.searchOptions.longitude,
                     name: 'You are here'
-                }, ...searchObj.restaurants.map((r)=>{
-					return{
-						lat: r.coordinates.latitude,
-						lng: r.coordinates.longitude,
-						name: r.name,
-						id: r.id
-					}
-				})
+				}, 
+				{
+						lat: searchObj.restaurant.coordinates.latitude,
+						lng: searchObj.restaurant.coordinates.longitude,
+						name: searchObj.restaurant.name,
+						id: searchObj.restaurant.id
+				}
             ]
             
         };
@@ -53,10 +52,6 @@ class MapBox extends Component {
                     longitude={loc.lng} 
                     closeButton={false} 
 					closeOnClick={true} 
-					onClose={()=>{
-						searchObj.app.loadRestaurant(loc.id);
-						this.setState({});
-					}}
                     anchor="bottom"
                     >
                     <div>{loc.name}</div>
@@ -67,4 +62,4 @@ class MapBox extends Component {
         );
     }
 }
-export default MapBox;
+export default TwoPointMapBox;
