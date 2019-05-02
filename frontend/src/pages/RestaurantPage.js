@@ -21,7 +21,6 @@ class RestaurantPage extends Component {
 			<div className="card-text">Rating: {searchObj.restaurant.rating}</div>
 			</div>
 			</div>
-			<TwoPointMapBox />
 		</>
 	);
   }
