@@ -1,9 +1,20 @@
-body {
+html {
+  margin: 0px;
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #EFE2BA !important;
+  width: 100%;
 }
-
+body {
+  font: 14px Futura, Trebuchet MS , Arial , sans-serif !important;
+  background-color: #EFE2BA !important;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+#root {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100% !important;
+}
 a {
   color: white;
 }
@@ -39,10 +50,6 @@ a {
 .navbar-toggler {
 	background-color: white !important;
 }
-.observer {
-	display: inline-block;
-	text-align: center;
-}
 .navbar-right {
 	position: absolute;
 	right: 0;
@@ -62,7 +69,7 @@ a {
 /*SEARCH BAR*/
 .searchBackground {
 	background-color: #EFE2BA;
-	padding: 50px 50px;
+	padding-top: 50px;
 	margin: auto;
 }
 .btn-outline-success {
@@ -74,8 +81,8 @@ a {
 }
 .searchBox{
 	background-color: #F8F9FA !important;
-	margin-left: 25%;
-	width: 50%;
+	margin: auto;
+	width: 60%;
 	border-color: #FDBFA8;
 	border-style: solid;
 	border-radius: 30px; 
@@ -85,6 +92,8 @@ a {
 .searchBar{
 	/*Centralize it*/
 	text-align: center;
+	margin: auto !important;
+	box-sizing: content-box !important;
 }
 .searchInput{
 	width: 75%;
@@ -94,13 +103,15 @@ a {
 	border-radius: 5px; 
 }
 .filterDropdown{
-	margin: 0 auto !important;
+	margin: auto !important;
 	display: inline-block;
 }
-.filterDropdownSort {
-	margin: 0 auto !important;
+.observer {
 	display: inline-block;
 	text-align: center;
+}
+.observer-row {
+	margin: auto;
 }
 
 /*RESTAURANTBOX*/
@@ -123,6 +134,7 @@ a {
 	text-align: center;
     overflow: hidden;
 	border-color: #FDBFA8 !important;
+	border-radius: 30px;
 }
 img.rounded {
 /*Image*/
@@ -138,27 +150,31 @@ img.rounded {
 /*Individual Restaurant Page*/
 .restaurantPage {
 	background-color: #FDBFA8 !important;
-}
-.restaurantTitle {
-	text-align: center;
-	font-size: 5em;
-	display: block;
-}
-img.image {
-	width: 30%;
-	height: auto;
-	padding: 0px;
-	vertical-align: top;
+	height: 100% !important;
 }
 .restaurantInfo {
 	margin: auto !important;
 	font-size: 2em;
 	width: 50% !important;
+	margin-top: 10px;
+	padding-bottom: 150px;
+}
+.restaurantTitle {
+	padding-top: 10px;
+	text-align: center;
+	font-size: 5vw;
+	display: block;
+}
+img.image {
+	width: 40%;
+	height: auto;
+	padding: 0px;
+	vertical-align: top;
 }
 .restaurantText {
 	display: inline-block;
 	height: auto;
-	padding-left: 10% !important;
+	padding-left: 20px !important;
 }
 
 /*RESPONSIVE DESIGN*/
@@ -206,18 +222,24 @@ img.image {
 	img.rounded {
    		width: 100%;
 	}
+	.filterDropdown {
+		margin: 10px !important;
+	}
 	.searchBox {
 		width: 80% !important;
 		margin: auto;
 	}
 	.searchInput {
-		width: 65% !important;
+		width: 80% !important;
+	}
+	.restaurantTitle {
+		width: 75%;
 	}
 }
 
 /*If screen size is 768px wide, or less, make the following changes*/
 /*768px = mobile size*/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.navbar-brand{
 		color: white !important;
 	}
@@ -239,9 +261,16 @@ img.image {
 	.searchBox {
 		width: 100%;
 		margin: auto;
+		box-sizing: content-box !important;
 	}
 	.searchInput{
-		width: 65% !important;
+		width: 70% !important;
+	}
+	.filterDropdown {
+		margin: 0px !important;
+	}
+	.restaurantTitle {
+		width: 100%;
 	}
 }
 
