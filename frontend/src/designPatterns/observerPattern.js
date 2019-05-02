@@ -9,7 +9,7 @@ class Observer extends Component {
 
     render() {
     	return (
-    		<div>
+    		<div className="observer-row">
 	    		{(singleton.searchOptions.term.length > 0) ? <p className="observer">Term: {singleton.searchOptions.term} &nbsp;</p>:""}
 	    		{(singleton.searchOptions.term.length == 0) ? <p className="observer">Term: NONE &nbsp;</p>:""}
 

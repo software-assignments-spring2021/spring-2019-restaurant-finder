@@ -261,11 +261,11 @@ class SearchRestaurantsPage extends Component{
 						placeholder="Search" 
 						value={searchObj.searchOptions.term}
 						onChange={this.handleChange}/>
-				<Button	className="btn btn-light searchComponent" type="submit" >Submit</Button>
+				<Button	className="btn btn-light searchComponent searchButton" type="submit" >Submit</Button>
 			</Row>
 
-			<Row className="filterDropdownSort">
-				<NavDropdown title="Sort By" id="basic-nav-dropdown">
+			<Row>
+				<NavDropdown title="Sort By" className="filterDropdown" id="basic-nav-dropdown">
 					<NavDropdown.Item href="" onClick={this.sort.bind(this, "best_match", 0)} style={searchObj.sortSelected == 0 ? {color: "red"} : {}}>Best Match</NavDropdown.Item>
 					<NavDropdown.Item href="" onClick={this.sort.bind(this, "rating", 1)} style={searchObj.sortSelected == 1 ? {color: "red"} : {}}>Rating</NavDropdown.Item>
 					<NavDropdown.Item href="" onClick={this.sort.bind(this, "review_count", 2)} style={searchObj.sortSelected == 2 ? {color: "red"} : {}}>Review Count</NavDropdown.Item>

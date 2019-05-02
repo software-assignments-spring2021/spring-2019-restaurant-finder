@@ -35,7 +35,7 @@ class App extends Component {
 			.then(response => { 
 				return response.json()})
 			.then(response => {
-				searchObj.restaurant = response.jsonBody
+				searchObj.restaurant = response.jsonBody;
 				this.setState({page: "restaurant"});
 				console.log("bye");
 			})

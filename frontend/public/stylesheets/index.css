@@ -1,9 +1,20 @@
-body {
+html {
+  margin: 0px;
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #2F4F4F !important;
+  width: 100%;
 }
-
+body {
+  font: 14px Futura, Trebuchet MS , Arial , sans-serif !important;
+  background-color: #EFE2BA !important;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+#root {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100% !important;
+}
 a {
   color: white;
 }
@@ -15,7 +26,7 @@ a {
 
 /*GlobalNavBar*/
 .navbar.bg-light.navbar-light  {
-	background-color: black !important;
+	background-color: #484848 !important;
 	top: 0;
 	position: sticky;
 	z-index: 5;
@@ -39,10 +50,6 @@ a {
 .navbar-toggler {
 	background-color: white !important;
 }
-.observer {
-	display: inline-block;
-	text-align: center;
-}
 .navbar-right {
 	position: absolute;
 	right: 0;
@@ -51,24 +58,32 @@ a {
 .spacing {
 	margin-right: 20px;
 }
+.dashboard {
+	margin-top: 20px;
+	margin: auto;
+	text-align: center;
+	width: 50;
+}
 
 /*SEARCH RESTAURANTS*/
 /*SEARCH BAR*/
 .searchBackground {
-	background-color: #2F4F4F;
-	padding: 50px 50px;
+	background-color: #EFE2BA;
+	padding-top: 50px;
+	margin: auto;
 }
 .btn-outline-success {
 	border-color: #C0D5AD !important;
 }
 .searchButton{
-	background-color: white !important;
+	background-color: #FDBFA8 !important;
+	border-color: #FDBFA8 !important;
 }
 .searchBox{
-	background-color: #DCDCDC !important;
-	margin-left: 25%;
-	width: 50%;
-	border-color: white;
+	background-color: #F8F9FA !important;
+	margin: auto;
+	width: 60%;
+	border-color: #FDBFA8;
 	border-style: solid;
 	border-radius: 30px; 
 	border-width: 5px;
@@ -77,6 +92,8 @@ a {
 .searchBar{
 	/*Centralize it*/
 	text-align: center;
+	margin: auto !important;
+	box-sizing: content-box !important;
 }
 .searchInput{
 	width: 75%;
@@ -86,19 +103,22 @@ a {
 	border-radius: 5px; 
 }
 .filterDropdown{
-	margin: 0 auto !important;
+	margin: auto !important;
 	display: inline-block;
 }
-.filterDropdownSort {
-	margin: 0 auto !important;
+.observer {
 	display: inline-block;
 	text-align: center;
+}
+.observer-row {
+	margin: auto;
 }
 
 /*RESTAURANTBOX*/
 .description {
 /*Restaurant info*/
 	display: block;
+	margin-top: 10px;
 }
 .column {
 /*Split into three columns*/
@@ -113,38 +133,50 @@ a {
     font-size: 100%;
 	text-align: center;
     overflow: hidden;
+	border-color: #FDBFA8 !important;
+	border-radius: 30px;
 }
 img.rounded {
 /*Image*/
+	margin-top: 15px;
 	width: auto;
 	height: 200px;
 	object-fit: cover;
 }
-
 .restaurantBody {
 	background-color: black !important;
 	padding: auto;
 }
-
 /*Individual Restaurant Page*/
 .restaurantPage {
-	background-color: white !important;
-}
-.restaurantTitle {
-	text-align: left;
-	font-size: 10em;
-	display: block;
-	background-color: white;
-}
-.image {
-	width: 25%;
-	height: auto;
-	vertical-align: baseline;
+	background-color: #FDBFA8 !important;
+	height: 100% !important;
 }
 .restaurantInfo {
-	display: inline-block;
+	margin: auto !important;
 	font-size: 2em;
+	width: 50% !important;
+	margin-top: 10px;
+	padding-bottom: 150px;
 }
+.restaurantTitle {
+	padding-top: 10px;
+	text-align: center;
+	font-size: 5vw;
+	display: block;
+}
+img.image {
+	width: 40%;
+	height: auto;
+	padding: 0px;
+	vertical-align: top;
+}
+.restaurantText {
+	display: inline-block;
+	height: auto;
+	padding-left: 20px !important;
+}
+
 /*RESPONSIVE DESIGN*/
 
 /*If screen size is 992px wide, or more, make the following changes*/
@@ -190,18 +222,24 @@ img.rounded {
 	img.rounded {
    		width: 100%;
 	}
+	.filterDropdown {
+		margin: 10px !important;
+	}
 	.searchBox {
-		width: 80% !import;
+		width: 80% !important;
 		margin: auto;
 	}
 	.searchInput {
-		width: 65% !important;
+		width: 80% !important;
+	}
+	.restaurantTitle {
+		width: 75%;
 	}
 }
 
 /*If screen size is 768px wide, or less, make the following changes*/
 /*768px = mobile size*/
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.navbar-brand{
 		color: white !important;
 	}
@@ -223,9 +261,16 @@ img.rounded {
 	.searchBox {
 		width: 100%;
 		margin: auto;
+		box-sizing: content-box !important;
 	}
 	.searchInput{
-		width: 65% !important;
+		width: 70% !important;
+	}
+	.filterDropdown {
+		margin: 0px !important;
+	}
+	.restaurantTitle {
+		width: 100%;
 	}
 }
 
