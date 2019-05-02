@@ -58,29 +58,29 @@ class RestaurantBox extends Component {
 			<Card className="column">
 				<div className="card-header">
 					<div>{this.props.name}</div>
+					<div>
+					  {this.props.loggedIn && 
+					  <Button className="box-button" onClick={this.handleSubmit}> 
+					  <span className="fa fa-star checked"></span>
+					  </Button>}
+					</div>
 				</div>
-				<div className='container'>
+				<div className='container' onClick={this.props.moreInfo}>
 					<div>
 						<img className="rounded" src={this.props.image_url}/>
 					</div>
-					<Col className='description'>
-						<a className="card-link" href={this.props.url}>Website</a>
-						<div className="card-text">Address: {this.props.location.display_address}</div>
-						<div className="card-text">Phone: {this.props.phone}</div>
+					<Col className='description'>	
 						<div className="card-text">Price: {this.props.price}</div>
 						<div className="card-text">Rating: {this.handleRatings()}</div>
 						<div className="card-text">Distance: {Math.round(this.props.distance)} meters</div>
+						<div className="card-text">Phone: {this.props.phone}</div>
+						<div className="card-text">Address: {this.props.location.display_address}</div>
+					
 						<a href="http://yelp.com"> 
-							<img src={require('./Yelp_trademark_RGB_outline.png')} width="80" height="50" style={{position: "absolute", bottom: 0, right: 0}}/>
+						<img className="yelp" src={require('./Yelp_trademark_RGB_outline.png')}/>
 						</a>
-						<br />
 					</Col>		
 				</div>
-				<Container>
-				{this.props.loggedIn && <Button onClick = {this.handleSubmit}>Favorite</Button>}
-				<Button onClick={this.props.moreInfo}>More Info</Button>
-				</Container>
-
 			</Card>
 	);
   }
