@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Container} from 'react-bootstrap';
 import ReactMapGL, {Popup} from 'react-map-gl';
 import searchObj from "../designPatterns/SearchStateSingleton"
-let token = 'pk.eyJ1IjoiY21yNjI0IiwiYSI6ImNqdXp2YXhjNjBrZms0ZHBoejB0MjYxencifQ.RwRI3gBw5GiU-J8a3-xSlg';
 
 class TwoPointMapBox extends Component {
 
@@ -11,6 +10,7 @@ class TwoPointMapBox extends Component {
 		super(props);
 		searchObj.map=this;
         this.state={
+            token: 'pk.eyJ1IjoiY21yNjI0IiwiYSI6ImNqdXp2YXhjNjBrZms0ZHBoejB0MjYxencifQ.RwRI3gBw5GiU-J8a3-xSlg',
             viewport: {
                 width: 400,
                 height: 400,
@@ -34,20 +34,18 @@ class TwoPointMapBox extends Component {
             
         };
 	}
-
-
-
     render() {
 		console.log(this.state.locations)
         return (
             <Container>
                 <ReactMapGL
-                    mapboxApiAccessToken = {token}
+                    mapboxApiAccessToken = {this.state.token}
                     {...this.state.viewport}
                     onViewportChange={(viewport) => this.setState({viewport})}
                 >
                 {this.state.locations.map((loc) => { return (
                 <Popup
+                    token={this.state.token}
                     latitude={loc.lat} 
                     longitude={loc.lng} 
                     closeButton={false} 

@@ -23,7 +23,6 @@ class RestaurantPage extends Component {
 				</div> 
 			</div>
 			</div>
-			<TwoPointMapBox />
 		</>
 	);
   }
