@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Card, Button, Container} from 'react-bootstrap';
 import axios from 'axios';
+
 //Loads Restautant Data on Search
 import Auth from '../auth/Auth'
 class RestaurantBox extends Component {
@@ -64,7 +65,7 @@ class RestaurantBox extends Component {
 					</div>
 					<Col className='description'>
 						<a className="card-link" href={this.props.url}>Website</a>
-						<div className="card-text">location: {this.props.location.zip_code}</div>
+						<div className="card-text">Address: {this.props.location.display_address}</div>
 						<div className="card-text">Phone: {this.props.phone}</div>
 						<div className="card-text">Price: {this.props.price}</div>
 						<div className="card-text">Rating: {this.handleRatings()}</div>

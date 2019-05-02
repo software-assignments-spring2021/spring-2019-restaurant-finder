@@ -97,6 +97,7 @@ class GlobalNavBar extends Component {
 			<>
 			<Navbar bg="light" expand="lg">
 			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <p></p>
 			    <Navbar.Collapse id="basic-navbar-nav">
                     <img className="logo" src="happyeggs.ico"></img>
 			        <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>

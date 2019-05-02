@@ -5,7 +5,7 @@ html {
 }
 body {
   font: 14px Futura, Trebuchet MS , Arial , sans-serif !important;
-  background-color: #EFE2BA !important;
+  background-color: #f3e8c7 !important;
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -18,7 +18,6 @@ body {
 a {
   color: white;
 }
- 
 .h1 {
     font-size: 4rem !important;
     color: white !important;
@@ -68,7 +67,7 @@ a {
 /*SEARCH RESTAURANTS*/
 /*SEARCH BAR*/
 .searchBackground {
-	background-color: #EFE2BA;
+	background-color: #f3e8c7;
 	padding-top: 50px;
 	margin: auto;
 }
@@ -112,6 +111,7 @@ a {
 }
 .observer-row {
 	margin: auto;
+	text-align: center;
 }
 
 /*RESTAURANTBOX*/
@@ -149,7 +149,8 @@ img.rounded {
 }
 /*Individual Restaurant Page*/
 .restaurantPage {
-	background-color: #FDBFA8 !important;
+	/*Pink: #FDBFA8*/
+	background-color: #f3e8c7 !important;
 	height: 100% !important;
 }
 .restaurantInfo {
@@ -176,12 +177,16 @@ img.image {
 	height: auto;
 	padding-left: 20px !important;
 }
+.checked {
+  color: orange;
+}
 
 /*RESPONSIVE DESIGN*/
 
 /*If screen size is 992px wide, or more, make the following changes*/
 /*>992 = desktop size*/
 @media screen and (min-width: 992px) {
+	/*Global Navbar*/
 	.navbar-brand{
 		visibility: hidden;
 	}
@@ -201,6 +206,7 @@ img.image {
 /*If screen size is 992px wide, or less, make the following changes*/
 /*992px = tablet size*/
 @media screen and (max-width: 991px) {
+	/*Global Navbar*/
 	.navbar-brand{
 		color: white !important;
 	}
@@ -213,15 +219,17 @@ img.image {
 		display: inline-block;
 	}
 	.navbar-button {
-		display: inline-block;
+		display: block;
 		margin: 0;
 	}
+	/*Restaurant Box*/
 	.column {
 		width: 45%;
 	}
 	img.rounded {
    		width: 100%;
 	}
+	/*Search Box*/
 	.filterDropdown {
 		margin: 10px !important;
 	}
@@ -240,6 +248,7 @@ img.image {
 /*If screen size is 768px wide, or less, make the following changes*/
 /*768px = mobile size*/
 @media screen and (max-width: 767px) {
+	/*Global Navbar*/
 	.navbar-brand{
 		color: white !important;
 	}
@@ -252,12 +261,14 @@ img.image {
 		display: inline-block;
 	}
 	.navbar-button {
-		display: inline-block;
+		display: block;
 		margin: 0;
 	}
+	/*Restaurant Box*/
 	.column {
 		width: 100%;
 	}
+	/*Search Box*/
 	.searchBox {
 		width: 100%;
 		margin: auto;
@@ -269,9 +280,11 @@ img.image {
 	.filterDropdown {
 		margin: 0px !important;
 	}
+	/*Individual Restaurants*/
 	.restaurantTitle {
 		width: 100%;
 	}
+
 }
 
 

@@ -16,10 +16,11 @@ class RestaurantPage extends Component {
 
 				<div className="restaurantText">
 				<a className="card-link" href={searchObj.restaurant.url}>Website</a>
-				<div className="card-text">location: {searchObj.restaurant.location.zip_code}</div>
+				<div className="card-text">Address: {searchObj.restaurant.location.display_address}</div>
 				<div className="card-text">Phone: {searchObj.restaurant.phone}</div>
 				<div className="card-text">Price: {searchObj.restaurant.price}</div>
 				<div className="card-text">Rating: {searchObj.restaurant.rating}</div>
+
 				</div> 
 			</div>
 			</div>
