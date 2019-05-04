@@ -65,7 +65,7 @@ class RestaurantBox extends Component {
 					  </Button>}
 					</div>
 				</div>
-				<div className='container' onClick={this.props.moreInfo}>
+				<div className='container box-container' onClick={this.props.moreInfo}>
 					<div>
 						<img className="rounded" src={this.props.image_url}/>
 					</div>

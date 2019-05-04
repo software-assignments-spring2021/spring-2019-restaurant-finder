@@ -126,7 +126,18 @@ a {
 	width: 31%;
   	height: auto;
   	margin: 10px;
-	cursor: pointer;
+}
+.checked {
+  color: orange;
+}
+.box-button {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	padding: 0 0 0 0 !important;
+	border-color: transparent !important;
+	background-color: transparent !important; 
+	color: black !important;
 }
 .card-header {
 /*Restaurant name*/
@@ -136,6 +147,9 @@ a {
     overflow: hidden;
 	border-color: #FDBFA8 !important;
 	border-radius: 30px;
+}
+.box-container {
+  	cursor: pointer;
 }
 img.rounded {
 /*Image*/
@@ -154,6 +168,7 @@ img.rounded {
 	float: right;
 	margin-right: -7%;
 }
+
 /*Individual Restaurant Page*/
 .restaurantPage {
 	/*Pink: #FDBFA8*/
@@ -162,10 +177,10 @@ img.rounded {
 }
 .restaurantInfo {
 	margin: auto !important;
-	font-size: 3vw;
+	font-size: 1.4vw;
 	width: 50% !important;
 	margin-top: 10px;
-	padding-bottom: 150px;
+	padding-bottom: 100px;
 }
 .restaurantTitle {
 	padding-top: 10px;
@@ -174,7 +189,7 @@ img.rounded {
 	display: block;
 }
 img.image {
-	width: 40%;
+	width: 35%;
 	height: auto;
 	padding: 0px;
 	vertical-align: top;
@@ -184,17 +199,16 @@ img.image {
 	height: auto;
 	padding-left: 20px !important;
 }
-.checked {
-  color: orange;
+.hours_list {
+	list-style: none;
 }
-.box-button {
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	padding: 0 0 0 0 !important;
-	border-color: transparent !important;
-	background-color: transparent !important; 
-	color: black !important;
+.photos_box {
+	width: 100%;
+	background-color: #FDBFA8; 
+	height: 200px;
+}
+.individual_photos {
+    overflow: hidden;
 }
 
 /*RESPONSIVE DESIGN*/
