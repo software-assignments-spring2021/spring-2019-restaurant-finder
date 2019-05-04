@@ -1,0 +1,19 @@
+{
+    "addons": [
+      "mongolab"
+    ],
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+      }
+    ],
+    "formation": {
+      "web": {
+        "quantity": 1
+      }
+    },
+    "name": "restaurant-finder",
+    "scripts": {
+    },
+    "stack": "heroku-18"
+  }
