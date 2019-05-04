@@ -76,8 +76,8 @@ class RestaurantBox extends Component {
 					</Col>		
 				</div>
 				<Container>
-				{this.props.loggedIn && <Button onClick = {this.handleSubmit}>Favorite</Button>}
-				<Button onClick={this.props.moreInfo}>More Info</Button>
+				{this.props.loggedIn && <Button onClick = {this.handleSubmit} style={{margin: "5px"}}>Favorite</Button>}
+				<Button onClick={this.props.moreInfo} style={{margin: "5px"}}>More Info</Button>
 				</Container>
 
 			</Card>
