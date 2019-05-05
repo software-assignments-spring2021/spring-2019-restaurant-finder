@@ -25,7 +25,7 @@ var yelpRouter = require("./routes/callYelp");
 
 //create an app with express
 const app = express();
-
+app.disable('etag');
 //configure bodyparser and morgan MIDDLEWARE
 app.use(morgan('dev'));
 //body parser gives us responses in easy to use JSON!!!!!

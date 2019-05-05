@@ -55,7 +55,7 @@ class RestaurantBox extends Component {
   render() {
     return (
 			<Card className="column">
-				<div className="card-header">
+				<div className="card-header" style={this.props.isClosed?{backgroundColor: "IndianRed", color:"white"}:{backgroundColor: "SeaGreen", color:"white"}}>
 					<div>{this.props.name}</div>
 				</div>
 				<div className='container'>
@@ -63,12 +63,13 @@ class RestaurantBox extends Component {
 						<img className="rounded" src={this.props.image_url}/>
 					</div>
 					<Col className='description'>
+					<div style ={{fontSize:"1.5em"}}>{this.props.isClosed?"Closed":"Open"}</div>
 						<a className="card-link" href={this.props.url}>Website</a>
-						<div className="card-text">location: {this.props.location.zip_code}</div>
-						<div className="card-text">Phone: {this.props.phone}</div>
-						<div className="card-text">Price: {this.props.price}</div>
-						<div className="card-text">Rating: {this.handleRatings()}</div>
-						<div className="card-text">Distance: {Math.round(this.props.distance)} meters</div>
+						<div className="card-text">{this.props.location.address1}</div>
+						<div className="card-text">{this.props.phone}</div>
+						<div className="card-text" style = {{color:"green"}} >{this.props.price}</div>
+						<div className="card-text">{this.handleRatings()}</div>
+						<div className="card-text">{Math.round(this.props.distance*3.28084)} Feet Away</div>
 						<a href="http://yelp.com"> 
 							<img src={require('./Yelp_trademark_RGB_outline.png')} width="80" height="50" style={{position: "absolute", bottom: 0, right: 0}}/>
 						</a>

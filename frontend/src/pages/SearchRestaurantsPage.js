@@ -239,6 +239,7 @@ class SearchRestaurantsPage extends Component{
 					distance = {restaurant.distance}
 					loggedIn = {this.state.loggedIn}
 					moreInfo={searchObj.app.loadRestaurant.bind(this, searchObj.restaurants[i].id)}
+					isClosed={restaurant["is_closed"]}
 					>
 				</RestaurantBox>
 			</div>

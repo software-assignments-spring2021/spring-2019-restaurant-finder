@@ -31,11 +31,11 @@ class App extends Component {
 	// which loads the restaurant page during render instead of search page
 	loadRestaurant(restaurantid) {
 		if(!restaurantid) return;
-		fetch(`api/callYelp?id=${encodeURIComponent(restaurantid)}`)
-			.then(response => { 
-				return response.json()})
-			.then(response => {
-				searchObj.restaurant = response.jsonBody;
+		fetch(`api/callYelp?id=${encodeURIComponent(restaurantid)}`).then(response => { 
+				console.log("Hello")
+				return response.json()}).then(response => {
+				console.log(response);
+				searchObj.restaurant = response;
 				this.setState({page: "restaurant"});
 				console.log("bye");
 			})
