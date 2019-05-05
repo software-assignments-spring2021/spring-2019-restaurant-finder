@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/models/user').User;
 const Favorite = require('../database/models/user').Favorite;
+const Rating = require('../database/models/user').Rating;
 
 const passport = require('../passport');
 
@@ -30,7 +31,7 @@ router.post('/', (req, res) => {
                 password: password
             })
             newUser.save((err, savedUser) => {
-                if (err) 
+                if (err)
                 {
                     console.log("failed at userSave");
                     res.json(err)

@@ -4,6 +4,13 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 mongoose.promise = Promise;
 
+//Save ratings
+const rating = new Schema({
+	name: {type: String},
+	rate: {type: Number}
+})
+
+
 //new "favorite restaurant" schema - the only data we're saving for now is the name
 //and the URL for the restaurant - we should save more info in the future
 const favoriteRestaurant = new Schema({
@@ -16,7 +23,7 @@ const userSchema = new Schema({
 	//authentication
 	username: { type: String, unique: false, required: false },
 	password: { type: String, unique: false, required: false },
-	
+
 	//pinned restaurants: type: array of restaurants
 	favorites: [favoriteRestaurant]
 });
@@ -40,7 +47,7 @@ userSchema.pre('save', function (next) {
 		next()
 	} else {
 		console.log('models/user.js hashPassword in pre save');
-		
+
 		this.password = this.hashPassword(this.password)
 		next()
 	}
@@ -49,4 +56,5 @@ userSchema.pre('save', function (next) {
 //configures this as a model, and puts it into a collection called "users" (see the database on mLab to make more sense of this)
 const User = mongoose.model('User', userSchema, 'users');
 const Favorite = mongoose.model("Favorite", favoriteRestaurant);
-module.exports = {User, Favorite};
+const Rating = mongoose.model("Rating", rating);
+module.exports = {User, Favorite, Rating};
