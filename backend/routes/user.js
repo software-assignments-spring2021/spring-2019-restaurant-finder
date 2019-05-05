@@ -18,10 +18,9 @@ router.post('/', (req, res) => {
     User.findOne({ username: username }, (err, user) => {
         if (err) {
             console.log('User.js post error: ', err)
-        } else if (user) {
-            res.json({
-                error: `Sorry, already a user with the username: ${username}`
-            })
+        } else 
+        if (user) {
+            res.json({msg: `Sorry, already a user with the username: ${username}`})
         }
         //if not, create the new user and save it into the DB
         else {
@@ -33,9 +32,13 @@ router.post('/', (req, res) => {
                 if (err) 
                 {
                     console.log("failed at userSave");
-                    res.json(err)
+                    res.json({user: null, msg: 'Failed at creating user'});
                 }
-                res.json({user: savedUser});
+                else
+                {
+                    console.log('here!!')
+                    res.status(200).json({user: savedUser, msg: `Created new user: ${savedUser.username}`, error: null});
+                }
             })
         }
     })
@@ -51,13 +54,13 @@ router.post('/login', function (req, res, next) {
     passport.authenticate('local'), (req, res) => {
         console.log('logged in', req.user);
         //return the user info we got from passport
-        if(req.user !== null || req.user !== undefined)
+        if(req.user)
         {
-            return res.send({user: req.user});
+            return res.send({user: req.user, msg: 'You have logged in!'});
         }
         else
         {
-            return res.send({user: null});
+            return res.send({user: null, msg: 'User not found!'});
         }
 
     });
@@ -67,9 +70,9 @@ router.get('/', (req, res, next) => {
     console.log('===== getting current user!!======')
     console.log(JSON.stringify(req.user));
     if (req.user) {
-        res.json({ user: req.user })
+        res.json({ user: req.user, msg: 'Currently logged in!' })
     } else {
-        res.send(null);
+        res.send({user: null, msg:'No user'});
     }
 });
 
@@ -93,14 +96,16 @@ router.get("/favorites", (req, res) => {
         res.json({favorites: req.user.favorites});
     } else
     {
-        res.json(null);
+        res.json({favorites: []});
     }
 });
 //use the built in passport logout feature
 router.post('/logout', (req, res) => {
     if (req.user) {
-        req.logout()
-        res.send({ msg: 'Logging out!' })
+        req.logout();
+        req.session.destroy(function (err) {
+            res.send({ msg: 'Logged out!' })
+        });
     } else {
         res.send({ msg: 'No user to log out... this is a bug.' })
     }
