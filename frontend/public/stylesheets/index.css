@@ -205,10 +205,13 @@ img.image {
 .photos_box {
 	width: 100%;
 	background-color: #FDBFA8; 
-	height: 200px;
 }
 .individual_photos {
+	width: 175px;
+	height: 175px;
     overflow: hidden;
+    margin: auto;
+    text-align: center;
 }
 
 /*RESPONSIVE DESIGN*/
