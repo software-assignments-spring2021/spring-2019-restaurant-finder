@@ -115,6 +115,7 @@ class SearchRestaurantsPage extends Component{
 		searchObj.searchOptions["categories"] = {alias: "restaurants"};
 		// fetches the restaurants while reseting seatch options, then updates the view
 		this.fetchRestaurants(response => {
+			console.log(response)
 			searchObj.restaurants = response.jsonBody.businesses
 			this.setState({loading: false});
 		});

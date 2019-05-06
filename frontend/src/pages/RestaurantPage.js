@@ -23,11 +23,11 @@ class RestaurantPage extends Component {
 		return searchObj.restaurant.reviews.map(review=>{
 
 			return(
-				<Card style={{marginTop:"50px"}}>
-					<div class="card-header">
+				<Card style={{marginTop:"50px", marginBottom:"50px"}}>
+					<div class="card-header" style={{fontSize:"30px"}}>
    						 {review.user.name} <a href={review.url}>says:</a> {this.handleRatings(review.rating, "200px")}
   					</div>
-					  <div class="card-body" style={{fontSize:"30px"}}>
+					  <div class="card-body" style={{fontSize:"20px"}}>
 						{review.text}
 					  </div>
 				</Card>
@@ -77,25 +77,25 @@ class RestaurantPage extends Component {
 			<Jumbotron style={{fontSize:"4em"}}>
 				{searchObj.restaurant.name} <span style = {{color:"green"}}>{searchObj.restaurant.price}</span>
 			</Jumbotron>
-			<Row>
-				<Col style={{marginLeft:"10%",fontSize:"3em"}}>
-					<Row>
-						<div >{this.handleRatings(searchObj.restaurant.rating, "200%")}</div>
+			<Row style={{marginRight: 0, marginLeft: 0}}>
+				<Col style={{fontSize: "20px"}}>
+					<Row style={{marginRight: 0, marginLeft: 0}}>
+						<div style={{margin:"auto"}}>{this.handleRatings(searchObj.restaurant.rating, "170px")}</div>
 					</Row>
-					<Row>
-						<div > {searchObj.restaurant.location.address1}</div>
+					<Row style={{marginRight: 0, marginLeft: 0, marginTop: "20px"}}>
+						<p style={{margin:"auto"}}> {searchObj.restaurant.location.address1}</p>
 					</Row>
-					<Row>
-						<div >{searchObj.restaurant.phone}</div>
+					<Row style={{marginRight: 0, marginLeft: 0, marginTop: "20px"}}>
+						<p style={{margin:"auto"}}>{searchObj.restaurant.phone}</p>
 					</Row>
-					<Row>
-						<a  href={searchObj.restaurant.url}>Website</a>
+					<Row style={{marginRight: 0, marginLeft: 0, marginTop: "20px"}}>
+						<a  href={searchObj.restaurant.url} style={{margin:"auto"}}>Website</a>
 					</Row>
 					{this.getReviews()}
 				</Col>
 				<Col style={{marginLeft:"50px", marginRight:"50px", width:"15%", minWidth:"204px"}}>
 					{this.getImages()}
-					<a href="http://yelp.com"> 
+					<a href="http://yelp.com" style={{marginTop:"40px"}}> 
 							<img src={require('../components/Yelp_trademark_RGB_outline.png')} width="160" height="100" style={{position:"absolute", bottom:0,right:0}}/>
 					</a>
 				</Col>
