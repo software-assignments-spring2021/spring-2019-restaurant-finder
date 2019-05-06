@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Form, Button, Navbar} from "react-bootstrap";
+import {Container, Form, Button, Navbar, Card} from "react-bootstrap";
 import Auth from "../Auth";
 class UserDashboard extends Component {
     constructor(props)
@@ -25,19 +25,22 @@ class UserDashboard extends Component {
     {
         return(
             <div className="dashboard"> 
-                <Container>
+                <Container style={{textAlign:"center"}}>
                 <h1> Username: {this.state.username} </h1>
                 <h2>Favorites</h2>
-                <ol>
-                {this.state.favorites.map((e) => {
-                    return (
-                    <li><a href={e.url}>{e.name}</a></li>
-                    )}
-                )}
+                <ol style={{display:"inline-block", padding:0}}>
+					{this.state.favorites.map((e) => {
+						return (
+						<Card style={{ padding:"10px", paddingLeft:"30px"}}>
+							<li><a href={e.url} style={{display:"inline-block"}}>{e.name}</a></li>
+						</Card>
+						)}
+					)}
                 </ol>
-                
-                <Button onClick = {this.props.displayDashboard}>Close</Button>
-                </Container>
+                <div style={{textAlign:"center"}}>
+	                <Button onClick = {this.props.displayDashboard}>Close</Button>
+				</div>
+				</Container>
             </div>
         );
     }
