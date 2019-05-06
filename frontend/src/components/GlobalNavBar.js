@@ -102,10 +102,11 @@ class GlobalNavBar extends Component {
 		return (
 			<>
 			<Navbar bg="light" expand="lg">
-			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<img className="logo" src="happyeggs.ico"></img>
+			    <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
+			    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 			    <Navbar.Collapse id="basic-navbar-nav">
-              <img className="logo" src="happyeggs.ico"></img>
-			        <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
+				<Nav.Item style={{height:"35px", margin:"10px"}}>
               {this.state.msg !== null && this.state.msg.length > 0 && (<Alert variant="primary" dismissible={true}>{this.state.msg}</Alert>)}
               {this.state.loggedIn  && (
               <div className="navbar-right navbar-button">
@@ -117,7 +118,8 @@ class GlobalNavBar extends Component {
                   <Button className="spacing btn btn-light" onClick = {this.displayLogin}>Log In</Button>
                   <Button className="spacing btn btn-light" onClick = {this.displaySignup}>Sign Up</Button>
                   </div>
-                )}
+				)}
+			</Nav.Item>
           </Navbar.Collapse>
 			</Navbar>
       {this.state.showDashboard && (
