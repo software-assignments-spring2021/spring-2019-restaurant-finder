@@ -80,7 +80,8 @@ router.get('/', (req, res, next) => {
 router.post("/favorites", (req, res) => {
     const newFav = new Favorite({
         name: req.body.name,
-        url: req.body.url
+        url: req.body.url,
+        rating:req.body.rating
     });
     if (req.user)
     {
