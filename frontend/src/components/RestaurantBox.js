@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Card, Button, Container} from 'react-bootstrap';
+import { Col, Card, Button, Container, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 import axios from 'axios';
 //Loads Restautant Data on Search
 import Auth from '../auth/Auth'
@@ -12,9 +12,11 @@ class RestaurantBox extends Component {
 		this.Auth = new Auth();
 	} 
 	
-	handleSubmit() {
-		const newFav = {name: this.props.name, url: this.props.url};
+	handleSubmit(e) {
+		console.log(e.toString());
+		const newFav = {name: this.props.name, url: this.props.url, rating:e.toString()};
 		this.Auth.newFavorite(newFav);
+		this.setState({submitted: true});
 	}
 
 	handleRatings(){
@@ -49,9 +51,6 @@ class RestaurantBox extends Component {
 			return <img src={require('./yelp_stars/web_and_ios/regular/regular_5.png')}/>
 		}
 	}
-
-
-
   render() {
     return (
 			<Card className="column">
@@ -77,7 +76,18 @@ class RestaurantBox extends Component {
 					</Col>		
 				</div>
 				<Container>
-				{this.props.loggedIn && <Button onClick = {this.handleSubmit} style={{margin: "5px"}}>Favorite</Button>}
+				{this.props.loggedIn &&
+					<ToggleButtonGroup
+					type="checkbox"
+					onChange={this.handleSubmit}
+				  	>
+						<ToggleButton value={1}>1</ToggleButton>
+						<ToggleButton value={2}>2</ToggleButton>
+						<ToggleButton value={3}>3</ToggleButton>
+						<ToggleButton value={4}>4</ToggleButton>
+						<ToggleButton value={5}>5</ToggleButton>
+				  </ToggleButtonGroup>
+				}
 				<Button onClick={this.props.moreInfo} style={{margin: "5px"}}>More Info</Button>
 				</Container>
 

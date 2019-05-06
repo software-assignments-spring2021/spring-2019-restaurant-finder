@@ -32,7 +32,7 @@ class UserDashboard extends Component {
 					{this.state.favorites.map((e) => {
 						return (
 						<Card style={{ padding:"10px", paddingLeft:"30px"}}>
-							<li><a href={e.url} style={{display:"inline-block"}}>{e.name}</a></li>
+							<li><a href={e.url} style={{display:"inline-block"}}>{e.name} - which you rated: {e.rating}/5</a></li>
 						</Card>
 						)}
 					)}
