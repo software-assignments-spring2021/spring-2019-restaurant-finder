@@ -8,7 +8,8 @@ mongoose.promise = Promise;
 //and the URL for the restaurant - we should save more info in the future
 const favoriteRestaurant = new Schema({
 	name: {type: String},
-	url: {type: String}
+	url: {type: String},
+	rating:{type: String}
 })
 // Define userSchema with configurations
 const userSchema = new Schema({

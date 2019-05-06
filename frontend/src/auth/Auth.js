@@ -25,9 +25,11 @@ class Auth {
 
     //makes a post request to create new favorite based on our Favorite schema
     newFavorite(newFav){
+        console.log(JSON.stringify(newFav));
         axios.post('/user/favorites', {
 			name:newFav.name,
-			url:newFav.url
+            url:newFav.url,
+            rating:newFav.rating,
 		});
     }
 
