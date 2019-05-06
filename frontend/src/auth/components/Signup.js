@@ -8,7 +8,9 @@ class Signup extends Component {
         this.state = {
           username: "",
           password: "",
-          userObject: null
+          userObject: null,
+          msg: '',
+          alertType:"primary",
         };
         this.Auth = new Auth();
         this.handleChange=this.handleChange.bind(this);
@@ -24,10 +26,19 @@ class Signup extends Component {
             password: this.state.password
         };
         this.Auth.signUp(user).then((response) => {
+            console.log("frontend" + JSON.stringify(response));
             if (response !== null || response !== undefined)
             {
+                if (response.msg.includes("Sorry" || ("Failed")))
+                {
+                    this.setState({alertType:"danger"});
+                }
+                else {
+                    this.setState({alertType:"primary"});
+                }
                 this.setState({
-                    userObject: response.user
+                    userObject: response.user,
+                    msg: response.msg
                 })
             }
             
@@ -75,10 +86,8 @@ class Signup extends Component {
                 <br></br>
             </Form>
             <div style={{paddingTop: '20px'}} >
-            {this.state.userObject !== null && (<Alert variant="danger">{this.state.userObject.username} user created.</Alert>)}
-            </div>
+            {this.state.msg.length > 0 && (<Alert variant={this.state.alertType}>{this.state.msg}</Alert>)}            </div>
         </Container>
-
 		</div>
         );
     }

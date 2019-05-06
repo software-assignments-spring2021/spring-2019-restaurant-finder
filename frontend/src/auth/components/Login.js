@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Form, Button, Navbar} from "react-bootstrap";
+import {Alert, Container, Form, Button, Navbar} from "react-bootstrap";
 import Auth from '../Auth';
 
 class Login extends Component {
@@ -7,7 +7,9 @@ class Login extends Component {
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            msg: '',
+            alertType:'primary'
         }
         this.Auth = new Auth();
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,12 +29,20 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         }
-        this.props.displayLogin();
         let userData;
         this.Auth.login(user).then((response) => {
             if (response !== undefined)
             {
                 userData = response.user;
+                if (response.msg.includes("Incorrect"))
+                {
+                    this.setState({alertType:'danger'});
+                }
+                else
+                {
+                    this.setState({alertType:'primary'});
+                }
+                this.setState({msg: response.msg});
             }
             this.props.refresh();
         });
@@ -72,6 +82,7 @@ class Login extends Component {
                             Sign In
                         </Button>
                     </Form>
+                    {this.state.msg.length > 0 && (<Alert variant={this.state.alertType}>{this.state.msg}</Alert>)}
                 </Container>
 				</div>
             )

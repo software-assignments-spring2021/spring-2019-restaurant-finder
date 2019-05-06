@@ -48,8 +48,8 @@ class Auth {
     //tells the app to log itself out
     logOut() {
         return axios.post('/user/logout').then(response => {
-            console.log(response.data);
-            return (response.data.msg);
+            console.log('response.data' + JSON.stringify(response.data));
+            return ({msg: response.data.msg});
           }).catch(error => {
             console.log("logging out caused " + error);
             return error;
@@ -63,10 +63,10 @@ class Auth {
 		  console.log(response.data)
 		  if (response.data !== null || response.data !== undefined) {
 			console.log('Get User: There is a user saved in the server session: ' + JSON.stringify(response))
-			return ({user: response.data.user});
+			return ({user: response.data.user, msg: response.data.msg});
 		  } else {
 			console.log('Get user: no user');
-			return({user: null});
+			return({user: null, msg: response.data.msg});
 		  }
 		});
     }
@@ -86,11 +86,12 @@ class Auth {
             if (response.data !== null)
             {
                 console.log("successful signup!");
-                return ({user: response.data.user});
+                return ({user: response.data.user, msg: response.data.msg});
             }
             else
             {
                 console.log("error " + response.status + JSON.stringify(response));
+                return ({user: response.data.user, msg: response.data.msg});
             }
         }).catch(error => {
             console.log("error with signup: " + error);
@@ -106,10 +107,12 @@ class Auth {
             console.log("login responded!" + JSON.stringify(response));
             if (response.data.user !== null)
             {
-                return ({user: response.data.user});
+                return({user: response.data.user, msg: response.data.msg});
             }
         }).catch(error => {
             console.log('login error: ' + error);
+
+            return ({user: null, msg: "Incorrect username / password"});
         });
     }
 }

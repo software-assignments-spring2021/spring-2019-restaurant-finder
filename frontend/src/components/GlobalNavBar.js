@@ -18,7 +18,8 @@ class GlobalNavBar extends Component {
           showDashboard:false,
           showLogin: false,
           showSignup: false,
-          loggedIn: false
+          loggedIn: false,
+          msg:''
         }
         this.Auth = new Auth();
         this.logout = this.logout.bind(this);
@@ -40,9 +41,7 @@ class GlobalNavBar extends Component {
     checkLogIn()
     {
       this.Auth.isLoggedIn().then((returned) => {
-        this.setState({
-          loggedIn: returned
-        });
+        this.setState({ loggedIn: returned });
         this.forceUpdate();
       });
       this.forceUpdate();
@@ -87,10 +86,17 @@ class GlobalNavBar extends Component {
               msg: response.msg
             })
           }
-
         });
-        console.log('logging out!!');
 
+
+        console.log('logging out!!');
+        this.setState({
+                showDashboard: false,
+                showLogin: false,
+                showSignup: false,
+                loggedIn: false
+              });
+        //this.refresh();
     }
     render(){
 		return (
@@ -99,9 +105,10 @@ class GlobalNavBar extends Component {
 			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <p></p>
 			    <Navbar.Collapse id="basic-navbar-nav">
-                    <img className="logo" src="happyeggs.ico"></img>
+              <img className="logo" src="happyeggs.ico"></img>
 			        <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
-			        {this.state.loggedIn  && (
+              {this.state.msg !== null && this.state.msg.length > 0 && (<Alert variant="primary" dismissible={true}>{this.state.msg}</Alert>)}
+              {this.state.loggedIn  && (
               <div className="navbar-right navbar-button">
                 <Button className="spacing btn btn-light" onClick={this.logout}>Logout</Button>
                 <Button className="spacing btn btn-light" onClick={this.displayDashboard} >Display User Dashboard</Button>
