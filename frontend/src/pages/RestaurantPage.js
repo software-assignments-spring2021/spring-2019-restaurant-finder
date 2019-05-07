@@ -1,15 +1,41 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardImg,Container, Jumbotron} from 'react-bootstrap';
 import searchObj from "../designPatterns/SearchStateSingleton"
-import TwoPointMapBox from "../components/TwoPointMapBox"
+import TwoPointMapBox from "../components/TwoPointMapBox";
 
 class RestaurantPage extends Component {
 
-	constructor(props){
+	constructor(props) {
 		super(props)
 		this.handleRatings = this.handleRatings.bind(this);
 		this.getImages = this.getImages.bind(this);
 		this.getReviews = this.getReviews.bind(this);
+		this.getHours = this.getHours.bind(this);
+
+	}
+
+	getHours() {
+		const hours = [];
+		searchObj.restaurant.hours.forEach((restaurant) => {
+			restaurant.open.forEach((res) => {
+				if (res.day === 0){
+					hours.push("Monday: " + res.start + " - " + res.end + "\n");
+				} else if (res.day === 1){
+					hours.push("Tuesday: " + res.start + " - " + res.end + "\n");
+				} else if (res.day === 2){
+					hours.push("Wednesday: " + res.start + " - " + res.end + "\n");
+				} else if (res.day === 3){
+					hours.push("Thursday: " + res.start + " - " + res.end + "\n");
+				} else if (res.day === 4){
+					hours.push("Friday: " + res.start + " - " + res.end + "\n");
+				} else if (res.day === 5){
+					hours.push("Saturday: " + res.start + " - " + res.end + "\n");
+				} else if (res.day === 6){
+					hours.push("Sunday: " + res.start + " - " + res.end + "\n");
+				}
+			})
+		});
+		return hours;
 	}
 
 	getImages(){
@@ -32,8 +58,6 @@ class RestaurantPage extends Component {
 					  </div>
 				</Card>
 			)
-
-
 		})
 	}
 
@@ -74,11 +98,14 @@ class RestaurantPage extends Component {
 	  console.log(searchObj.restaurants);
     return (
 		<>	
-			<Jumbotron style={{fontSize:"4em"}}>
+			<Jumbotron className="jumbotron">
 				{searchObj.restaurant.name} <span style = {{color:"green"}}>{searchObj.restaurant.price}</span>
 			</Jumbotron>
 			<Row style={{marginRight: 0, marginLeft: 0}}>
 				<Col style={{fontSize: "20px"}}>
+					<Row style={{marginRight: 0, marginLeft: 0}}>
+						<div style={{margin:"auto"}}> {searchObj.showMap && (<TwoPointMapBox />)} </div>
+					</Row>
 					<Row style={{marginRight: 0, marginLeft: 0}}>
 						<div style={{margin:"auto"}}>{this.handleRatings(searchObj.restaurant.rating, "170px")}</div>
 					</Row>
@@ -91,8 +118,17 @@ class RestaurantPage extends Component {
 					<Row style={{marginRight: 0, marginLeft: 0, marginTop: "20px"}}>
 						<a  href={searchObj.restaurant.url} style={{margin:"auto"}}>Website</a>
 					</Row>
+
+					<Row style={{marginLeft:"15%", marginRight:"15%", width:"80%", minWidth:"204px"}}>
+					<div> 
+						<p> Hours:  </p>
+		                {this.getHours().map((d) => { return ( <p>{d}</p> )} )}
+					</div>
+					</Row>
+
 					{this.getReviews()}
 				</Col>
+
 				<Col style={{marginLeft:"50px", marginRight:"50px", width:"15%", minWidth:"204px"}}>
 					{this.getImages()}
 					<a href="http://yelp.com" style={{marginTop:"40px"}}> 
@@ -100,7 +136,6 @@ class RestaurantPage extends Component {
 					</a>
 				</Col>
 			</Row>
-			
 		</>
 	);
   }

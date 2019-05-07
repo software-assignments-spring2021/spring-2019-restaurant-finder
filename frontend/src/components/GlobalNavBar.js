@@ -139,7 +139,10 @@ class GlobalNavBar extends Component {
 export default GlobalNavBar;
 
   // return (
-            
+  
+//          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//           <p></p>
+
         // <Navbar bg="light" expand="lg">
         //     <Switch>
         //         <Route exact path="/signup" component={Signup}/>

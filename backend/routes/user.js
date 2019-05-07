@@ -78,6 +78,7 @@ router.get('/', (req, res, next) => {
 
 //the post request for saving new favorites
 router.post("/favorites", (req, res) => {
+    
     const newFav = new Favorite({
         name: req.body.name,
         url: req.body.url,
@@ -88,6 +89,21 @@ router.post("/favorites", (req, res) => {
         req.user.favorites.push(newFav);
         req.user.save();
     }
+    // Favorite.findOne({name: req.body.name}, (err, res) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else if (res === []) {
+    //         const newFav = new Favorite({
+    //             name: req.body.name,
+    //             url: req.body.url
+    //         });
+    //         req.user.favorites.push(newFav);
+    //         req.user.save();
+    //     } else {
+    //         req.user.favorites.delete(res);
+    //         Favorite.findOneAndDelete({name: req.body.name});                
+    //     }
+    // })
 });
 
 //get all of the current user's favorites
