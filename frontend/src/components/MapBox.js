@@ -12,8 +12,8 @@ class MapBox extends Component {
 		searchObj.map=this;
         this.state={
             viewport: {
-                width: 400,
-                height: 400,
+                width: window.innerWidth/1.5,
+                height: window.innerHeight/3,
 				zoom: 15,
 				latitude: searchObj.searchOptions.latitude, 
                 longitude: searchObj.searchOptions.longitude
@@ -34,8 +34,28 @@ class MapBox extends Component {
             ]
             
         };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
 
+    componentDidMount() {
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        if (window.innerWidth >= 1000){
+            this.state.viewport.width = window.innerWidth/1.2;
+            this.state.viewport.height = window.innerHeight/3;
+        } else {
+            this.state.viewport.width = window.innerWidth/1.5;
+            this.state.viewport.height = window.innerHeight/3;
+        }
+        this.setState({});
+    }
 
 
     render() {
