@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     User.findOne({ username: username }, (err, user) => {
         if (err) {
             console.log('User.js post error: ', err)
-        } else 
+        } else
         if (user) {
             res.json({msg: `Sorry, already a user with the username: ${username}`})
         }
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
                 password: password
             })
             newUser.save((err, savedUser) => {
-                if (err) 
+                if (err)
                 {
                     console.log("failed at userSave");
                     res.json({user: null, msg: 'Failed at creating user'});
@@ -78,7 +78,6 @@ router.get('/', (req, res, next) => {
 
 //the post request for saving new favorites
 router.post("/favorites", (req, res) => {
-    
     const newFav = new Favorite({
         name: req.body.name,
         url: req.body.url,
@@ -86,9 +85,24 @@ router.post("/favorites", (req, res) => {
     });
     if (req.user)
     {
-        req.user.favorites.push(newFav);
-        req.user.save();
+        result = req.user.favorites.filter(fav => fav.name == newFav.name && fav.url);
+        if(result.length == 0){
+          req.user.favorites.push(newFav);
+          req.user.save();
+        }else {
+          req.user.favorites = req.user.favorites.map(fav => {
+            if(fav.name == newFav.name && fav.url){
+              fav.rating = newFav.rating
+            }
+            return fav;
+          })
+          req.user.save();
+        }
+        res.send({favorites: req.user.favorites})
+
     }
+
+
     // Favorite.findOne({name: req.body.name}, (err, res) => {
     //     if (err) {
     //         console.log(err);
@@ -101,7 +115,7 @@ router.post("/favorites", (req, res) => {
     //         req.user.save();
     //     } else {
     //         req.user.favorites.delete(res);
-    //         Favorite.findOneAndDelete({name: req.body.name});                
+    //         Favorite.findOneAndDelete({name: req.body.name});
     //     }
     // })
 });

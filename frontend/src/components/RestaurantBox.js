@@ -10,20 +10,32 @@ class RestaurantBox extends Component {
 	{
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.toggleHidden = this.toggleHidden.bind(this);
 		this.Auth = new Auth();
-	} 
-	
+		this.state = {
+			isHidden: false
+		}
+	}
+
+	toggleHidden() {
+		this.setState({
+			isHidden: true
+		})
+	}
+
+
 	handleSubmit(e) {
 		console.log(e.toString());
 		const newFav = {name: this.props.name, url: this.props.url, rating:e.toString()};
 		this.Auth.newFavorite(newFav);
 		this.setState({submitted: true});
+		this.toggleHidden();
 	}
 
 	handleRatings(){
 		if (this.props.rating == 0){
 			return <img src={require('./yelp_stars/web_and_ios/regular/regular_0.png')}/>
-		} 
+		}
 		if (this.props.rating == 1){
 			return <img src={require('./yelp_stars/web_and_ios/regular/regular_1_half.png')}/>
 		}
@@ -72,14 +84,14 @@ class RestaurantBox extends Component {
 						<div className="card-text" style = {{color:"green"}} >{this.props.price}</div>
 						<div className="card-text">{this.handleRatings()}</div>
 						<div className="card-text">{Math.round(this.props.distance*3.28084)} Feet Away</div>
-					</Col>	
+					</Col>
 
-					<a href="http://yelp.com"> 
+					<a href="http://yelp.com">
 						<img className="yelp" src={require('./Yelp_trademark_RGB_outline.png')}/>
 					</a>
 
 					<div>
-					{this.props.loggedIn &&
+					{!this.state.isHidden && this.props.loggedIn &&
 					<ToggleButtonGroup
 					type="checkbox"
 					className="favorite_star"
@@ -91,7 +103,7 @@ class RestaurantBox extends Component {
 						<ToggleButton className="box-button" value={4}> <span className="fa fa-star checked"> 4 </span> </ToggleButton>
 						<ToggleButton className="box-button" value={5}> <span className="fa fa-star checked"> 5 </span> </ToggleButton>
 				  </ToggleButtonGroup>
-					}	
+					}
 					</div>
 				</div>
 
