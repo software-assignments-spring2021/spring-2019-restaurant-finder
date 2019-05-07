@@ -277,13 +277,13 @@ class SearchRestaurantsPage extends Component{
 				<Filter></Filter>
 			</Row>
 		</Form>
-		<Container style={{padding: '20px'}}>
-			<Container style={{paddingLeft:'50%'}}>
+		<Container style={{paddingLeft:'50%', paddingTop:'25px', paddingBottom:'25px'}}>
 				<PropagateLoader loading={this.state.loading} size={30}/>
 			</Container>
-			<Container >
-				<Button className="map_location" onClick = {this.getLocation}>Get Location </Button>
-				{searchObj.showMap && (<MapBox className="map_location" key={searchObj.searchNum}/>)}
+		<Container style={{padding: '20px'}}>
+			<Container>
+				<Button onClick = {this.getLocation}>Get Location </Button>
+				{searchObj.showMap && (<MapBox key={searchObj.searchNum}/>)}
 			</Container>
 		</Container>
 		</div>

@@ -12,7 +12,7 @@ class TwoPointMapBox extends Component {
         this.state={
             token: 'pk.eyJ1IjoiY21yNjI0IiwiYSI6ImNqdXp2YXhjNjBrZms0ZHBoejB0MjYxencifQ.RwRI3gBw5GiU-J8a3-xSlg',
             viewport: {
-                width: 400,
+                width: 500,
                 height: 400,
 				zoom: 15,
 				latitude: searchObj.searchOptions.latitude, 
@@ -33,7 +33,27 @@ class TwoPointMapBox extends Component {
             ]
             
         };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
 	}
+
+    componentDidMount() {
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        if (window.innerWidth <= 400){
+            this.state.viewport.width = window.innerWidth;
+            this.state.viewport.height = window.innerHeight/3;
+        } 
+        this.setState({});
+    }
+
     render() {
 		console.log(this.state.locations)
         return (
