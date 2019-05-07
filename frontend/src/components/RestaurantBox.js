@@ -58,12 +58,13 @@ class RestaurantBox extends Component {
 				<div className="card-header" style={this.props.isClosed?{backgroundColor: "IndianRed", color:"white"}:{backgroundColor: "SeaGreen", color:"white"}}>
 					<div>{this.props.name}</div>
 				</div>
-				<div className='container box-container' onClick={this.props.moreInfo}>
+				<div className='container box-container'>
 					<div>
 						<img className="rounded" src={this.props.image_url}/>
 					</div>
 
 					<Col className='description'>
+					<div><Button onClick={this.props.moreInfo} className="moreinfo"> More Info </Button></div>
 					<div style ={{fontSize:"1.5em"}}>{this.props.isClosed?"Closed":"Open"}</div>
 						<a className="card-link" href={this.props.url}>Website</a>
 						<div className="card-text">{this.props.location.address1}</div>
