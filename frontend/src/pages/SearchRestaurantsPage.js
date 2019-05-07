@@ -281,7 +281,7 @@ class SearchRestaurantsPage extends Component{
 			<Container style={{paddingLeft:'50%'}}>
 				<PropagateLoader loading={this.state.loading} size={30}/>
 			</Container>
-			<Container>
+			<Container >
 				<Button className="map_location" onClick = {this.getLocation}>Get Location </Button>
 				{searchObj.showMap && (<MapBox className="map_location" key={searchObj.searchNum}/>)}
 			</Container>

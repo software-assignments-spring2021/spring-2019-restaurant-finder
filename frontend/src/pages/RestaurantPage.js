@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardImg,Container, Jumbotron} from 'react-bootstrap';
 import searchObj from "../designPatterns/SearchStateSingleton"
-import TwoPointMapBox from "../components/TwoPointMapBox"
+import TwoPointMapBox from "../components/TwoPointMapBox";
 
 class RestaurantPage extends Component {
 
@@ -104,6 +104,9 @@ class RestaurantPage extends Component {
 			<Row style={{marginRight: 0, marginLeft: 0}}>
 				<Col style={{fontSize: "20px"}}>
 					<Row style={{marginRight: 0, marginLeft: 0}}>
+						<div style={{margin:"auto"}}> {searchObj.showMap && (<TwoPointMapBox />)} </div>
+					</Row>
+					<Row style={{marginRight: 0, marginLeft: 0}}>
 						<div style={{margin:"auto"}}>{this.handleRatings(searchObj.restaurant.rating, "170px")}</div>
 					</Row>
 					<Row style={{marginRight: 0, marginLeft: 0, marginTop: "20px"}}>
@@ -125,7 +128,7 @@ class RestaurantPage extends Component {
 
 					{this.getReviews()}
 				</Col>
-				
+
 				<Col style={{marginLeft:"50px", marginRight:"50px", width:"15%", minWidth:"204px"}}>
 					{this.getImages()}
 					<a href="http://yelp.com" style={{marginTop:"40px"}}> 

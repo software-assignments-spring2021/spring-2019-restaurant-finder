@@ -113,6 +113,11 @@ a {
 	margin: auto;
 	text-align: center;
 }
+.map_location {
+	display: block;
+	margin: auto;
+	text-align: center;
+}
 
 /*RESTAURANTBOX*/
 .description {
