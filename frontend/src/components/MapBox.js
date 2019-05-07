@@ -13,7 +13,7 @@ class MapBox extends Component {
         this.state={
             viewport: {
                 width: window.innerWidth/1.5,
-                height: window.innerHeight/3,
+                height: window.innerHeight/2,
 				zoom: 15,
 				latitude: searchObj.searchOptions.latitude, 
                 longitude: searchObj.searchOptions.longitude
@@ -49,7 +49,7 @@ class MapBox extends Component {
     updateWindowDimensions() {
         if (window.innerWidth >= 1000){
             this.state.viewport.width = window.innerWidth/1.2;
-            this.state.viewport.height = window.innerHeight/3;
+            this.state.viewport.height = window.innerHeight/2;
         } else {
             this.state.viewport.width = window.innerWidth/1.5;
             this.state.viewport.height = window.innerHeight/3;
