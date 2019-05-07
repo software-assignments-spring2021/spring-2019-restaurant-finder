@@ -57,26 +57,12 @@ class RestaurantBox extends Component {
 			<Card className="column">
 				<div className="card-header" style={this.props.isClosed?{backgroundColor: "IndianRed", color:"white"}:{backgroundColor: "SeaGreen", color:"white"}}>
 					<div>{this.props.name}</div>
-					<div>
-					  {this.props.loggedIn && 
-					  <Button className="box-button" onClick={this.handleSubmit}> 
-					  <span className="fa fa-star checked"></span>
-					  </Button>}
-					</div>
 				</div>
 				<div className='container box-container' onClick={this.props.moreInfo}>
 					<div>
 						<img className="rounded" src={this.props.image_url}/>
 					</div>
-<<<<<<< HEAD
-					<Col className='description'>	
-						<div className="card-text">Price: {this.props.price}</div>
-						<div className="card-text">Rating: {this.handleRatings()}</div>
-						<div className="card-text">Distance: {Math.round(this.props.distance)} meters</div>
-						<div className="card-text">Phone: {this.props.phone}</div>
-						<div className="card-text">Address: {this.props.location.display_address}</div>
-					
-=======
+
 					<Col className='description'>
 					<div style ={{fontSize:"1.5em"}}>{this.props.isClosed?"Closed":"Open"}</div>
 						<a className="card-link" href={this.props.url}>Website</a>
@@ -85,31 +71,29 @@ class RestaurantBox extends Component {
 						<div className="card-text" style = {{color:"green"}} >{this.props.price}</div>
 						<div className="card-text">{this.handleRatings()}</div>
 						<div className="card-text">{Math.round(this.props.distance*3.28084)} Feet Away</div>
->>>>>>> b7625c60225fbef71a1c38737e3d0f4e3da9e2f8
-						<a href="http://yelp.com"> 
+					</Col>	
+
+					<a href="http://yelp.com"> 
 						<img className="yelp" src={require('./Yelp_trademark_RGB_outline.png')}/>
-						</a>
-					</Col>		
-				</div>
-<<<<<<< HEAD
-=======
-				<Container>
-				{this.props.loggedIn &&
+					</a>
+
+					<div>
+					{this.props.loggedIn &&
 					<ToggleButtonGroup
 					type="checkbox"
+					className="favorite_star"
 					onChange={this.handleSubmit}
 				  	>
-						<ToggleButton value={1}>1</ToggleButton>
-						<ToggleButton value={2}>2</ToggleButton>
-						<ToggleButton value={3}>3</ToggleButton>
-						<ToggleButton value={4}>4</ToggleButton>
-						<ToggleButton value={5}>5</ToggleButton>
+						<ToggleButton className="box-button" value={1}> <span className="fa fa-star checked"> 1 </span> </ToggleButton>
+						<ToggleButton className="box-button" value={2}> <span className="fa fa-star checked"> 2 </span> </ToggleButton>
+						<ToggleButton className="box-button" value={3}> <span className="fa fa-star checked"> 3 </span> </ToggleButton>
+						<ToggleButton className="box-button" value={4}> <span className="fa fa-star checked"> 4 </span> </ToggleButton>
+						<ToggleButton className="box-button" value={5}> <span className="fa fa-star checked"> 5 </span> </ToggleButton>
 				  </ToggleButtonGroup>
-				}
-				<Button onClick={this.props.moreInfo} style={{margin: "5px"}}>More Info</Button>
-				</Container>
+					}	
+					</div>
+				</div>
 
->>>>>>> b7625c60225fbef71a1c38737e3d0f4e3da9e2f8
 			</Card>
 	);
   }

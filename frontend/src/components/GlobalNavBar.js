@@ -102,14 +102,9 @@ class GlobalNavBar extends Component {
 		return (
 			<>
 			<Navbar bg="light" expand="lg">
-<<<<<<< HEAD
-			    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <p></p>
-=======
 				<img className="logo" src="happyeggs.ico"></img>
 			    <a className="restaurantfinder" onClick={searchObj.app.loadSearch}><Nav.Link style={{color: "white"}} href="">Restaurant Finder</Nav.Link></a>
 			    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
->>>>>>> d8c1ed9c112106d92fa791086d234fd049e5535a
 			    <Navbar.Collapse id="basic-navbar-nav">
 				<Nav.Item style={{height:"35px", margin:"10px"}}>
               {this.state.msg !== null && this.state.msg.length > 0 && (<Alert variant="primary" dismissible={true}>{this.state.msg}</Alert>)}
@@ -144,7 +139,10 @@ class GlobalNavBar extends Component {
 export default GlobalNavBar;
 
   // return (
-            
+  
+//          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//           <p></p>
+
         // <Navbar bg="light" expand="lg">
         //     <Switch>
         //         <Route exact path="/signup" component={Signup}/>

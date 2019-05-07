@@ -127,18 +127,6 @@ a {
   	height: auto;
   	margin: 10px;
 }
-.checked {
-  color: orange;
-}
-.box-button {
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	padding: 0 0 0 0 !important;
-	border-color: transparent !important;
-	background-color: transparent !important; 
-	color: black !important;
-}
 .card-header {
 /*Restaurant name*/
 	/*Responsive text size*/
@@ -168,11 +156,29 @@ img.rounded {
 	float: right;
 	margin-right: -7%;
 }
+.checked {
+  color: orange;
+}
+.box-button {
+	position: absolute;
+	padding: 0 0 0 0 !important;
+	border-color: transparent !important;
+	background-color: transparent !important; 
+	color: black !important;
+}
+.favorite_star {
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
 
 /*Individual Restaurant Page*/
+.jumbotron {
+	font-size: 4em;
+	background-color: #FDBFA8 !important;
+}
 .restaurantPage {
 	/*Pink: #FDBFA8*/
-	background-color: #f3e8c7 !important;
+	background-color: #FDBFA8 !important;
 	height: 100% !important;
 }
 .restaurantInfo {
@@ -188,30 +194,9 @@ img.rounded {
 	font-size: 5vw;
 	display: block;
 }
-img.image {
-	width: 35%;
-	height: auto;
-	padding: 0px;
-	vertical-align: top;
-}
-.restaurantText {
-	display: inline-block;
-	height: auto;
-	padding-left: 20px !important;
-}
-.hours_list {
-	list-style: none;
-}
-.photos_box {
-	width: 100%;
-	background-color: #FDBFA8; 
-}
-.individual_photos {
-	width: 175px;
-	height: 175px;
-    overflow: hidden;
-    margin: auto;
-    text-align: center;
+.hours_box {
+	margin: auto !important;
+	text-align: center !important;
 }
 
 /*RESPONSIVE DESIGN*/
