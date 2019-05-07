@@ -136,9 +136,6 @@ a {
 	border-color: #FDBFA8 !important;
 	border-radius: 30px;
 }
-.box-container {
-  	cursor: pointer;
-}
 img.rounded {
 /*Image*/
 	margin-top: 15px;
@@ -169,6 +166,11 @@ img.rounded {
 .favorite_star {
 	margin-left: 20px;
 	margin-bottom: 20px;
+}
+.moreinfo {
+	background-color: #484848 !important;
+	border-color: #484848 !important;
+	float: right;
 }
 
 /*Individual Restaurant Page*/
